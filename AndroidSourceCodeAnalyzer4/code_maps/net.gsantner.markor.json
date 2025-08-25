@@ -1,0 +1,748 @@
+{
+    "activities": [
+        {
+            "name": "net.gsantner.markor.activity.MainActivity",
+            "layouts": [
+                {
+                    "name": "main_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.bottom_navigation_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.nav_more",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.nav_todo",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.bottom_navigation_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "main__activity.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "main__activity",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "id": "@+id/main_content",
+                                "fitsSystemWindows": "true",
+                                "theme": "@style/AppTheme.Unified",
+                                "context": "net.gsantner.markor.activity.MainActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.AppBarLayout",
+                                "id": "@+id/appbar",
+                                "theme": "@style/AppTheme.Light.AppBarOverlay"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.Toolbar",
+                                "id": "@+id/toolbar",
+                                "theme": "@style/LightTextToolbarOverlay",
+                                "subtitleTextColor": "@color/secondary_text",
+                                "title": "@string/app_name_real"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.viewpager2.widget.ViewPager2",
+                                "id": "@+id/main__view_pager_container",
+                                "layout_marginBottom": "?attr/actionBarSize"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.floatingactionbutton.FloatingActionButton",
+                                "id": "@+id/fab_add_new_item",
+                                "layout_marginEnd": "16dp",
+                                "layout_marginRight": "16dp",
+                                "layout_marginBottom": "72dp",
+                                "contentDescription": "Create a new file or folder",
+                                "shapeAppearance": "@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.bottomnavigation.BottomNavigationView",
+                                "id": "@+id/bottom_navigation_bar",
+                                "itemBackground": "@color/primary",
+                                "itemIconTint": "@drawable/bottomnav_color_selector",
+                                "itemTextColor": "@drawable/bottomnav_color_selector",
+                                "labelVisibilityMode": "labeled",
+                                "menu": "@menu/main__bottom_nav"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.menu_bottom_nav",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "fab_add_new_item",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.fab_add_new_item",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.nav_more",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.nav_notebook",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_main",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.bottom_navigation_bar",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.nav_notebook",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.main__view_pager_container",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "bottom_navigation_bar",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.main__menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.nav_quicknote",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.bottom_nav_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "main__view_pager_container",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.nav_todo",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "DocumentEditAndViewFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "MoreFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [
+                {
+                    "name": "NewFileDialog",
+                    "layouts": [],
+                    "elements": []
+                }
+            ],
+            "elements": [],
+            "summary": "MainActivity serves as the primary interface for navigation and file browsing in the Markor app. It includes a ViewPager2 for switching between different tabs (Notebook, Quicknote, Todo, More), BottomNavigationView for tab selection, FloatingActionButton to create new files/folders, and integrates with DocumentActivity for editing files. The activity handles intents, manages fragment states, configures UI elements dynamically, and supports lifecycle management, permissions, animations, and custom file browser behavior.",
+            "transfer": [
+                "DocumentActivity",
+                "SettingsActivity",
+                "IntroActivity",
+                "StoragePermissionActivity",
+                "MainActivity"
+            ]
+        },
+        {
+            "name": "net.gsantner.markor.activity.ActionButtonSettingsActivity",
+            "layouts": [
+                {
+                    "name": "action_order_activity",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical",
+                                "context": ".activity.ActionButtonSettingsActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.AppBarLayout",
+                                "id": "@+id/appbar",
+                                "theme": "@style/AppTheme.Unified"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the app bar containing the toolbar for the activity"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.Toolbar",
+                                "id": "@+id/toolbar",
+                                "theme": "@style/LightTextToolbarOverlay",
+                                "title": "Action order"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "initialize",
+                                    "effect": "sets up the toolbar with a title 'Action order' and back navigation"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.recyclerview.widget.RecyclerView",
+                                "id": "@+id/action_order_activity_recycler",
+                                "paddingLeft": "@dimen/appbar_padding_top"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "render",
+                                    "effect": "displays a list of action buttons that can be reordered via drag-and-drop and toggled enabled/disabled"
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "action_order_item",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/action_icon",
+                                "layout_alignParentStart": "true",
+                                "layout_centerVertical": "true",
+                                "contentDescription": "Name",
+                                "tint": "@color/textActionIconColor",
+                                "layout_alignParentLeft": "true"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the icon representing the specific action"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/action_text",
+                                "layout_centerVertical": "true",
+                                "layout_toEndOf": "@id/action_icon",
+                                "layout_toStartOf": "@id/enabled_switch",
+                                "color": "@color/primary_text",
+                                "textAppearance": "@style/TextAppearance.AppCompat.Menu"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the name or label of the corresponding action"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/is_view_mode_action",
+                                "layout_toStartOf": "@id/is_edit_mode_action",
+                                "layout_centerVertical": "true",
+                                "layout_marginEnd": "5dp",
+                                "alpha": "0.3",
+                                "maxHeight": "32dp",
+                                "visibility": "invisible",
+                                "tint": "@color/textActionIconColor"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "indicates if the action is available in view mode (visually shown conditionally)"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/is_edit_mode_action",
+                                "layout_toStartOf": "@id/enabled_switch",
+                                "layout_centerVertical": "true",
+                                "layout_marginEnd": "10dp",
+                                "alpha": "0.3",
+                                "maxHeight": "32dp",
+                                "visibility": "invisible",
+                                "tint": "@color/textActionIconColor"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "indicates if the action is available in edit mode (visually shown conditionally)"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.SwitchCompat",
+                                "id": "@+id/enabled_switch",
+                                "layout_centerVertical": "true",
+                                "layout_marginEnd": "20dp",
+                                "layout_toStartOf": "@id/drag_handle",
+                                "tooltipText": "Toggle action visibility"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle",
+                                    "effect": "enables or disables the corresponding action button globally"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/drag_handle",
+                                "layout_alignParentEnd": "true",
+                                "layout_centerVertical": "true",
+                                "alpha": "0.3",
+                                "contentDescription": "Drag",
+                                "maxHeight": "32dp",
+                                "tint": "@color/textActionIconColor"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "drag",
+                                    "effect": "allows the user to drag and reorder the position of this action within the list"
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.action_order__menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity allows the user to manage and reorder action buttons based on a specific document format (e.g., Markdown, Todo.txt). It supports drag-and-drop reordering, toggling visibility of actions, and persists changes via SharedPreferences. The UI includes a RecyclerView with customizable items representing each action.",
+            "transfer": []
+        },
+        {
+            "name": "net.gsantner.markor.activity.openeditor.OpenEditorActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The OpenEditorActivity is responsible for initiating the editor for a specific file, potentially after acquiring necessary storage permissions. It transitions to another activity to open the editor with animation.",
+            "transfer": [
+                "StoragePermissionActivity",
+                "OpenFromShortcutOrWidgetActivity"
+            ]
+        },
+        {
+            "name": "net.gsantner.markor.activity.DocumentActivity",
+            "layouts": [
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "document__placeholder_fragment",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "toolbar",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.document__placeholder_fragment",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml (Implied by R.id.toolbar)",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "document_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "document__activity",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical",
+                                "theme": "@style/AppTheme.Unified",
+                                "context": "net.gsantner.markor.activity.DocumentActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.AppBarLayout",
+                                "theme": "@style/AppTheme.Light.AppBarOverlay"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.Toolbar",
+                                "id": "@+id/toolbar",
+                                "theme": "@style/LightTextToolbarOverlay"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "id": "@+id/document__placeholder_fragment",
+                                "layout_behavior": "@string/appbar_scrolling_view_behavior"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.toolbar",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "DocumentEditAndViewFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "DocumentShareIntoFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "DocumentActivity is responsible for handling and displaying documents in the Markor app. It supports opening plain text files either within the app or delegating to another app, handles swipe gestures to toggle between edit and preview modes, manages fragment transactions (like sharing content), processes incoming intents, and controls UI behavior such as screen-on settings and document titles.",
+            "transfer": [
+                "DocumentActivity"
+            ]
+        },
+        {
+            "name": "net.gsantner.markor.activity.SettingsActivity",
+            "layouts": [
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings_activity__fragment_placeholder",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings__activity",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "theme": "@style/AppTheme.Unified",
+                                "context": "net.gsantner.markor.activity.DocumentActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.AppBarLayout",
+                                "theme": "@style/AppTheme.Light.AppBarOverlay"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.Toolbar",
+                                "id": "@+id/toolbar",
+                                "theme": "@style/LightTextToolbarOverlay",
+                                "navigationContentDescription": "Back"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click navigation icon",
+                                    "effect": "navigates back, either to previous fragment or closes the activity"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "id": "@+id/settings__activity__fragment_placeholder",
+                                "layout_behavior": "@string/appbar_scrolling_view_behavior"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "fragment transaction target",
+                                    "effect": "displays the current settings fragment dynamically in this container"
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "preferences_master",
+                    "elements": [],
+                    "type": "",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "SettingsFragmentMaster",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The SettingsActivity is used to manage application settings through fragments. It initializes the UI, sets up a toolbar for navigation, dynamically loads preference fragments, and handles back-pressed behavior to allow fragments to control back navigation. The activity also communicates its closing state via result codes.",
+            "transfer": []
+        },
+        {
+            "name": "net.gsantner.markor.activity.openeditor.OpenEditorTodoActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is responsible for opening a todo file editor, initializing the environment for editing a specific todo file retrieved from the app settings.",
+            "transfer": []
+        },
+        {
+            "name": "net.gsantner.markor.activity.openeditor.OpenShareIntoActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity serves as an entry point for handling shared content, initiating a transition to another activity responsible for processing shared data via shortcuts or widgets.",
+            "transfer": [
+                "OpenFromShortcutOrWidgetActivity"
+            ]
+        },
+        {
+            "name": "net.gsantner.markor.activity.IntroActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity serves as an onboarding or introductory screen for the app, guiding users through a series of slides explaining the app's features. It checks if it is the first launch and displays the intro only once.",
+            "transfer": [
+                "IntroActivity"
+            ]
+        },
+        {
+            "name": "net.gsantner.markor.activity.StoragePermissionActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to request and handle external storage permissions for the application. It prompts the user for permission via an AlertDialog, processes the response, and transitions to MainActivity if permission is granted.",
+            "transfer": [
+                "MainActivity"
+            ]
+        },
+        {
+            "name": "net.gsantner.markor.activity.openeditor.OpenEditorQuickNoteActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to directly open an editor for a predefined quick note file upon creation, likely serving as a shortcut or quick access entry point.",
+            "transfer": []
+        },
+        {
+            "name": "net.gsantner.markor.activity.openeditor.OpenFromShortcutOrWidgetActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to immediately launch another activity based on the received intent (typically from a shortcut or widget), then finishes itself. It does not present any UI and serves as a transparent bridge to another activity.",
+            "transfer": [
+                "DocumentActivity"
+            ]
+        }
+    ],
+    "activities_name": [
+        "MainActivity",
+        "ActionButtonSettingsActivity",
+        "OpenEditorActivity",
+        "DocumentActivity",
+        "SettingsActivity",
+        "OpenEditorTodoActivity",
+        "OpenShareIntoActivity",
+        "IntroActivity",
+        "StoragePermissionActivity",
+        "OpenEditorQuickNoteActivity",
+        "OpenFromShortcutOrWidgetActivity"
+    ]
+}

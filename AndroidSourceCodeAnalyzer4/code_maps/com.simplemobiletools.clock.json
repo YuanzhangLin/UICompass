@@ -1,0 +1,2032 @@
+{
+    "activities": [
+        {
+            "name": "com.simplemobiletools.clock.activities.SplashActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The SplashActivity is typically used as the initial screen when launching the app, often serving to load resources or transition to other main activities after a short delay.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.clock.activities.SimpleActivity",
+            "layouts": [],
+            "fragments": [
+                {
+                    "name": "AlarmFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "ClockFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "StopwatchFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "TimerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [
+                {
+                    "name": "EditTimerDialog",
+                    "layouts": [],
+                    "elements": []
+                }
+            ],
+            "elements": [],
+            "summary": "This activity serves as the main interface for a clock application, providing functionalities such as displaying the current time, managing alarms, timers, and stopwatches, and navigating to other related screens.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.clock.activities.ReminderActivity",
+            "layouts": [
+                {
+                    "name": "activity_reminder",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/reminder_holder"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "container layout",
+                                    "effect": "holds all UI components of the reminder screen"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/reminder_title",
+                                "textSize": "@dimen/reminder_activity_title_size",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent",
+                                "text": "Time expired"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display text",
+                                    "effect": "shows title of the reminder, e.g., 'Time expired'"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/reminder_text",
+                                "textSize": "@dimen/reminder_activity_text_size",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_title",
+                                "text": "14:00"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display text",
+                                    "effect": "displays time-based information related to the alarm or timer"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_snooze",
+                                "clickable": "false",
+                                "layout_constraintBottom_toBottomOf": "@+id/reminder_draggable",
+                                "layout_constraintEnd_toStartOf": "@+id/reminder_draggable",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "@+id/reminder_draggable"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "drag interaction trigger",
+                                    "effect": "acts as a visual guide for snoozing the alarm via swipe gesture"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/snooze_label",
+                                "text": "@string/snooze",
+                                "layout_constraintEnd_toStartOf": "@+id/reminder_draggable",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_snooze"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display label",
+                                    "effect": "indicates that swiping left will snooze the alarm"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_draggable_background",
+                                "layout_marginBottom": "@dimen/activity_margin",
+                                "alpha": "0.2",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toStartOf": "@+id/reminder_dismiss",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/reminder_snooze",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_text"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "visual feedback",
+                                    "effect": "provides background highlight while dragging the draggable element"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_draggable",
+                                "layout_marginBottom": "@dimen/activity_margin",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toStartOf": "@+id/reminder_dismiss",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/reminder_snooze",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_text"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "interactive drag element",
+                                    "effect": "used for swipe gestures to snooze or dismiss the alarm"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_dismiss",
+                                "clickable": "false",
+                                "layout_constraintBottom_toBottomOf": "@+id/reminder_draggable",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/reminder_draggable",
+                                "layout_constraintTop_toTopOf": "@+id/reminder_draggable"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "drag interaction trigger",
+                                    "effect": "acts as a visual guide for dismissing the alarm via swipe gesture"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/dismiss_label",
+                                "text": "@string/dismiss",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/reminder_draggable",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_dismiss"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display label",
+                                    "effect": "indicates that swiping right will dismiss the alarm"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/reminder_guide",
+                                "alpha": "0",
+                                "text": "Swipe right to Dismiss, or left to Snooze.",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_draggable"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "instructional display",
+                                    "effect": "shows swipe instructions to interact with the alarm"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_stop",
+                                "layout_marginBottom": "@dimen/big_margin",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click or tap",
+                                    "effect": "stops the alarm or timer and finishes the activity"
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_reminder",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/reminder_holder"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/reminder_title",
+                                "textSize": "@dimen/reminder_activity_title_size",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent",
+                                "text": "Time expired"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/reminder_text",
+                                "textSize": "@dimen/reminder_activity_text_size",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_title",
+                                "text": "14:00"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_snooze",
+                                "clickable": "false",
+                                "layout_constraintBottom_toBottomOf": "@+id/reminder_draggable",
+                                "layout_constraintEnd_toStartOf": "@+id/reminder_draggable",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "@+id/reminder_draggable"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/snooze_label",
+                                "text": "@string/snooze",
+                                "layout_constraintEnd_toStartOf": "@+id/reminder_draggable",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_snooze"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_draggable_background",
+                                "layout_marginBottom": "@dimen/activity_margin",
+                                "alpha": "0.2",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toStartOf": "@+id/reminder_dismiss",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/reminder_snooze",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_text"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_draggable",
+                                "layout_marginBottom": "@dimen/activity_margin",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toStartOf": "@+id/reminder_dismiss",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/reminder_snooze",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_text"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_dismiss",
+                                "clickable": "false",
+                                "layout_constraintBottom_toBottomOf": "@+id/reminder_draggable",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/reminder_draggable",
+                                "layout_constraintTop_toTopOf": "@+id/reminder_draggable"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/dismiss_label",
+                                "text": "@string/dismiss",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/reminder_draggable",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_dismiss"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/reminder_guide",
+                                "alpha": "0",
+                                "text": "Swipe right to Dismiss, or left to Snooze.",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@+id/reminder_draggable"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/reminder_stop",
+                                "layout_marginBottom": "@dimen/big_margin",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The ReminderActivity is responsible for handling alarm and timer reminders, including sound, vibration, snoozing, dismissing, and UI interactions. It ensures the reminder remains visible over the lockscreen, manages alarm effects, and handles user interaction such as swipe gestures or button clicks.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.clock.activities.SnoozeReminderActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used for handling snooze reminders, allowing the user to select a snooze duration for an alarm. It retrieves the alarm information, hides related notifications, and displays a dialog for user interaction before updating the alarm or canceling the action.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.clock.activities.WidgetAnalogueConfigureActivity",
+            "layouts": [
+                {
+                    "name": "widget_config_analogue.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "widget_config_analogue",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/config_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_analogue_holder",
+                                "layout_centerHorizontal": "true",
+                                "layout_margin": "@dimen/activity_margin"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_analogue_wrapper"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_analogue_background",
+                                "layout_alignBottom": "@+id/config_analogue_time",
+                                "layout_alignParentStart": "true",
+                                "layout_alignParentTop": "true",
+                                "layout_alignParentEnd": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "AnalogClock",
+                                "id": "@+id/config_analogue_time",
+                                "includeFontPadding": "false",
+                                "textSize": "@dimen/widget_time_text_size_small",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_analogue_bg_color",
+                                "layout_above": "@+id/config_analogue_save",
+                                "layout_margin": "@dimen/tiny_margin"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_analogue_seekbar_holder",
+                                "layout_alignTop": "@+id/config_analogue_bg_color",
+                                "layout_alignBottom": "@+id/config_analogue_bg_color",
+                                "layout_marginStart": "@dimen/medium_margin",
+                                "layout_toEndOf": "@+id/config_analogue_bg_color"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MySeekBar",
+                                "id": "@+id/config_analogue_bg_seekbar",
+                                "layout_centerVertical": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/config_analogue_save",
+                                "style": "@style/MyWidgetConfigSaveStyle",
+                                "layout_alignParentEnd": "true",
+                                "layout_alignParentBottom": "true",
+                                "text": "@string/ok"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "widget_config_analogue_binding",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "widget_config_analogue",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/config_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_analogue_holder",
+                                "layout_centerHorizontal": "true",
+                                "layout_margin": "@dimen/activity_margin"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_analogue_wrapper"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_analogue_background",
+                                "layout_alignBottom": "@+id/config_analogue_time",
+                                "layout_alignParentStart": "true",
+                                "layout_alignParentTop": "true",
+                                "layout_alignParentEnd": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "AnalogClock",
+                                "id": "@+id/config_analogue_time",
+                                "includeFontPadding": "false",
+                                "textSize": "@dimen/widget_time_text_size_small",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_analogue_bg_color",
+                                "layout_above": "@+id/config_analogue_save",
+                                "layout_margin": "@dimen/tiny_margin"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_analogue_seekbar_holder",
+                                "layout_alignTop": "@+id/config_analogue_bg_color",
+                                "layout_alignBottom": "@+id/config_analogue_bg_color",
+                                "layout_marginStart": "@dimen/medium_margin",
+                                "layout_toEndOf": "@+id/config_analogue_bg_color"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MySeekBar",
+                                "id": "@+id/config_analogue_bg_seekbar",
+                                "layout_centerVertical": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/config_analogue_save",
+                                "style": "@style/MyWidgetConfigSaveStyle",
+                                "layout_alignParentEnd": "true",
+                                "layout_alignParentBottom": "true",
+                                "text": "@string/ok"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used for configuring an analogue widget, including setting background colors, adjusting transparency, and saving the configuration. It manages UI interactions like color picking, SeekBar adjustments, and broadcasting updates to the widget.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.clock.activities.WidgetDigitalConfigureActivity",
+            "layouts": [
+                {
+                    "name": "widget_config_digital",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/config_coordinator"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "UI container",
+                                    "effect": "Hosts child views including configuration UI elements like color pickers and time/date preview."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_digital_holder",
+                                "layout_centerHorizontal": "true",
+                                "layout_margin": "@dimen/activity_margin"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Layout container",
+                                    "effect": "Centers the configuration layout horizontally with margin padding for better UI alignment."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_digital_wrapper"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Wrapper container",
+                                    "effect": "Groups related UI components like time, date, and background image for structured layout."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_digital_background",
+                                "layout_alignBottom": "@+id/config_digital_date",
+                                "layout_alignParentStart": "true",
+                                "layout_alignParentTop": "true",
+                                "layout_alignParentEnd": "true"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Background view",
+                                    "effect": "Displays the background of the widget preview with applied color and transparency."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextClock",
+                                "id": "@+id/config_digital_time",
+                                "format12Hour": "h:mm",
+                                "format24Hour": "k:mm",
+                                "includeFontPadding": "false",
+                                "shadowColor": "@android:color/black",
+                                "shadowDy": "1",
+                                "shadowRadius": "1",
+                                "textSize": "@dimen/widget_time_text_size_small",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Time display",
+                                    "effect": "Preview of the digital clock's time format (12/24 hour) with shadow and custom font size."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextClock",
+                                "id": "@+id/config_digital_date",
+                                "layout_below": "@+id/config_digital_time",
+                                "format12Hour": "EEE, d MMM",
+                                "format24Hour": "EEE, d MMM",
+                                "includeFontPadding": "false",
+                                "shadowColor": "@android:color/black",
+                                "shadowDy": "1",
+                                "shadowRadius": "1",
+                                "textSize": "@dimen/normal_text_size",
+                                "text": "Mon, 1 January"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Date display",
+                                    "effect": "Preview of the digital clock's date format with shadow and font styling consistent with theme."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_digital_bg_color",
+                                "layout_above": "@+id/config_digital_text_color",
+                                "layout_margin": "@dimen/tiny_margin"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Opens a color picker dialog to choose the background color of the widget."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_digital_seekbar_holder",
+                                "layout_alignTop": "@+id/config_digital_bg_color",
+                                "layout_alignBottom": "@+id/config_digital_bg_color",
+                                "layout_marginStart": "@dimen/medium_margin",
+                                "layout_toEndOf": "@+id/config_digital_bg_color"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Container for SeekBar",
+                                    "effect": "Aligns and contains the seekbar for adjusting background transparency."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MySeekBar",
+                                "id": "@+id/config_digital_bg_seekbar",
+                                "layout_centerVertical": "true"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "adjust transparency",
+                                    "effect": "Allows user to modify the alpha value (transparency) of the widget background dynamically."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_digital_text_color",
+                                "layout_alignParentBottom": "true",
+                                "layout_margin": "@dimen/tiny_margin"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Triggers a color picker dialog to select and apply the text color for widget text elements."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/config_digital_save",
+                                "style": "@style/MyWidgetConfigSaveStyle",
+                                "layout_alignParentEnd": "true",
+                                "layout_alignParentBottom": "true",
+                                "text": "@string/ok"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Saves the selected background and text colors, updates the widget configuration, and finishes the activity."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "widget_config_digital",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/config_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_digital_holder",
+                                "layout_centerHorizontal": "true",
+                                "layout_margin": "@dimen/activity_margin"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_digital_wrapper"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_digital_background",
+                                "layout_alignBottom": "@+id/config_digital_date",
+                                "layout_alignParentStart": "true",
+                                "layout_alignParentTop": "true",
+                                "layout_alignParentEnd": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextClock",
+                                "id": "@+id/config_digital_time",
+                                "format12Hour": "h:mm",
+                                "format24Hour": "k:mm",
+                                "includeFontPadding": "false",
+                                "shadowColor": "@android:color/black",
+                                "shadowDy": "1",
+                                "shadowRadius": "1",
+                                "textSize": "@dimen/widget_time_text_size_small",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextClock",
+                                "id": "@+id/config_digital_date",
+                                "layout_below": "@+id/config_digital_time",
+                                "format12Hour": "EEE, d MMM",
+                                "format24Hour": "EEE, d MMM",
+                                "includeFontPadding": "false",
+                                "shadowColor": "@android:color/black",
+                                "shadowDy": "1",
+                                "shadowRadius": "1",
+                                "textSize": "@dimen/normal_text_size",
+                                "text": "Mon, 1 January"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_digital_bg_color",
+                                "layout_above": "@+id/config_digital_text_color",
+                                "layout_margin": "@dimen/tiny_margin"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/config_digital_seekbar_holder",
+                                "layout_alignTop": "@+id/config_digital_bg_color",
+                                "layout_alignBottom": "@+id/config_digital_bg_color",
+                                "layout_marginStart": "@dimen/medium_margin",
+                                "layout_toEndOf": "@+id/config_digital_bg_color"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MySeekBar",
+                                "id": "@+id/config_digital_bg_seekbar",
+                                "layout_centerVertical": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/config_digital_text_color",
+                                "layout_alignParentBottom": "true",
+                                "layout_margin": "@dimen/tiny_margin"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/config_digital_save",
+                                "style": "@style/MyWidgetConfigSaveStyle",
+                                "layout_alignParentEnd": "true",
+                                "layout_alignParentBottom": "true",
+                                "text": "@string/ok"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used for configuring the digital widget settings, including background color with transparency adjustment, text color selection, and saving configurations to update the widget appearance.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.clock.activities.IntentHandlerActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [
+                {
+                    "name": "EditAlarmDialog",
+                    "layouts": [],
+                    "elements": []
+                }
+            ],
+            "elements": [],
+            "summary": "This activity is used to handle various alarm and timer operations via incoming Intents, such as setting a new alarm or timer, dismissing an existing alarm or timer, and optionally opening edit dialogs for user interaction.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.clock.activities.SettingsActivity",
+            "layouts": [
+                {
+                    "name": "activity_settings",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/settings_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/settings_toolbar",
+                                "title": "@string/settings",
+                                "titleTextAppearance": "@style/AppTheme.ActionBar.TitleTextStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the toolbar with the title 'Settings'."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.core.widget.NestedScrollView",
+                                "id": "@+id/settings_nested_scrollview",
+                                "fillViewport": "true",
+                                "scrollbars": "none"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_color_customization_section_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/color_customization"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/settings_color_customization_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_color_customization_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/customize_colors",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "triggers a click event handled by setupCustomizeColors() to customize app colors."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/settings_widget_color_customization_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_widget_color_customization_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/customize_widget_colors",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "launches WidgetDigitalConfigureActivity for customizing widget colors."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_color_customization_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_general_settings_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/general_settings"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_purchase_thank_you_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_purchase_thank_you_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/purchase_simple_thank_you"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "launches a purchase thank you intent; hidden if previously installed."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_use_english_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_use_english",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/use_english_language"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle",
+                                    "effect": "switches the app's language to English and restarts the app."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_language_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/language"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_language_label",
+                                "text": "English"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens an intent to change the device/app language if on Android Tiramisu or above."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_prevent_phone_from_sleeping_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_prevent_phone_from_sleeping",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/prevent_phone_from_sleeping"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle",
+                                    "effect": "enables or disables preventing the phone from sleeping based on checkbox state."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_sunday_first_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_sunday_first",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/sunday_first"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle",
+                                    "effect": "toggles whether Sunday is displayed as the first day of the week."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_general_settings_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_alarm_tab_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "Alarm tab"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_alarm_max_reminder_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_alarm_max_reminder_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Max reminder duration"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_alarm_max_reminder",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_alarm_max_reminder_label",
+                                "text": "5 minutes"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "displays a dialog to select the maximum alarm reminder duration in seconds."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_increase_volume_gradually_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_increase_volume_gradually",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Increase volume gradually"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle",
+                                    "effect": "enables/disables gradual increase of alarm volume."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_use_same_snooze_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_use_same_snooze",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/use_same_snooze"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle",
+                                    "effect": "controls whether the same snooze time should be used across alarms."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_snooze_time_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_snooze_time_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/snooze_time"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_snooze_time",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_snooze_time_label",
+                                "text": "10 minutes"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens a dialog to select the default snooze duration in seconds."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_alarm_tab_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_timer_tab_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "Timer tab"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_timer_max_reminder_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_timer_max_reminder_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Max reminder duration"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_timer_max_reminder",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_timer_max_reminder_label",
+                                "text": "1 minute"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "displays a dialog to set the maximum timer reminder duration in seconds."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_settings",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/settings_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/settings_toolbar",
+                                "title": "@string/settings",
+                                "titleTextAppearance": "@style/AppTheme.ActionBar.TitleTextStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.core.widget.NestedScrollView",
+                                "id": "@+id/settings_nested_scrollview",
+                                "fillViewport": "true",
+                                "scrollbars": "none"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_color_customization_section_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/color_customization"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/settings_color_customization_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_color_customization_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/customize_colors",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/settings_widget_color_customization_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_widget_color_customization_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/customize_widget_colors",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_color_customization_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_general_settings_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/general_settings"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_purchase_thank_you_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_purchase_thank_you_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/purchase_simple_thank_you"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_use_english_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_use_english",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/use_english_language"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_language_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/language"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_language_label",
+                                "text": "English"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_prevent_phone_from_sleeping_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_prevent_phone_from_sleeping",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/prevent_phone_from_sleeping"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_sunday_first_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_sunday_first",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/sunday_first"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_general_settings_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_alarm_tab_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "Alarm tab"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_alarm_max_reminder_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_alarm_max_reminder_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Max reminder duration"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_alarm_max_reminder",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_alarm_max_reminder_label",
+                                "text": "5 minutes"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_increase_volume_gradually_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_increase_volume_gradually",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Increase volume gradually"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_use_same_snooze_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_use_same_snooze",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/use_same_snooze"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_snooze_time_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_snooze_time_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/snooze_time"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_snooze_time",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_snooze_time_label",
+                                "text": "10 minutes"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_alarm_tab_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_timer_tab_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "Timer tab"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_timer_max_reminder_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_timer_max_reminder_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Max reminder duration"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_timer_max_reminder",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_timer_max_reminder_label",
+                                "text": "1 minute"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The SettingsActivity allows users to configure various application settings, including language, color customization, alarm and timer behaviors, snooze time, and other general preferences.",
+            "transfer": [
+                "WidgetDigitalConfigureActivity"
+            ]
+        },
+        {
+            "name": "com.simplemobiletools.clock.activities.MainActivity",
+            "layouts": [
+                {
+                    "name": "activity_main",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/main_coordinator"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "UI container",
+                                    "effect": "Hosts top-level UI components like toolbar and tab layout with viewpager."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/main_toolbar",
+                                "menu": "@menu/menu",
+                                "titleTextAppearance": "@style/AppTheme.ActionBar.TitleTextStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Menu interaction",
+                                    "effect": "Displays and handles toolbar options such as sort, settings, and other context-dependent actions."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/main_holder"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Fragment container",
+                                    "effect": "Contains UI elements or fragments related to the currently selected tab."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.duolingo.open.rtlviewpager.RtlViewPager",
+                                "id": "@+id/view_pager",
+                                "layout_above": "@+id/main_tabs_holder"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Tab switching",
+                                    "effect": "Allows swiping between different functional tabs (e.g., Alarm, Stopwatch) using RtlViewPager."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.tabs.TabLayout",
+                                "id": "@+id/main_tabs_holder",
+                                "layout_alignParentBottom": "true",
+                                "tabIndicator": "@null",
+                                "tabMinWidth": "150dp",
+                                "tabRippleColor": "@null"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Navigation Tabs",
+                                    "effect": "Displays bottom tabs for switching between main functions (Alarm, Stopwatch, Timer, etc.) without swiping."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.menu_main",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_main",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/main_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/main_toolbar",
+                                "menu": "@menu/menu",
+                                "titleTextAppearance": "@style/AppTheme.ActionBar.TitleTextStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/main_holder"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.duolingo.open.rtlviewpager.RtlViewPager",
+                                "id": "@+id/view_pager",
+                                "layout_above": "@+id/main_tabs_holder"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.tabs.TabLayout",
+                                "id": "@+id/main_tabs_holder",
+                                "layout_alignParentBottom": "true",
+                                "tabIndicator": "@null",
+                                "tabMinWidth": "150dp",
+                                "tabRippleColor": "@null"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx (menu associated with mainToolbar)",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "AlarmFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "ClockFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "MainActivity serves as the main interface of a clock application, managing tabs for different functionalities (e.g., Alarm, Stopwatch). It initializes UI components, manages app shortcuts, handles navigation between fragments via ViewPager, and controls toolbar menu visibility based on selected tabs.",
+            "transfer": [
+                "SplashActivity",
+                "SettingsActivity"
+            ]
+        }
+    ],
+    "activities_name": [
+        "SplashActivity",
+        "SimpleActivity",
+        "ReminderActivity",
+        "SnoozeReminderActivity",
+        "WidgetAnalogueConfigureActivity",
+        "WidgetDigitalConfigureActivity",
+        "IntentHandlerActivity",
+        "SettingsActivity",
+        "MainActivity"
+    ]
+}

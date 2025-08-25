@@ -1,0 +1,103 @@
+[      
+    
+
+        {
+        "app_name" : "Simple-File-Manager",
+        "target_project" : "/app_project/Simple-File-Manager/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.filemanager.pro",
+        "apk_path":"/apk_list/file-manager-fdroid-release.apk"
+    },
+
+        {
+        "app_name" : "Simple-Calendar",
+        "target_project" : "/app_project/Simple-Calendar/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.calendar.pro",
+        "apk_path":"/apk_list/calendar-fdroid-release.apk"
+    },
+
+        {
+        "app_name" : "Simple-Contacts",
+        "target_project" : "/app_project/Simple-Contacts/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.contacts.pro",
+        "apk_path":"/apk_list/clock-fdroid-release.apk"
+    },    
+
+        {
+        "app_name" : "Simple-Camera",
+        "target_project" : "/app_project/Simple-Camera/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.camera",
+        "apk_path":"/apk_list/camera-fdroid-release.apk"
+    },
+        {
+        "app_name" : "Simple-File-Manager",
+        "target_project" : "/app_project/Simple-File-Manager/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.filemanager.pro",
+        "apk_path":"/apk_list/file-manager-fdroid-release.apk"
+    },
+    {
+        "app_name" : "Simple-Clock",
+        "target_project" : "/app_project/Simple-Clock/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.clock",
+        "apk_path":"/apk_list/clock-fdroid-release.apk"
+    }, 
+                {
+        "app_name" : "Simple-Dialer",
+        "target_project" : "/app_project/Simple-Dialer/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.dialer",
+        "apk_path":"/apk_list/clock-fdroid-release.apk"
+    },
+           {
+        "app_name" : "Simple-Gallery",
+        "target_project" : "/app_project/Simple-Gallery/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.gallery.pro",
+        "apk_path":"/apk_list/gallery-396-foss-release.apk"
+    },
+                  {
+        "app_name" : "Simple-App-Launcher",
+        "target_project" : "/app_project/Simple-App-Launcher/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.applauncher",
+        "apk_path":"/apk_list/app-launcher-fdroid-release.apk"
+    },
+      {
+        "app_name" : "Simple-Music-Player",
+        "target_project" : "/app_project/Simple-Music-Player/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.musicplayer",
+        "apk_path":"/apk_list/music-player-fdroid-release.apk"
+    },
+
+{
+        "app_name" : "Simple-Notes",
+        "target_project" : "/app_project/Simple-Notes/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.notes.pro",
+        "apk_path":"/apk_list/notes-fdroid-release.apk"
+    },
+        {
+        "app_name" : "Simple-SMS-Messenger",
+        "target_project" : "/app_project/Simple-SMS-Messenger/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.smsmessenger",
+        "apk_path":"/apk_list/sms-messenger-fdroid-release.apk"
+    },
+{
+        "app_name" : "Simple-Voice-Recorder",
+        "target_project" : "/app_project/Simple-Voice-Recorder/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.voicerecorder",
+        "apk_path":"/apk_list/voice-recorder-fdroid-release.apk"
+    }
+
+  
+
+
+]

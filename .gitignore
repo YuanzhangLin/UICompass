@@ -1,0 +1,8 @@
+/apk_parser/output/*
+/apk_parser/apk_list/*
+/apk_parser/__pycache__/*
+/apk_parser/apk_list/*
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

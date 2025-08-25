@@ -1,0 +1,3418 @@
+{
+    "activities": [
+        {
+            "name": "com.dimowner.audiorecorder.app.moverecords.MoveRecordsActivity",
+            "layouts": [
+                {
+                    "name": "activity_move_records",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/toolbar",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btnInfo",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "displays an information dialog explaining move records functionality."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtTitle",
+                                "style": "@style/Text.SectionLabel",
+                                "text": "Move %d records",
+                                "textColor": "@color/text_primary_light"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the title with placeholder for the number of records being managed."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/btnMoveAll",
+                                "paddingVertical": "@dimen/spacing_medium",
+                                "paddingHorizontal": "@dimen/spacing_medium",
+                                "layout_margin": "@dimen/spacing_small",
+                                "textStyle": "bold",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_normal",
+                                "text": "Move all"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "triggers the action to move all audio records, potentially using a background service."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtCountAndLocation",
+                                "paddingHorizontal": "@dimen/spacing_normal",
+                                "paddingVertical": "@dimen/spacing_small",
+                                "fontFamily": "sans-serif-light",
+                                "textColor": "@color/text_secondary_light",
+                                "textSize": "@dimen/text_medium",
+                                "text": "Count: 10"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the count and storage location of the records currently loaded."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.recyclerview.widget.RecyclerView",
+                                "id": "@+id/recyclerView"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows a list of moveable audio records for user interaction."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtEmpty",
+                                "drawableTop": "@drawable/ic_audiotrack_64",
+                                "drawablePadding": "@dimen/spacing_small",
+                                "text": "Empty",
+                                "textColor": "@color/text_primary_light",
+                                "textSize": "@dimen/text_large",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows a message indicating no records are available when the list is empty."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ProgressBar",
+                                "id": "@+id/progress"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows a loading indicator while records are being fetched or processed."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.TouchLayout",
+                                "id": "@+id/touchLayout",
+                                "clipToPadding": "false",
+                                "layout_marginBottom": "2dp",
+                                "layout_marginStart": "2dp",
+                                "layout_marginEnd": "2dp",
+                                "elevation": "@dimen/toolbar_elevation",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "animation trigger",
+                                    "effect": "animates in/out to show or hide the playback control panel from the bottom of the screen."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtProgress",
+                                "textColor": "@color/text_primary_light",
+                                "textSize": "@dimen/text_large",
+                                "fontFamily": "sans-serif-medium",
+                                "text": "00:00:00"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the current playback time during audio playback."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.WaveformViewNew",
+                                "id": "@+id/waveformView"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "visualizes the waveform of the currently selected audio record."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ProgressBar",
+                                "id": "@+id/waveProgress",
+                                "visibility": "gone"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "indicates progress within the waveform visualization."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "layout_marginBottom": "@dimen/spacing_tiny"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "textColor": "@color/text_primary_light",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "textSize": "@dimen/text_normal",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtName",
+                                "textColor": "@color/text_primary_light",
+                                "textSize": "@dimen/text_xmedium",
+                                "maxLines": "2",
+                                "ellipsize": "end",
+                                "layout_marginStart": "@dimen/spacing_xdouble",
+                                "layout_marginEnd": "@dimen/spacing_xdouble",
+                                "text": "Record 2321"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the name of the currently selected audio record."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtDuration",
+                                "textColor": "@color/text_primary_light",
+                                "layout_marginEnd": "@dimen/spacing_small",
+                                "textSize": "@dimen/text_normal",
+                                "text": "34:56"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "displays the total duration of the currently selected audio record."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "SeekBar",
+                                "id": "@+id/playProgress",
+                                "max": "1000",
+                                "progress": "20"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "interaction",
+                                    "effect": "allows seeking through the audio playback by dragging the progress bar."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "layout_marginBottom": "@dimen/spacing_tiny",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btnPlay",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "center",
+                                "layout_marginStart": "@dimen/spacing_medium",
+                                "layout_marginEnd": "@dimen/spacing_medium",
+                                "tint": "@color/white"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "starts or resumes playback of the selected audio record."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btnStop",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "center",
+                                "layout_marginStart": "@dimen/spacing_medium",
+                                "layout_marginEnd": "@dimen/spacing_medium"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "stops the ongoing audio playback and resets the player panel."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity, MoveRecordsActivity, is used for managing and moving audio records. It provides functionalities like checking storage permissions, playing or stopping records, moving all records, opening the file location of a record, and displaying an info dialog. It also manages playback UI updates, handles lifecycle events to bind/unbind services and clean up resources, and dynamically updates UI elements such as RecyclerView and progress indicators.",
+            "transfer": []
+        },
+        {
+            "name": "com.dimowner.audiorecorder.app.welcome.WelcomeActivity",
+            "layouts": [
+                {
+                    "name": "activity_welcome",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "viewBindingIgnore": "true",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/item_image_first",
+                                "contentDescription": "@null",
+                                "layout_marginBottom": "@dimen/spacing_huge"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the introductory image to represent the app's theme or purpose."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "viewBindingIgnore": "true",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_title",
+                                "style": "@style/Text.SectionLabel",
+                                "text": "Audio Recorder",
+                                "textSize": "@dimen/text_double"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "presents the title of the application, which is 'Audio Recorder'."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_details",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Welcome to a simple and fast application",
+                                "layout_marginStart": "@dimen/spacing_double",
+                                "layout_marginEnd": "@dimen/spacing_double",
+                                "textSize": "@dimen/text_xlarge"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "provides a brief description of the application to inform users about its simplicity and speed."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/btn_action",
+                                "style": "@style/Widget.RaisedButton",
+                                "layout_marginBottom": "@dimen/spacing_xdouble",
+                                "text": "Get started",
+                                "textSize": "@dimen/text_normal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "navigates the user to the next step in the app, typically the main functionality or setup screens."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Space",
+                                "id": "@+id/navigation_height"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "reserve space",
+                                    "effect": "ensures proper layout alignment by reserving space for navigation elements like the bottom navigation bar."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity serves as a welcome screen for the Audio Recorder application, introducing the app and providing a starting point for users with a 'Get started' button.",
+            "transfer": []
+        },
+        {
+            "name": "com.dimowner.audiorecorder.app.trash.TrashActivity",
+            "layouts": [
+                {
+                    "name": "activity_trash",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "viewBindingIgnore": "true",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/toolbar",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "UI container",
+                                    "effect": "Holds toolbar elements such as back button and title."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_back",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Navigates back to the previous activity."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.SectionLabel",
+                                "id": "@+id/txt_title",
+                                "paddingLeft": "@dimen/spacing_normal",
+                                "textColor": "@color/text_primary_light",
+                                "text": "Trash"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "Shows the title of the current screen ('Trash')."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/btn_delete_all",
+                                "paddingVertical": "@dimen/spacing_medium",
+                                "paddingHorizontal": "@dimen/spacing_xnormal",
+                                "layout_marginHorizontal": "@dimen/spacing_small",
+                                "textStyle": "bold",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_normal",
+                                "text": "Delete all"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Triggers deletion of all items in the trash permanently."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "paddingLeft": "@dimen/spacing_normal",
+                                "textColor": "@color/text_primary_light",
+                                "text": "The records moved to the trash will be automatically removed forever in 60 days."
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.recyclerview.widget.RecyclerView",
+                                "id": "@+id/recycler_view"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "Shows a list of deleted audio records with options to restore or delete."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtEmpty",
+                                "drawablePadding": "@dimen/spacing_small",
+                                "drawableTop": "@drawable/ic_audiotrack_64",
+                                "textSize": "@dimen/text_large",
+                                "textColor": "@color/text_primary_light",
+                                "text": "Empty",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "Shows an empty state message indicating no items in the trash."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "TrashActivity is responsible for displaying and managing audio records that have been moved to the trash. It provides functionality to delete all items, restore individual items, or permanently remove them. The UI reflects the current state of the trash (e.g., empty or containing items) and includes navigation and feedback mechanisms.",
+            "transfer": []
+        },
+        {
+            "name": "com.dimowner.audiorecorder.app.browser.FileBrowserActivity",
+            "layouts": [
+                {
+                    "name": "R.id.txtEmpty",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.tab_public_dir",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_file_browser",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "viewBindingIgnore": "true",
+                                "animateLayoutChanges": "true",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/toolbar",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_back",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "navigates back by invoking onBackPressed"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_title",
+                                "style": "@style/Text.SectionLabel",
+                                "paddingLeft": "@dimen/spacing_normal",
+                                "text": "File browser",
+                                "textColor": "@color/text_primary_light"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows title of the activity as 'File browser'"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/tabs_panel",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "visibility control",
+                                    "effect": "shows or hides directory selection tabs based on user context or state"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/tab_private_dir",
+                                "text": "Private directory",
+                                "textColor": "@color/text_primary_light"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "switches to private directory view directly"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/tab_public_dir",
+                                "text": "Public directory",
+                                "textColor": "@color/text_primary_light"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "switches to public directory view after checking storage permissions"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/pnl_import_progress",
+                                "visibility": "visible",
+                                "orientation": "horizontal",
+                                "layout_marginBottom": "@dimen/spacing_tiny"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows a progress panel during file import operations"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ProgressBar",
+                                "style": "?android:attr/progressBarStyleSmall"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_import_message",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_small",
+                                "text": "Audio file import\u2026"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows import status message during file import operation"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/files_path",
+                                "paddingLeft": "@dimen/spacing_normal",
+                                "text": "Some records files was not found in the records directory. Possibly they was removed or moved.",
+                                "textColor": "@color/text_primary_light"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the current path of the selected directory or error message about missing files"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.recyclerview.widget.RecyclerView",
+                                "id": "@+id/recycler_view"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows list of audio records or files in the current directory"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtEmpty",
+                                "drawableTop": "@drawable/ic_audiotrack_64",
+                                "drawablePadding": "@dimen/spacing_small",
+                                "text": "Empty",
+                                "textColor": "@color/text_primary_light",
+                                "textSize": "@dimen/text_large",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows an empty state message when no files are available in the current directory"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ProgressBar",
+                                "id": "@+id/progress"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows a progress bar during file loading or background operations"
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.tab_private_dir",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.txt_import_message",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.files_path",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.tabs_panel",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.pnl_import_progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "pnl_import_progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "file_browser_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "FileBrowserActivity is used to navigate and manage audio records in both private and public directories. It handles file browsing, import operations, record processing, permissions, and interactions with a database or adapter for displaying files. It also supports navigation to other activities for detailed record information.",
+            "transfer": []
+        },
+        {
+            "name": "com.dimowner.audiorecorder.app.records.RecordsActivity",
+            "layouts": [
+                {
+                    "name": "btn_play",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_sub_title",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_share_multi",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.menu_sort",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_records.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_duration",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "item_record",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_title",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_close_multi_select",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "records_activity_layout",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "record_item_layout",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "recycler_view",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_delete_multi",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "record_details_dialog.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_decoding",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "play_progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "bottomDivider",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_name",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_records",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "viewBindingIgnore": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.recyclerview.widget.RecyclerView",
+                                "id": "@+id/recycler_view",
+                                "overScrollMode": "never"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/toolbar",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_back",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/title",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.SectionLabel",
+                                "id": "@+id/txt_title",
+                                "paddingLeft": "@dimen/spacing_normal",
+                                "textColor": "@color/text_primary_light",
+                                "text": "Records"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text",
+                                "id": "@+id/txt_sub_title",
+                                "textSize": "@dimen/text_normal",
+                                "maxLines": "1",
+                                "ellipsize": "end",
+                                "layout_marginStart": "@dimen/spacing_normal",
+                                "layout_marginBottom": "@dimen/spacing_small",
+                                "textColor": "@color/text_primary_light",
+                                "text": "Records"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_sort",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_bookmarks",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/menu_multi_select",
+                                "visibility": "visible",
+                                "orientation": "horizontal",
+                                "elevation": "@dimen/toolbar_elevation"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_close_multi_select",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.SectionLabel",
+                                "id": "@+id/txt_selected_multi",
+                                "paddingLeft": "@dimen/spacing_normal",
+                                "textColor": "@color/text_primary_light",
+                                "text": "%d selected"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_share_multi",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_download_multi",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_delete_multi",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View",
+                                "id": "@+id/bottomDivider",
+                                "elevation": "@dimen/toolbar_elevation"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtEmpty",
+                                "drawablePadding": "@dimen/spacing_normal",
+                                "drawableTop": "@drawable/ic_audiotrack_64",
+                                "textSize": "@dimen/text_large",
+                                "textColor": "@color/text_primary_light",
+                                "text": "Audio Recorder",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ProgressBar",
+                                "id": "@+id/progress"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.TouchLayout",
+                                "id": "@+id/touch_layout",
+                                "clipToPadding": "false",
+                                "layout_marginBottom": "2dp",
+                                "layout_marginStart": "2dp",
+                                "layout_marginEnd": "2dp",
+                                "elevation": "@dimen/toolbar_elevation",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_progress",
+                                "textColor": "@color/text_primary_light",
+                                "textSize": "@dimen/text_xlarge",
+                                "fontFamily": "sans-serif-medium",
+                                "text": "00:00:00"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_decoding",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "center",
+                                "visibility": "gone"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_check_bookmark",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "center",
+                                "layout_marginEnd": "@dimen/spacing_small"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.WaveformViewNew",
+                                "id": "@+id/record"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ProgressBar",
+                                "id": "@+id/wave_progress",
+                                "visibility": "gone"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "layout_marginBottom": "@dimen/spacing_tiny"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "textColor": "@color/text_primary_light",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "textSize": "@dimen/text_normal",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_name",
+                                "textColor": "@color/text_primary_light",
+                                "textSize": "@dimen/text_xmedium",
+                                "maxLines": "2",
+                                "ellipsize": "end",
+                                "layout_marginStart": "@dimen/spacing_xdouble",
+                                "layout_marginEnd": "@dimen/spacing_xdouble",
+                                "drawableEnd": "@drawable/ic_pencil_small",
+                                "text": "Record 2321"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_duration",
+                                "textColor": "@color/text_primary_light",
+                                "layout_marginEnd": "@dimen/spacing_small",
+                                "textSize": "@dimen/text_normal",
+                                "text": "34:56"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "SeekBar",
+                                "id": "@+id/play_progress",
+                                "max": "1000",
+                                "progress": "20"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "layout_marginBottom": "@dimen/spacing_tiny",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_prev",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "center",
+                                "layout_marginStart": "@dimen/spacing_small"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_delete",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "visibility": "gone",
+                                "scaleType": "center"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_play",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "center",
+                                "layout_marginEnd": "@dimen/spacing_small",
+                                "tint": "@color/white"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_stop",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "scaleType": "center"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_next",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "center",
+                                "layout_marginEnd": "@dimen/spacing_small"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "record_item",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "wave_progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "record",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_selected_multi",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_check_bookmark",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "bottom_divider",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "touch_layout",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "menu_sort",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.records_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_download_multi",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "toolbar",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "records_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.menu_multi_select",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_bookmarks",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "waveform_view_new",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txtEmpty",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "menu_multi_select",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_sort",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The RecordsActivity is used for managing and displaying audio records. It provides functionalities such as playing, bookmarking, deleting, sharing, renaming, sorting, and downloading records. It also handles multi-select operations, playback controls, UI animations, permission checks, and interactions with the underlying data via a presenter.",
+            "transfer": [
+                "TrashActivity"
+            ]
+        },
+        {
+            "name": "com.dimowner.audiorecorder.app.settings.SettingsActivity",
+            "layouts": [
+                {
+                    "name": "setting_recording_format",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "setting_frequency",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings_activity_layout",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "[layout_name]",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "setting_bitrate",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.settings_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.drawable.ic_color_lens",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "setting_view",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "setting_channels",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "list_item_spinner",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "viewBindingIgnore": "true",
+                                "style": "@style/Text.NormalLabel",
+                                "id": "@+id/txtItem",
+                                "drawableStart": "@drawable/ic_color_lens",
+                                "drawablePadding": "@dimen/spacing_normal",
+                                "text": "Audio Recorder"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_settings",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ScrollView",
+                                "viewBindingIgnore": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/toolbar",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btnBack",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "finishes the current activity and navigates back to the previous screen."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.SectionLabel",
+                                "text": "Settings"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/migrate_public_storage_panel",
+                                "visibility": "visible",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows a message indicating that migration of public storage records is required."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_migrate_public_storage",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Move public storage records is needed",
+                                "textColor": "@color/md_yellow_A700",
+                                "drawableStart": "@drawable/ic_warning_yellow",
+                                "drawablePadding": "@dimen/spacing_normal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/btnView",
+                                "paddingVertical": "@dimen/spacing_xsmall",
+                                "paddingHorizontal": "@dimen/spacing_normal",
+                                "layout_marginEnd": "@dimen/spacing_small",
+                                "textStyle": "bold",
+                                "textColor": "@color/md_yellow_A700",
+                                "textSize": "@dimen/text_normal",
+                                "text": "View"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "triggers an action related to viewing migrated public storage records."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/btnTrash",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Trash",
+                                "drawableStart": "@drawable/ic_delete",
+                                "drawablePadding": "@dimen/spacing_normal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "initiates deletion or cleanup of public storage records."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/btn_file_browser",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "File browser",
+                                "drawableStart": "@drawable/ic_folder_open",
+                                "drawablePadding": "@dimen/spacing_normal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens the file browser to view stored recordings."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Spinner",
+                                "id": "@+id/themeColor",
+                                "layout_marginBottom": "@dimen/spacing_tiny"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "select",
+                                    "effect": "changes the application's UI theme color."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/panelPublicDir",
+                                "layout_marginBottom": "@dimen/spacing_small",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Store records in a public dir",
+                                "drawableStart": "@drawable/ic_folder_open",
+                                "layout_marginEnd": "@dimen/spacing_normal",
+                                "layout_marginStart": "@dimen/spacing_normal",
+                                "drawablePadding": "@dimen/spacing_normal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Switch",
+                                "id": "@+id/swPublicDir",
+                                "layout_marginEnd": "@dimen/spacing_xsmall"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle",
+                                    "effect": "switches between storing recordings in private or public directory."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_records_location",
+                                "fontFamily": "sans-serif-light",
+                                "textColor": "@color/text_secondary_light",
+                                "textSize": "@dimen/text_normal",
+                                "text": "Records location:\\n%s"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the location path where recordings are stored."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_storage_info",
+                                "fontFamily": "sans-serif-light",
+                                "textColor": "@color/text_secondary_light",
+                                "textSize": "@dimen/text_normal",
+                                "visibility": "visible",
+                                "text": "This feature is no longer available in Android 10 or higher."
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "informs user about storage availability or restrictions on Android 10+."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Keep screen ON while recording",
+                                "layout_marginBottom": "@dimen/spacing_medium",
+                                "layout_marginEnd": "@dimen/spacing_normal",
+                                "layout_marginStart": "@dimen/spacing_normal",
+                                "drawableStart": "@drawable/ic_lightbulb_on",
+                                "drawablePadding": "@dimen/spacing_normal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Switch",
+                                "id": "@+id/swKeepScreenOn",
+                                "layout_marginEnd": "@dimen/spacing_xsmall"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle",
+                                    "effect": "enables or disables keeping the screen ON during recording."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Show rename dialog after recording is completed",
+                                "layout_marginBottom": "@dimen/spacing_medium",
+                                "layout_marginEnd": "@dimen/spacing_normal",
+                                "layout_marginStart": "@dimen/spacing_normal",
+                                "drawableStart": "@drawable/ic_pencil",
+                                "drawablePadding": "@dimen/spacing_normal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Switch",
+                                "id": "@+id/swAskToRename",
+                                "layout_marginEnd": "@dimen/spacing_xsmall"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle",
+                                    "effect": "controls whether a rename dialog appears after recording stops."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Spinner",
+                                "id": "@+id/name_format",
+                                "layout_marginBottom": "@dimen/spacing_tiny"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "select",
+                                    "effect": "sets the naming convention for new recording files."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/info_panel",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "layout_marginEnd": "@dimen/spacing_small",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_size_per_min",
+                                "layout_marginStart": "@dimen/spacing_xsmall",
+                                "layout_marginEnd": "@dimen/spacing_xsmall",
+                                "fontFamily": "sans-serif-light",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_medium",
+                                "text": "5 Mb/min"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows estimated file size per minute of recording."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_information",
+                                "layout_marginBottom": "@dimen/spacing_small",
+                                "layout_marginStart": "@dimen/spacing_xsmall",
+                                "layout_marginEnd": "@dimen/spacing_xsmall",
+                                "fontFamily": "sans-serif-light",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_medium",
+                                "text": "M4a/44100Hz/128kbps/Stereo"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "presents current audio encoding configuration (format, sample rate, etc.)."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/btnReset",
+                                "style": "@style/Widget.RaisedButton",
+                                "layout_marginBottom": "@dimen/spacing_tiny",
+                                "layout_marginEnd": "@dimen/spacing_xtiny",
+                                "textColor": "@color/white",
+                                "text": "Reset",
+                                "textSize": "@dimen/text_normal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "resets all audio settings to default values."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.SettingView",
+                                "id": "@+id/setting_recording_format"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.SettingView",
+                                "id": "@+id/setting_frequency"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.SettingView",
+                                "id": "@+id/setting_bitrate"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.SettingView",
+                                "id": "@+id/setting_channels"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/btnRate",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Rate app",
+                                "drawableStart": "@drawable/ic_thumbs",
+                                "drawablePadding": "@dimen/spacing_normal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "launches the app store page for rating the app."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/btnRequest",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Request or feedback",
+                                "drawableStart": "@drawable/ic_chat_bubble",
+                                "drawablePadding": "@dimen/spacing_normal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens an email intent for sending feature requests or feedback."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_records_count",
+                                "textColor": "@color/text_primary_light",
+                                "fontFamily": "sans-serif-light",
+                                "layout_marginStart": "@dimen/spacing_normal",
+                                "textSize": "@dimen/text_xmedium",
+                                "text": "Total records count: %d"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows total number of saved recordings."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_total_duration",
+                                "textColor": "@color/text_primary_light",
+                                "fontFamily": "sans-serif-light",
+                                "layout_marginStart": "@dimen/spacing_normal",
+                                "textSize": "@dimen/text_xmedium",
+                                "text": "Total recorded duration: %s"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "displays cumulative duration of all recordings."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_available_space",
+                                "textColor": "@color/text_primary_light",
+                                "fontFamily": "sans-serif-light",
+                                "layout_marginStart": "@dimen/spacing_normal",
+                                "textSize": "@dimen/text_xmedium",
+                                "layout_marginBottom": "@dimen/spacing_small",
+                                "text": "Available space: 34h:12m:22s "
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows available internal or external storage space for recordings."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtAbout",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Audio Recorder",
+                                "textSize": "@dimen/text_xmedium",
+                                "focusable": "true",
+                                "clickable": "true",
+                                "drawablePadding": "@dimen/spacing_double"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "displays about information including app version and license links."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The SettingsActivity is used to manage application settings, including audio configuration (format, sample rate, bitrate, channels), theme color selection, storage options, recording preferences, and app information. It also provides functionality for navigating to external resources like the app store or email client for feedback.",
+            "transfer": [
+                "MoveRecordsActivity",
+                "TrashActivity",
+                "FileBrowserActivity"
+            ]
+        },
+        {
+            "name": "com.dimowner.audiorecorder.app.setup.SetupActivity",
+            "layouts": [
+                {
+                    "name": "activity_setup",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "viewBindingIgnore": "true",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ScrollView"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "animateLayoutChanges": "true",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/toolbar",
+                                "layout_marginBottom": "@dimen/spacing_small",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.SectionLabel",
+                                "layout_marginStart": "@dimen/spacing_xxdouble",
+                                "text": "Setup"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Spinner",
+                                "id": "@+id/themeColor",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "select item",
+                                    "effect": "changes application theme dynamically and persists the selected theme key"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Spinner",
+                                "id": "@+id/name_format",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "select item",
+                                    "effect": "sets the naming format for recorded files and updates presenter accordingly"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.SettingView",
+                                "id": "@+id/setting_recording_format"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "select format (e.g., WAV, 3GP)",
+                                    "effect": "updates available sample rate and channel options based on the selected format via updateRecordingInfo()"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.SettingView",
+                                "id": "@+id/setting_frequency"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "select sample rate",
+                                    "effect": "updates the audio sample rate setting in the application through the presenter"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.SettingView",
+                                "id": "@+id/setting_bitrate"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "select bitrate",
+                                    "effect": "updates the audio bitrate setting in the application through the presenter"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.SettingView",
+                                "id": "@+id/setting_channels"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "select channel count",
+                                    "effect": "updates the audio channel count (mono/stereo) through the presenter"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "visibility": "gone",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "Record in Stereo",
+                                "layout_marginBottom": "@dimen/spacing_normal",
+                                "layout_marginEnd": "@dimen/spacing_normal",
+                                "layout_marginStart": "@dimen/spacing_normal",
+                                "drawableStart": "@drawable/ic_surround_sound_2_0",
+                                "drawablePadding": "@dimen/spacing_double"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Switch",
+                                "id": "@+id/swRecordInStereo",
+                                "layout_margin": "@dimen/spacing_normal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle switch",
+                                    "effect": "enables/disables stereo recording and updates corresponding UI elements and settings"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_size_per_min",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "layout_marginEnd": "@dimen/spacing_xsmall",
+                                "fontFamily": "sans-serif-light",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_medium",
+                                "text": "5 Mb/min"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display only",
+                                    "effect": "shows estimated file size per minute based on current settings"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_information",
+                                "text": "WAV is uncompressed format and it takes a lot of space",
+                                "layout_marginBottom": "@dimen/spacing_tiny",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "layout_marginEnd": "@dimen/spacing_small",
+                                "fontFamily": "sans-serif-light",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_normal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display only",
+                                    "effect": "provides informational message about the currently selected recording format"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/btn_reset",
+                                "style": "@style/Widget.RaisedButton",
+                                "layout_marginBottom": "@dimen/spacing_small",
+                                "layout_marginEnd": "@dimen/spacing_xtiny",
+                                "text": "Reset",
+                                "textSize": "@dimen/text_medium"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "resets all settings to default values and reloads them"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/btn_apply",
+                                "style": "@style/Widget.RaisedButton",
+                                "layout_marginBottom": "@dimen/spacing_small",
+                                "layout_marginStart": "@dimen/spacing_xtiny",
+                                "text": "Apply",
+                                "textSize": "@dimen/text_medium"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "applies current settings, starts MainActivity, and finishes SetupActivity"
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_size_per_min",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settingview",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.drawable.ic_color_lens",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "name_format",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "setting_recording_format",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "setting_frequency",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "setting_bitrate",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_information",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "setting_channels",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml (Not explicitly identified, but nameFormatSelector is linked to R.id.name_format)",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "list_item_spinner",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "viewBindingIgnore": "true",
+                                "style": "@style/Text.NormalLabel",
+                                "id": "@+id/txtItem",
+                                "drawableStart": "@drawable/ic_color_lens",
+                                "drawablePadding": "@dimen/spacing_normal",
+                                "text": "Audio Recorder"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "setup_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The SetupActivity is used for configuring audio recording settings such as file format, sample rate, bitrate, and channel count. It also allows users to select a theme color and define a naming format for recordings. The activity includes Apply and Reset buttons to save or revert settings, and dynamically updates available options based on the selected format.",
+            "transfer": [
+                "MainActivity"
+            ]
+        },
+        {
+            "name": "com.dimowner.audiorecorder.app.main.MainActivity",
+            "layouts": [
+                {
+                    "name": "btn_record_stop",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_play",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "play_progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_name",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_import",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "recording_view",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.record_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_zero_time",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_main",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "viewBindingIgnore": "true",
+                                "orientation": "vertical",
+                                "context": "com.dimowner.audiorecorder.app.main.MainActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/toolbar",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_import",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "initiates file selection to import an audio file."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "layout_marginStart": "@dimen/spacing_double",
+                                "layout_marginEnd": "@dimen/spacing_double",
+                                "layout_marginBottom": "@dimen/spacing_normal",
+                                "textColor": "@color/text_primary_light",
+                                "textSize": "@dimen/text_xlarge",
+                                "fontFamily": "sans-serif-medium",
+                                "text": "Audio Recorder"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_share",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "center"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/pnl_import_progress",
+                                "visibility": "visible",
+                                "orientation": "horizontal",
+                                "layout_marginBottom": "@dimen/spacing_tiny"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "UI visibility",
+                                    "effect": "shows progress indicator during import operation."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ProgressBar",
+                                "style": "?android:attr/progressBarStyleSmall"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_small",
+                                "text": "Audio file import\u2026"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/pnl_record_processing",
+                                "visibility": "visible",
+                                "orientation": "horizontal",
+                                "layout_marginBottom": "@dimen/spacing_tiny"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "UI visibility",
+                                    "effect": "indicates waveform processing is in progress."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ProgressBar",
+                                "style": "?android:attr/progressBarStyleSmall"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "layout_marginStart": "@dimen/spacing_small",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_small",
+                                "text": "Waveform drawing calculations\u2026"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/placeholder",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.WaveformViewNew",
+                                "id": "@+id/record",
+                                "layout_marginBottom": "@dimen/notification_btn"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "visual feedback",
+                                    "effect": "displays waveform of existing recordings for playback."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.dimowner.audiorecorder.app.widget.RecordingWaveformView",
+                                "id": "@+id/recording_view",
+                                "visibility": "gone",
+                                "layout_marginBottom": "@dimen/notification_btn"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "visual feedback",
+                                    "effect": "displays real-time waveform during active recording."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ProgressBar",
+                                "id": "@+id/progress",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "UI visibility",
+                                    "effect": "shows progress bar during loading or operations."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_play",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "center",
+                                "visibility": "invisible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "starts audio playback."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_stop",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "layout_marginStart": "27dp",
+                                "scaleType": "center",
+                                "visibility": "gone"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "stops ongoing playback or recording."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_zero_time",
+                                "textColor": "@color/text_primary_light",
+                                "layout_marginStart": "@dimen/spacing_normal",
+                                "layout_marginBottom": "@dimen/spacing_small",
+                                "textSize": "@dimen/text_medium",
+                                "visibility": "invisible",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "text display",
+                                    "effect": "shows start time marker (00:00) for waveform alignment."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_progress",
+                                "textColor": "@color/text_primary_light",
+                                "textSize": "54sp",
+                                "textStyle": "bold",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "text update",
+                                    "effect": "displays current recording or playback time."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_name",
+                                "layout_marginStart": "@dimen/spacing_xnormal",
+                                "layout_marginEnd": "@dimen/spacing_xnormal",
+                                "layout_marginBottom": "@dimen/spacing_tiny",
+                                "drawableEnd": "@drawable/ic_pencil_small",
+                                "ellipsize": "end",
+                                "maxLines": "2",
+                                "textColor": "@color/text_primary_light",
+                                "textSize": "22sp",
+                                "visibility": "visible",
+                                "text": "2019.12.30 12:12:23"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "allows renaming of the current audio file via dialog."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_record_info",
+                                "layout_marginStart": "@dimen/spacing_huge",
+                                "layout_marginEnd": "@dimen/spacing_huge",
+                                "layout_marginBottom": "@dimen/spacing_xsmall",
+                                "ellipsize": "end",
+                                "maxLines": "1",
+                                "fontFamily": "sans-serif-light",
+                                "textColor": "@color/text_primary_light2",
+                                "textSize": "@dimen/text_normal",
+                                "text": "M4a, 44.1kHz, 128kbps, Stereo"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "navigates to ActivityInformation to show detailed metadata."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txt_duration",
+                                "textColor": "@color/text_primary_light",
+                                "layout_marginEnd": "@dimen/spacing_normal",
+                                "layout_marginBottom": "@dimen/spacing_small",
+                                "textSize": "@dimen/text_medium",
+                                "visibility": "invisible",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "text display",
+                                    "effect": "shows total duration of selected audio file."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "SeekBar",
+                                "id": "@+id/play_progress",
+                                "max": "1000",
+                                "progress": "20"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "seek",
+                                    "effect": "allows seeking within the audio playback timeline."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "layout_marginBottom": "@dimen/spacing_small"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_settings",
+                                "adjustViewBounds": "true",
+                                "clickable": "true",
+                                "contentDescription": "Settings",
+                                "focusable": "true",
+                                "scaleType": "centerInside"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens SettingsActivity for app configuration."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "style": "?android:attr/buttonBarStyle",
+                                "animateLayoutChanges": "true",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/btn_record",
+                                "style": "?android:attr/buttonBarButtonStyle",
+                                "layout_margin": "@dimen/spacing_small",
+                                "textSize": "13sp",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "Record",
+                                "text": "Record",
+                                "scaleType": "center",
+                                "textColor": "@color/text_primary_dark"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "starts a new audio recording session."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "id": "@+id/btn_record_stop",
+                                "style": "?android:attr/buttonBarButtonStyle",
+                                "layout_margin": "@dimen/spacing_small",
+                                "textSize": "13sp",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "Finish",
+                                "text": "Finish",
+                                "scaleType": "center",
+                                "textColor": "@color/text_primary_light"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "finishes and saves the ongoing recording."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_records_list",
+                                "adjustViewBounds": "true",
+                                "contentDescription": "@null",
+                                "scaleType": "centerInside"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens list of saved recordings for selection."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_record_info",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_share",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "record",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.menu_main",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.options_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_duration",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_stop",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txt_progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.menu_more",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "btn_record",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "spacing_xnormal",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "pnl_record_processing",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "placeholder",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "pnl_import_progress",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "MainActivity serves as the primary interface for audio recording, playback, and management. It includes functionality for handling permissions, displaying UI elements based on states (recording, playback, importing), interacting with services like RecordingService and PlaybackService, and managing user interactions such as renaming, sharing, deleting, and opening files.",
+            "transfer": [
+                "RecordsActivity",
+                "SettingsActivity",
+                "MoveRecordsActivity",
+                "WelcomeActivity"
+            ]
+        },
+        {
+            "name": "com.dimowner.audiorecorder.app.TransparentRecordingActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to check necessary permissions (RECORD_AUDIO and WRITE_EXTERNAL_STORAGE) and start the audio recording service. It operates transparently, finishing itself once permissions are granted and the service is started.",
+            "transfer": []
+        },
+        {
+            "name": "com.dimowner.audiorecorder.app.lostrecords.LostRecordsActivity",
+            "layouts": [
+                {
+                    "name": "[your_xml_layout]",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_lost_records",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "viewBindingIgnore": "true",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/toolbar",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the toolbar containing navigation and title."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageButton",
+                                "id": "@+id/btn_back",
+                                "contentDescription": "@null"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "navigates back to the previous screen by finishing the current activity."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "style": "@style/Text.SectionLabel",
+                                "id": "@+id/txt_title",
+                                "paddingLeft": "@dimen/spacing_normal",
+                                "textColor": "@color/text_primary_light",
+                                "text": "Lost records"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the title 'Lost records' at the top of the activity."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/btn_delete_all",
+                                "paddingVertical": "@dimen/spacing_medium",
+                                "paddingHorizontal": "@dimen/spacing_xnormal",
+                                "layout_marginHorizontal": "@dimen/spacing_small",
+                                "textStyle": "bold",
+                                "textColor": "@color/white",
+                                "textSize": "@dimen/text_normal",
+                                "text": "Delete all"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "deletes all displayed lost records after user confirmation."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/btn_file_browser",
+                                "style": "@style/Text.NormalLabel",
+                                "text": "File browser",
+                                "drawableStart": "@drawable/ic_folder_open",
+                                "drawablePadding": "@dimen/spacing_double"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "navigates to the FileBrowserActivity to explore the file system."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "paddingLeft": "@dimen/spacing_normal",
+                                "textColor": "@color/text_primary_light",
+                                "text": "Some records files was not found in the records directory. Possibly they was removed or moved."
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.recyclerview.widget.RecyclerView",
+                                "id": "@+id/recycler_view"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the list of lost records using a RecyclerView adapter."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/txtEmpty",
+                                "drawablePadding": "@dimen/spacing_small",
+                                "drawableTop": "@drawable/ic_audiotrack_64",
+                                "textSize": "@dimen/text_large",
+                                "textColor": "@color/text_primary_light",
+                                "text": "Empty",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows an empty state message when there are no lost records to display."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "[current_layout_name]",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "txtEmpty",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The LostRecordsActivity is used to display a list of lost audio records that were not found in the expected directory. It provides functionality for viewing record details, deleting individual or all records, and navigating to a file browser. The activity uses an MVP architecture with a presenter managing data and updating the UI accordingly.",
+            "transfer": [
+                "FileBrowserActivity"
+            ]
+        }
+    ],
+    "activities_name": [
+        "MoveRecordsActivity",
+        "WelcomeActivity",
+        "TrashActivity",
+        "FileBrowserActivity",
+        "RecordsActivity",
+        "SettingsActivity",
+        "SetupActivity",
+        "MainActivity",
+        "TransparentRecordingActivity",
+        "LostRecordsActivity"
+    ]
+}

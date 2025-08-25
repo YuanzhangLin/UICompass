@@ -1,0 +1,2168 @@
+{
+    "activities": [
+        {
+            "name": "com.simplemobiletools.camera.activities.MainActivity",
+            "layouts": [
+                {
+                    "name": "camera_mode_holder",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "timer_toggle_group",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "layout_flash",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButtonToggleGroup",
+                                "id": "@+id/flash_toggle_group",
+                                "visibility": "visible",
+                                "selectionRequired": "true",
+                                "singleSelection": "true"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle selection",
+                                    "effect": "Enables user to choose flashlight mode (Off, Auto, On, Always On)."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/flash_off",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "icon": "@drawable/ic_flash_off_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Sets flash mode to OFF."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/flash_auto",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "icon": "@drawable/ic_flash_auto_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Sets flash mode to AUTO."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/flash_on",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "icon": "@drawable/ic_flash_on_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Sets flash mode to ON."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/flash_always_on",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "icon": "@drawable/ic_flashlight_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Sets flash mode to ALWAYS ON (torch mode)."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_main",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/view_holder",
+                                "animateLayoutChanges": "true"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "container",
+                                    "effect": "Main constraint layout holding all UI components including camera preview and overlays."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.camera.view.PreviewView",
+                                "id": "@+id/preview_view",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "Shows live camera preview feed."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View",
+                                "id": "@+id/shutter_animation",
+                                "alpha": "0"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "visual feedback",
+                                    "effect": "Displays shutter animation when a photo is taken."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "id": "@+id/top_options",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "container",
+                                    "effect": "Contains top action buttons like timer, flash, resolution, and settings."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/layout_top",
+                                "layout": "@layout/layout_top"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/layout_flash",
+                                "layout": "@layout/layout_flash"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/layout_timer",
+                                "layout": "@layout/layout_timer"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextSwitcher",
+                                "id": "@+id/timer_text",
+                                "layout_constraintBottom_toTopOf": "@id/bottom_overlay",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@id/top_options"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "Shows countdown timer during scheduled photo capture."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View",
+                                "id": "@+id/bottom_overlay",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "@id/camera_mode_holder"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/camera_mode_holder",
+                                "layout_constraintBottom_toTopOf": "@id/shutter",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.tabs.TabLayout",
+                                "id": "@+id/camera_mode_tab",
+                                "layout_marginBottom": "@dimen/big_margin",
+                                "tabBackground": "@drawable/tab_indicator",
+                                "tabIndicator": "@null",
+                                "tabMode": "auto",
+                                "tabRippleColor": "@null",
+                                "tabSelectedTextColor": "@color/md_grey_600_dark",
+                                "tabTextColor": "@color/md_grey_white"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "tab selection",
+                                    "effect": "Switches between Photo and Video capture modes."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.tabs.TabItem",
+                                "text": "Video"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.tabs.TabItem",
+                                "text": "Photo"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/video_rec_curr_timer",
+                                "layout_centerHorizontal": "true",
+                                "layout_marginBottom": "@dimen/smaller_margin",
+                                "textColor": "@android:color/white",
+                                "visibility": "visible",
+                                "layout_constraintBottom_toTopOf": "@id/shutter",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "Shows elapsed recording time while video is being captured."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/toggle_camera",
+                                "contentDescription": "Toggle front/back camera",
+                                "layout_constraintBottom_toBottomOf": "@id/shutter",
+                                "layout_constraintEnd_toStartOf": "@id/shutter",
+                                "layout_constraintHorizontal_chainStyle": "spread",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "@id/shutter"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Switches between front and rear cameras."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/shutter",
+                                "layout_marginBottom": "@dimen/big_margin",
+                                "contentDescription": "Shutter",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintVertical_bias": "1"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Triggers photo capture or starts/stops video recording depending on current mode."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/last_photo_video_preview",
+                                "contentDescription": "View last captured media",
+                                "layout_constraintBottom_toBottomOf": "@id/shutter",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toEndOf": "@id/shutter",
+                                "layout_constraintTop_toTopOf": "@id/shutter"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Opens last captured photo or video in a preview or external viewer."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": [
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "id": "@+id/default_icons",
+                                        "orientation": "horizontal"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/toggle_timer",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "contentDescription": "Toggle the timer mode",
+                                        "icon": "@drawable/ic_timer_off_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/toggle_flash",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "contentDescription": "Toggle the flashlight mode",
+                                        "icon": "@drawable/ic_flash_off_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/change_resolution",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "contentDescription": "@string/resolution",
+                                        "icon": "@drawable/ic_photo_4x3_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/settings",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "contentDescription": "@string/settings",
+                                        "icon": "@drawable/ic_settings_vector"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        },
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButtonToggleGroup",
+                                        "id": "@+id/flash_toggle_group",
+                                        "visibility": "visible",
+                                        "selectionRequired": "true",
+                                        "singleSelection": "true"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/flash_off",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_flash_off_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/flash_auto",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_flash_auto_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/flash_on",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_flash_on_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/flash_always_on",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_flashlight_vector"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        },
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButtonToggleGroup",
+                                        "id": "@+id/timer_toggle_group",
+                                        "visibility": "visible",
+                                        "selectionRequired": "true",
+                                        "singleSelection": "true"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/timer_off",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_timer_off_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/timer_3s",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_timer_3_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/timer_5s",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_timer_5_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/timer_10_s",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_timer_10_vector"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        }
+                    ]
+                },
+                {
+                    "name": "layout_timer_toggle_group",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "preview_view",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "view_holder",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "flash_toggle_group",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "layout_top",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/default_icons",
+                                "orientation": "horizontal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/toggle_timer",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "contentDescription": "Toggle the timer mode",
+                                "icon": "@drawable/ic_timer_off_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Toggles timer options UI to allow setting countdown before photo capture."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/toggle_flash",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "contentDescription": "Toggle the flashlight mode",
+                                "icon": "@drawable/ic_flash_off_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Toggles flashlight options UI to change flash mode."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/change_resolution",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "contentDescription": "@string/resolution",
+                                "icon": "@drawable/ic_photo_4x3_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Opens resolution selection toggle group to switch between image/video resolutions."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/settings",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "contentDescription": "@string/settings",
+                                "icon": "@drawable/ic_settings_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Navigates to SettingsActivity to adjust app preferences."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "camera_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "layout_timer",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButtonToggleGroup",
+                                "id": "@+id/timer_toggle_group",
+                                "visibility": "visible",
+                                "selectionRequired": "true",
+                                "singleSelection": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/timer_off",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "icon": "@drawable/ic_timer_off_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Disables the timer for photo capture."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/timer_3s",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "icon": "@drawable/ic_timer_3_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Sets 3-second delay before photo capture."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/timer_5s",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "icon": "@drawable/ic_timer_5_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Sets 5-second delay before photo capture."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/timer_10_s",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "icon": "@drawable/ic_timer_10_vector"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Sets 10-second delay before photo capture."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "icon_anim_duration",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "ic_flash_auto_vector",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_main",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/view_holder",
+                                "animateLayoutChanges": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.camera.view.PreviewView",
+                                "id": "@+id/preview_view",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View",
+                                "id": "@+id/shutter_animation",
+                                "alpha": "0"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "id": "@+id/top_options",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/layout_top",
+                                "layout": "@layout/layout_top"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/layout_flash",
+                                "layout": "@layout/layout_flash"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/layout_timer",
+                                "layout": "@layout/layout_timer"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextSwitcher",
+                                "id": "@+id/timer_text",
+                                "layout_constraintBottom_toTopOf": "@id/bottom_overlay",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@id/top_options"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View",
+                                "id": "@+id/bottom_overlay",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "@id/camera_mode_holder"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/camera_mode_holder",
+                                "layout_constraintBottom_toTopOf": "@id/shutter",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.tabs.TabLayout",
+                                "id": "@+id/camera_mode_tab",
+                                "layout_marginBottom": "@dimen/big_margin",
+                                "tabBackground": "@drawable/tab_indicator",
+                                "tabIndicator": "@null",
+                                "tabMode": "auto",
+                                "tabRippleColor": "@null",
+                                "tabSelectedTextColor": "@color/md_grey_600_dark",
+                                "tabTextColor": "@color/md_grey_white"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.tabs.TabItem",
+                                "text": "Video"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.tabs.TabItem",
+                                "text": "Photo"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/video_rec_curr_timer",
+                                "layout_centerHorizontal": "true",
+                                "layout_marginBottom": "@dimen/smaller_margin",
+                                "textColor": "@android:color/white",
+                                "visibility": "visible",
+                                "layout_constraintBottom_toTopOf": "@id/shutter",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "text": "00:00"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/toggle_camera",
+                                "contentDescription": "Toggle front/back camera",
+                                "layout_constraintBottom_toBottomOf": "@id/shutter",
+                                "layout_constraintEnd_toStartOf": "@id/shutter",
+                                "layout_constraintHorizontal_chainStyle": "spread",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "@id/shutter"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/shutter",
+                                "layout_marginBottom": "@dimen/big_margin",
+                                "contentDescription": "Shutter",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintVertical_bias": "1"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/last_photo_video_preview",
+                                "contentDescription": "View last captured media",
+                                "layout_constraintBottom_toBottomOf": "@id/shutter",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toEndOf": "@id/shutter",
+                                "layout_constraintTop_toTopOf": "@id/shutter"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": [
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "id": "@+id/default_icons",
+                                        "orientation": "horizontal"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/toggle_timer",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "contentDescription": "Toggle the timer mode",
+                                        "icon": "@drawable/ic_timer_off_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/toggle_flash",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "contentDescription": "Toggle the flashlight mode",
+                                        "icon": "@drawable/ic_flash_off_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/change_resolution",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "contentDescription": "@string/resolution",
+                                        "icon": "@drawable/ic_photo_4x3_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/settings",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "contentDescription": "@string/settings",
+                                        "icon": "@drawable/ic_settings_vector"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        },
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButtonToggleGroup",
+                                        "id": "@+id/flash_toggle_group",
+                                        "visibility": "visible",
+                                        "selectionRequired": "true",
+                                        "singleSelection": "true"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/flash_off",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_flash_off_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/flash_auto",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_flash_auto_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/flash_on",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_flash_on_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/flash_always_on",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_flashlight_vector"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        },
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButtonToggleGroup",
+                                        "id": "@+id/timer_toggle_group",
+                                        "visibility": "visible",
+                                        "selectionRequired": "true",
+                                        "singleSelection": "true"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/timer_off",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_timer_off_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/timer_3s",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_timer_3_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/timer_5s",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_timer_5_vector"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.button.MaterialButton",
+                                        "id": "@+id/timer_10_s",
+                                        "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                        "icon": "@drawable/ic_timer_10_vector"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        }
+                    ]
+                },
+                {
+                    "name": "timer_text",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "shadowColor": "@color/md_grey_400_dark",
+                                "shadowDx": "0",
+                                "shadowDy": "2",
+                                "shadowRadius": "6",
+                                "textAlignment": "center",
+                                "textAppearance": "@style/TextAppearance.Material3.DisplayLarge",
+                                "textColor": "@color/md_grey_white",
+                                "textSize": "@dimen/timer_text_size",
+                                "text": "3"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "ic_flash_off_vector",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "layout_button",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Button",
+                                "style": "@style/Widget.App.Button.OutlineButton.IconOnly",
+                                "icon": "@drawable/ic_photo_1x1_vector"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "layout_top_options",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "ic_flash_on_vector",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "top_options",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "ic_flashlight_vector",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "layout_flash_toggle_group",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "focus_circle_view",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "MainActivity is the core interface of a camera application that handles camera preview, photo/video capture, UI transitions, and interactions for modes like flash, timer, resolution selection, and settings. It supports immersive mode, device orientation handling, gesture navigation between modes, media saving, and third-party intent handling.",
+            "transfer": [
+                "SettingsActivity"
+            ]
+        },
+        {
+            "name": "com.simplemobiletools.camera.activities.SettingsActivity",
+            "layouts": [
+                {
+                    "name": "activity_settings",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/settings_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/settings_toolbar",
+                                "menu": "@menu/menu",
+                                "title": "@string/settings",
+                                "titleTextAppearance": "@style/AppTheme.ActionBar.TitleTextStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "menu interaction",
+                                    "effect": "displays the overflow menu with options such as 'About' and 'More apps from us'."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.core.widget.NestedScrollView",
+                                "id": "@+id/settings_nested_scrollview",
+                                "fillViewport": "true",
+                                "scrollbars": "none"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_color_customization_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/color_customization"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/settings_color_customization_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_customize_colors_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/customize_colors",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_color_customization_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_general_settings_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/general_settings"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_general_settings_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_purchase_thank_you_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "launches an intent related to purchasing a thank-you version of the app if visible."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_purchase_thank_you",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/purchase_simple_thank_you"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_use_english_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "toggles checkbox state and updates configuration to use English as the display language."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_use_english",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/use_english_language"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_language_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "triggers an intent to change the application's language based on system locale."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/language"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_language_label",
+                                "text": "English"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_general_settings_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_shutter_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "Shutter"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_shutter_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_sound_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "toggles shutter sound on or off and updates the configuration accordingly."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_sound",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Shutter sound"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_volume_buttons_as_shutter_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "enables/disables using volume buttons as a camera shutter and updates configuration."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_volume_buttons_as_shutter",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Use volume buttons as shutter"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_shutter_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_saving_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/saving_label"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_saving_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_save_photo_metadata_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "toggles whether metadata is saved with photos and updates configuration."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_save_photo_metadata",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Save photo exif metadata"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_save_photo_video_location_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "toggles whether location information is saved with photos and videos and updates configuration."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_save_photo_video_location",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Save photo and video location"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_flip_photos_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "toggles flipping front camera photos horizontally and updates configuration."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_flip_photos",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Flip front camera photos horizontally"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_save_photos_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "allows the user to select a new folder for saving photos and videos if purchased; otherwise shows a locked dialog."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_save_photos_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Save photos and videos to"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_save_photos",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_save_photos_label",
+                                "text": "Internal/DCIM"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_photo_quality_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens a dialog to select photo compression quality and updates configuration accordingly."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_photo_quality_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Photo compression quality"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_photo_quality",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_photo_quality_label",
+                                "text": "80%"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_capture_mode_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens a dialog to choose a capture mode and updates displayed value and configuration."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_capture_mode_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Capture mode"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_capture_mode",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_capture_mode_label",
+                                "text": "Minimize latency"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings_activity (assumed layout)",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_settings",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/settings_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/settings_toolbar",
+                                "menu": "@menu/menu",
+                                "title": "@string/settings",
+                                "titleTextAppearance": "@style/AppTheme.ActionBar.TitleTextStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.core.widget.NestedScrollView",
+                                "id": "@+id/settings_nested_scrollview",
+                                "fillViewport": "true",
+                                "scrollbars": "none"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_color_customization_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/color_customization"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/settings_color_customization_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_customize_colors_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/customize_colors",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_color_customization_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_general_settings_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/general_settings"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_general_settings_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_purchase_thank_you_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_purchase_thank_you",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/purchase_simple_thank_you"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_use_english_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_use_english",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/use_english_language"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_language_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/language"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_language_label",
+                                "text": "English"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_general_settings_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_shutter_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "Shutter"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_shutter_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_sound_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_sound",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Shutter sound"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_volume_buttons_as_shutter_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_volume_buttons_as_shutter",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Use volume buttons as shutter"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_shutter_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_saving_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/saving_label"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_saving_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_save_photo_metadata_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_save_photo_metadata",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Save photo exif metadata"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_save_photo_video_location_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_save_photo_video_location",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Save photo and video location"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_flip_photos_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_flip_photos",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Flip front camera photos horizontally"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_save_photos_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_save_photos_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Save photos and videos to"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_save_photos",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_save_photos_label",
+                                "text": "Internal/DCIM"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_photo_quality_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_photo_quality_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Photo compression quality"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_photo_quality",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_photo_quality_label",
+                                "text": "80%"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_capture_mode_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_capture_mode_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "Capture mode"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_capture_mode",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_capture_mode_label",
+                                "text": "Minimize latency"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings_item_radio_group_dialog",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx (implied by binding.settingsToolbar.menu)",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx.xml (implied by setupOptionsMenu)",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings_activity_layout",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml (inferred through binding.root)",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The SettingsActivity provides a user interface for configuring various application settings related to camera behavior, photo saving options, language preferences, UI customization, and additional features.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.camera.activities.SimpleActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to handle the main functionalities of the camera application, such as capturing photos and videos, managing settings, and interacting with the user interface.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.camera.activities.SplashActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The SplashActivity is typically used as a starting screen for the application, possibly to load initial configurations or display a splash screen before navigating to the main functionality of the app.",
+            "transfer": []
+        }
+    ],
+    "activities_name": [
+        "MainActivity",
+        "SettingsActivity",
+        "SimpleActivity",
+        "SplashActivity"
+    ]
+}

@@ -1,0 +1,1502 @@
+[
+    {
+        "type": "Button",
+        "element_id": "R.id.save_note",
+        "action": "The save button is hidden after the note is saved."
+    },
+    {
+        "type": "Button",
+        "element_id": "R.id.undo_button",
+        "action": "The undo button is hidden after the note is saved."
+    },
+    {
+        "type": "Button",
+        "element_id": "R.id.redo_button",
+        "action": "The redo button is hidden after the note is saved."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "The ViewPager is initialized with the new note ID and focuses the edit text of the note."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "NewNoteDialog",
+        "action": "Displays a dialog for adding or editing a note. The dialog is initialized with the note's value and path, and a callback is set to save the note and update the UI."
+    },
+    {
+        "type": "RadioGroupDialog",
+        "element_id": "RadioGroupDialog",
+        "action": "Displays a dialog with radio options to choose between syncing the file or only importing its content. The selected option determines whether the note will be synced with the file."
+    },
+    {
+        "type": "MyEditText",
+        "element_id": "com.simplemobiletools.commons.R.id.search_query",
+        "action": "Clears the text content of the search query EditText."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.searchWrapper",
+        "action": "Fades out the search wrapper view, making it invisible."
+    },
+    {
+        "type": "Drawable",
+        "element_id": "R.drawable.shortcut_note",
+        "action": "Used as the base icon for the shortcut. It is mutated and a color filter is applied to a specific layer of the drawable."
+    },
+    {
+        "type": "LayerDrawable",
+        "element_id": "R.id.shortcut_plus_background",
+        "action": "A specific layer within the drawable is modified by applying a color filter based on the app's icon color."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "Used to determine the current item and retrieve the corresponding notes view from the adapter."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.save_note",
+        "action": "The save button's visibility is updated based on whether the new text differs from the current note's value. If the text has changed and autosave is not enabled, the save button becomes visible."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "DeleteNoteDialog",
+        "action": "Displays a dialog prompting the user to confirm the deletion of the current note. If confirmed, it triggers the `deleteNote` method to handle the deletion."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "ExportFileDialog",
+        "action": "Displays a dialog to handle the export process. Depending on the note type and content, it either shows a file picker dialog or directly exports the note to a file."
+    },
+    {
+        "type": "Toast",
+        "element_id": "com.simplemobiletools.commons.R.string.unknown_error_occurred",
+        "action": "Displays an error toast if the note content is empty or null."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "Used to determine the current fragment being displayed by querying its current item index."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "Displays the current note and allows navigation between notes."
+    },
+    {
+        "type": "Drawable",
+        "element_id": "R.drawable.shortcut_check",
+        "action": "The drawable is used to create a bitmap for the shortcut icon. A specific layer of the drawable is modified by applying a color filter."
+    },
+    {
+        "type": "Drawable",
+        "element_id": "com.simplemobiletools.commons.R.drawable.shortcut_plus",
+        "action": "The drawable is used to create an icon for the shortcut. It is converted to a bitmap and colored using the `appIconColor` parameter."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "The `viewPager` is used to display a series of fragments, managed by the `NotesPagerAdapter`."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_next",
+        "action": "Triggers the `goToNextSearchResult` method when clicked, navigating to the next search result."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_previous",
+        "action": "Triggers the `goToPrevSearchResult` method when clicked, navigating to the previous search result in the current note view."
+    },
+    {
+        "type": "RadioGroupDialog",
+        "element_id": "R.string.add_to_note",
+        "action": "Displays a dialog with radio buttons for creating a new note or selecting an existing one. The action triggered depends on the user's selection: if the user selects to create a new note, `displayNewNoteDialog` is called; if an existing note is selected, `updateSelectedNote` and `addTextToCurrentNote` are called to append the text to the selected note."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "Displays a list of notes using the `NotesPagerAdapter`. Updates the current note and refreshes menu items when the page changes."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "ConfirmationDialog",
+        "action": "Displays a confirmation dialog with a warning message and options to proceed or cancel. If the user proceeds, it triggers the SecurityDialog."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "SecurityDialog",
+        "action": "Displays a security dialog where the user can set a protection hash and type. If the operation is successful, it updates the note's protection details and saves the note."
+    },
+    {
+        "type": "TextView",
+        "element_id": "noteViewWithTextSelected",
+        "action": "Sets the movement method to `MyMovementMethod.getInstance()` if `config.clickableLinks` is true, enabling clickable links within the text view."
+    },
+    {
+        "type": "TextView",
+        "element_id": "currentNotesView()",
+        "action": "The TextView's movement method is set to `ArrowKeyMovementMethod` if it has clickable links or a specific movement method. This affects how text selection and navigation are handled in the view."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "ConfirmationAdvancedDialog",
+        "action": "Displays a dialog to confirm whether to save or discard unsaved changes in the notes. If the user chooses to save, it saves all fragment texts before proceeding with the back action."
+    },
+    {
+        "type": "EditText",
+        "element_id": "com.simplemobiletools.commons.R.id.search_query",
+        "action": "Used to input search queries. Cleared when the search is closed."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_previous",
+        "action": "Navigates to the previous search result. Hidden when the search is closed."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_next",
+        "action": "Navigates to the next search result. Hidden when the search is closed."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_clear",
+        "action": "Clears the search query. Hidden when the search is closed."
+    },
+    {
+        "type": "EditText",
+        "element_id": "com.simplemobiletools.commons.R.id.search_query",
+        "action": "Used to input search queries. It triggers search functionality when text is entered."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_previous",
+        "action": "Navigates to the previous search result when clicked."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_next",
+        "action": "Navigates to the next search result when clicked."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_clear",
+        "action": "Clears the search query and resets the search functionality when clicked."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "The `ViewPager` is updated to display the note corresponding to the `wantedNoteId` extracted from the intent."
+    },
+    {
+        "type": "Toolbar",
+        "element_id": "binding.mainToolbar",
+        "action": "The toolbar is set up using the `setupToolbar` method, which likely configures the toolbar's appearance and functionality."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "The ViewPager is initialized and updated if there are changes in the notes or line wrap settings. It is used to display notes."
+    },
+    {
+        "type": "PagerTabStrip",
+        "element_id": "binding.pagerTabStrip",
+        "action": "The pager tab strip's text size, height, gravity, alpha, and color are adjusted based on the current configuration."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "searchPrevBtn",
+        "action": "The color filter of the search previous button is applied based on the contrast color of the primary color."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "searchNextBtn",
+        "action": "The color filter of the search next button is applied based on the contrast color of the primary color."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "searchClearBtn",
+        "action": "The color filter of the search clear button is applied based on the contrast color of the primary color."
+    },
+    {
+        "type": "EditText",
+        "element_id": "searchQueryET",
+        "action": "The search query EditText is not directly manipulated in this method, but it is part of the search functionality."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "FilePickerDialog",
+        "action": "Opens a file picker dialog to allow the user to select a file. The dialog includes an option to show hidden files."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "OpenFileDialog",
+        "action": "Displays a dialog to confirm opening the selected file. If confirmed, it triggers the `displayNewNoteDialog` method to add or edit a note."
+    },
+    {
+        "type": "EditText",
+        "element_id": "com.simplemobiletools.commons.R.id.search_query",
+        "action": "The search query EditText is focused and the keyboard is shown to allow the user to input search text."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.searchWrapper",
+        "action": "The search wrapper view is faded in to make the search UI visible."
+    },
+    {
+        "type": "WebView",
+        "element_id": "N/A",
+        "action": "The WebView is initialized and configured to load data. When the page finishes loading, a print job is created."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "Provides the current item index to the `redo` method, which is used by the adapter to perform a redo operation."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.undo",
+        "action": "The undo button is visible if `showUndoButton` is true and the current note is of type `TYPE_TEXT`. The icon's alpha is set to 255 if enabled, otherwise 127."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.redo",
+        "action": "The redo button is visible if `showRedoButton` is true and the current note is of type `TYPE_TEXT`. The icon's alpha is set to 255 if enabled, otherwise 127."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.rename_note",
+        "action": "The rename note button is visible if multiple notes exist."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.open_note",
+        "action": "The open note button is visible if multiple notes exist."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.delete_note",
+        "action": "The delete note button is visible if multiple notes exist."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.open_search",
+        "action": "The open search button is visible if the current item is not a checklist."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.remove_done_items",
+        "action": "The remove done items button is visible if the current item is a checklist."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.sort_checklist",
+        "action": "The sort checklist button is visible if the current item is a checklist."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.import_folder",
+        "action": "The import folder button is visible if the device is not running Android Q or later."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.lock_note",
+        "action": "The lock note button is visible if there are notes and the current note is not locked."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.unlock_note",
+        "action": "The unlock note button is visible if there are notes and the current note is locked."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.more_apps_from_us",
+        "action": "The more apps from us button is visible if the app is not configured to hide Google relations."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.save_note",
+        "action": "The save note button is visible if autosave is not enabled, `showSaveButton` is true, and the current note is of type `TYPE_TEXT`."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.pagerTabStrip",
+        "action": "The pager tab strip is visible if multiple notes exist."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "The `viewPager` is used to display the current page of notes. The method retrieves the current item index from the `viewPager` to determine which page's checklist items to remove."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "Displays the current note and allows navigation between notes. The current item is used to save the note and retrieve checklist items."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.save_note",
+        "action": "The save note button is hidden after the note is saved, and the menu items are refreshed to reflect the current state of the application."
+    },
+    {
+        "type": "MyEditText",
+        "element_id": "com.simplemobiletools.commons.R.id.search_query",
+        "action": "Requests focus after a delay of 50 milliseconds, ensuring the search query EditText is ready for user input."
+    },
+    {
+        "type": "MyEditText",
+        "element_id": "com.simplemobiletools.commons.R.id.search_query",
+        "action": "Requests focus and sets the selection based on the current search index if there are search matches."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.open_search",
+        "action": "Opens the search functionality in the MainActivity, activating the search state and focusing on the search query EditText."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.open_note",
+        "action": "Displays a dialog for opening or creating a note."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.save_note",
+        "action": "Saves the current note and hides the save button."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.undo",
+        "action": "Triggers an undo operation for the current note or item displayed in the viewPager."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.redo",
+        "action": "Triggers a redo action in the adapter, reverting a previous action or updating the UI."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.new_note",
+        "action": "Displays a dialog for adding or editing a note."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.rename_note",
+        "action": "Displays a dialog for renaming the current note."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.share",
+        "action": "Shares the text of the current note via other apps."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.cab_create_shortcut",
+        "action": "Creates a shortcut for the current note on the home screen."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.lock_note",
+        "action": "Locks the current note by displaying a confirmation dialog and updating the note's protection hash and type."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.unlock_note",
+        "action": "Unlocks the current note by performing a security check and removing its protection."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.open_file",
+        "action": "Attempts to open a file by hiding the keyboard and opening a file picker dialog."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.import_folder",
+        "action": "Opens a folder by checking if the given path corresponds to a directory."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.export_as_file",
+        "action": "Attempts to export the current note as a file by hiding the keyboard and opening a document creation dialog."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.print",
+        "action": "Prints the current note's content by initializing a WebView and loading the printable text."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.delete_note",
+        "action": "Displays a dialog for deleting the current note."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.more_apps_from_us",
+        "action": "Launches an intent to show more apps from the developer."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.settings",
+        "action": "Launches the SettingsActivity from the MainActivity."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.about",
+        "action": "Launches the AboutActivity to display information about the app."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.remove_done_items",
+        "action": "Removes checklist items marked as 'done' from the current page of the viewPager."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.sort_checklist",
+        "action": "Displays a dialog for sorting a checklist and updates the widgets."
+    },
+    {
+        "type": "MyEditText",
+        "element_id": "com.simplemobiletools.commons.R.id.search_query",
+        "action": "Triggers `searchTextChanged` method when the text changes, which handles search functionality and highlights matches in the current note."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_previous",
+        "action": "Navigates to the previous search result in the current note view when clicked."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_next",
+        "action": "Navigates to the next search result in the current note view when clicked."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "com.simplemobiletools.commons.R.id.search_clear",
+        "action": "Closes the search functionality, clears the search query, and hides the keyboard when clicked."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "Listens for page changes, removes text watchers, clears background spans, and closes search when a new page is selected."
+    },
+    {
+        "type": "RadioGroupDialog",
+        "element_id": "N/A",
+        "action": "Displays a dialog with radio options for the user to choose between updating the file at the note's location or only exporting the file content. The selected option triggers the export process."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "Provides the current item index to the `undo` method, which is used to perform the undo operation on the corresponding item."
+    },
+    {
+        "type": "ViewPager",
+        "element_id": "binding.viewPager",
+        "action": "The `ViewPager` is updated to display the note at the specified index, which corresponds to the note with the given ID."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "R.id.settingsEnableAutomaticBackups",
+        "action": "The checkbox is checked or unchecked based on the `enable` parameter, reflecting the state of automatic backups."
+    },
+    {
+        "type": "View",
+        "element_id": "R.id.settingsManageAutomaticBackupsHolder",
+        "action": "The visibility of this view is controlled based on the `enable` parameter. It becomes visible if automatic backups are enabled."
+    },
+    {
+        "type": "CoordinatorLayout",
+        "element_id": "binding.settingsCoordinator",
+        "action": "Used to coordinate the layout behavior of child views, particularly for Material Design components."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.settingsHolder",
+        "action": "Holds the settings views and is updated with Material Design configurations."
+    },
+    {
+        "type": "NestedScrollView",
+        "element_id": "binding.settingsNestedScrollview",
+        "action": "Provides a scrollable container for the settings content and is linked to the toolbar for scroll behavior."
+    },
+    {
+        "type": "Toolbar",
+        "element_id": "binding.settingsToolbar",
+        "action": "Provides the app bar for the settings activity and is linked to the scroll view for scroll behavior."
+    },
+    {
+        "type": "Menu",
+        "element_id": "Not explicitly provided in the code",
+        "action": "The menu is created and its item colors are updated via `updateMenuItemColors(menu)`. The method does not specify any specific menu items or their actions."
+    },
+    {
+        "type": "Toolbar",
+        "element_id": "binding.settingsToolbar",
+        "action": "Sets up the toolbar with a navigation icon (Arrow)."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsColorCustomizationSectionLabel",
+        "action": "Updates the text color based on the primary color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsGeneralSettingsLabel",
+        "action": "Updates the text color based on the primary color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsTextLabel",
+        "action": "Updates the text color based on the primary color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsStartupLabel",
+        "action": "Updates the text color based on the primary color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsSavingLabel",
+        "action": "Updates the text color based on the primary color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsMigratingLabel",
+        "action": "Updates the text color based on the primary color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsBackupsLabel",
+        "action": "Updates the text color based on the primary color."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsAutosaveNotes",
+        "action": "Represents the auto-save notes checkbox. Its state is toggled when the holder is clicked, and the configuration is updated based on its checked state."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsAutosaveNotesHolder",
+        "action": "A clickable holder that toggles the state of the auto-save notes checkbox when clicked."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsClickableLinks",
+        "action": "Toggles the state of the checkbox when the holder is clicked. The state is saved in the `config` object."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsClickableLinksHolder",
+        "action": "Triggers the toggle action on the checkbox when clicked."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "R.id.settingsCursorPlacement",
+        "action": "Toggles the cursor placement setting when clicked. The state of the checkbox is updated, and the configuration value `config.placeCursorToEnd` is set to the new state."
+    },
+    {
+        "type": "View",
+        "element_id": "R.id.settingsCursorPlacementHolder",
+        "action": "Triggers the toggle action of the `settingsCursorPlacement` checkbox when clicked. This updates the cursor placement setting in the configuration."
+    },
+    {
+        "type": "View",
+        "element_id": "R.id.settingsColorCustomizationHolder",
+        "action": "When clicked, it triggers the `startCustomizationActivity()` method, which likely starts a new activity for color customization."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsWidgetColorCustomizationHolder",
+        "action": "When clicked, it starts the `WidgetConfigureActivity` with customization options for a widget. If a widget is assigned to `widgetToCustomize`, it includes additional data such as widget ID, key ID, note ID, background color, text color, and whether to show the title."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsDisplaySuccess",
+        "action": "Toggles the checkbox state when the holder is clicked, and updates the `config.displaySuccess` value accordingly."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsDisplaySuccessHolder",
+        "action": "Triggers the toggle action on the checkbox when clicked."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.settingsBackupsLabel",
+        "action": "This label is made visible if the device is running Android R or higher."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "R.id.settingsEnableAutomaticBackupsHolder",
+        "action": "This container is made visible if the device is running Android R or higher. It also handles click events to enable or disable automatic backups."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "R.id.settingsEnableAutomaticBackups",
+        "action": "This checkbox reflects the current state of automatic backups (enabled or disabled)."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsEnableLineWrap",
+        "action": "Toggles the line wrap setting when clicked. The state of the checkbox is updated, and the `config.enableLineWrap` value is set to the new state."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsEnableLineWrapHolder",
+        "action": "Acts as a clickable area that triggers the toggle of the `settingsEnableLineWrap` checkbox when clicked."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsFontSize",
+        "action": "Displays the current font size percentage as text. It is updated when a new font size is selected from the dialog."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsFontSizeHolder",
+        "action": "Triggers the display of a `RadioGroupDialog` when clicked, allowing the user to select a new font size."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsGravity",
+        "action": "Displays the current gravity setting label. The text is updated when the gravity setting is changed."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsGravityHolder",
+        "action": "Triggers the display of a `RadioGroupDialog` when clicked. The dialog allows the user to select a new gravity setting."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.settingsUseIncognitoModeHolder",
+        "action": "The visibility of this element is set based on whether the device is running Android Oreo or higher (`isOreoPlus()`). It is also set as clickable, and when clicked, it toggles the state of the incognito mode switch."
+    },
+    {
+        "type": "Switch",
+        "element_id": "binding.settingsUseIncognitoMode",
+        "action": "This switch is used to enable or disable incognito mode. Its initial state is set based on the `config.useIncognitoMode` value, and its state is toggled when the holder is clicked."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.settingsLanguage",
+        "action": "Displays the default language of the device."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.settingsLanguageHolder",
+        "action": "Becomes visible if the device is running Android Tiramisu (API level 33) or higher. When clicked, it launches an intent to change the app language."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.settingsManageAutomaticBackupsHolder",
+        "action": "The element is made visible if the device is running Android R or later and automatic backups are enabled. When clicked, it opens a dialog to manage automatic backups."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsMonospacedFont",
+        "action": "Toggles the monospaced font setting when clicked. The state of the checkbox is updated, and the configuration value `config.monospacedFont` is set accordingly. The `updateWidgets()` method is called to refresh the widgets."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsMonospacedFontHolder",
+        "action": "Triggers the toggle action on the `settingsMonospacedFont` checkbox when clicked. This indirectly updates the configuration and refreshes the widgets."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsExportNotesHolder",
+        "action": "When clicked, it triggers the `ExportNotesDialog` to appear, allowing the user to specify a filename for exporting notes. After the filename is provided, the document save operation is launched."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsImportNotesHolder",
+        "action": "When clicked, it triggers the `getContent.launch(notesFileType)` method to start an activity for importing notes."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsShowKeyboard",
+        "action": "Toggles the state of the checkbox when the holder is clicked, updating the `config.showKeyboard` value."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsShowKeyboardHolder",
+        "action": "Triggers the toggle action on the checkbox when clicked."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.settingsShowNotePickerHolder",
+        "action": "The visibility of this element is set based on the number of notes available. It is made visible if there are more than one note."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsShowNotePicker",
+        "action": "The checked state of this checkbox is set based on the configuration. When the holder is clicked, the checkbox is toggled, and the configuration is updated to reflect the new state."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.settingsShowNotePickerHolder",
+        "action": "When clicked, it toggles the state of the checkbox and updates the configuration to reflect the new state."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsShowWordCount",
+        "action": "Toggles the state of the checkbox when the holder is clicked, and updates the `config.showWordCount` value accordingly."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsShowWordCountHolder",
+        "action": "Triggers the toggle action on the checkbox when clicked."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.settingsUseEnglishHolder",
+        "action": "This view group is made visible if the device's default language is not English or if the user has previously toggled the setting. It is hidden otherwise."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsUseEnglish",
+        "action": "This checkbox reflects the current state of the `useEnglish` configuration. When the user clicks the `settingsUseEnglishHolder`, the checkbox is toggled, and the `useEnglish` configuration is updated accordingly."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.settingsUseEnglishHolder",
+        "action": "When clicked, it toggles the state of the `settingsUseEnglish` checkbox, updates the `useEnglish` configuration, and exits the app."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "R.id.showNoteTitle",
+        "action": "Determines whether the note title should be displayed or hidden based on its checked state."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.textNoteViewTitle",
+        "action": "The visibility of this TextView is toggled based on the state of the CheckBox. It is hidden if the CheckBox is unchecked."
+    },
+    {
+        "type": "SeekBar",
+        "element_id": "binding.configBgSeekbar",
+        "action": "Adjusts the background alpha value and updates the background color when the seekbar progress changes."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.notesPickerHolder",
+        "action": "Visibility is set based on the number of notes and whether color customization is active."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.textNoteViewTitle",
+        "action": "Visibility is set based on whether the title should be shown."
+    },
+    {
+        "type": "Button",
+        "element_id": "binding.configSave",
+        "action": "Triggers the `saveConfig` method when clicked, which saves the widget configuration and updates the widget appearance."
+    },
+    {
+        "type": "Button",
+        "element_id": "binding.configBgColor",
+        "action": "Triggers the `pickBackgroundColor` method when clicked, which opens a color picker dialog to select a background color."
+    },
+    {
+        "type": "Button",
+        "element_id": "binding.configTextColor",
+        "action": "Triggers the `pickTextColor` method when clicked, which opens a color picker dialog to select a text color."
+    },
+    {
+        "type": "Button",
+        "element_id": "binding.notesPickerValue",
+        "action": "Triggers the `showNoteSelector` method when clicked, which displays a dialog to select a note."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.showNoteTitleHolder",
+        "action": "Triggers the `handleNoteTitleDisplay` method when clicked, which toggles the visibility of the note title."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.textNoteView",
+        "action": "The text size of the TextView is set to a percentage-based font size when the activity resumes."
+    },
+    {
+        "type": "ColorPickerDialog",
+        "element_id": "N/A",
+        "action": "Opens a dialog for the user to pick a color. If the user confirms the selection, the color is saved and the background color of UI elements is updated."
+    },
+    {
+        "type": "ColorPickerDialog",
+        "element_id": "N/A",
+        "action": "Opens a dialog for the user to pick a color. If the user confirms the selection, the selected color is assigned to `mTextColor`, and `updateTextColor` is called to update the UI elements with the new text color."
+    },
+    {
+        "type": "RemoteViews",
+        "element_id": "R.id.text_note_view",
+        "action": "Sets the background color of the `text_note_view` to `mBgColor`."
+    },
+    {
+        "type": "RemoteViews",
+        "element_id": "R.id.checklist_note_view",
+        "action": "Sets the background color of the `checklist_note_view` to `mBgColor`."
+    },
+    {
+        "type": "RadioGroupDialog",
+        "element_id": "N/A",
+        "action": "Displays a dialog with radio buttons for note selection. When a note is selected, it checks the note's protection status and either updates the note directly or performs a security check before updating."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.textNoteView",
+        "action": "Sets the background color of the text note view to `mBgColor`."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.checklistNoteView",
+        "action": "Sets the background color of the checklist note view to `mBgColor`."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.textNoteViewTitle",
+        "action": "Sets the background color of the text note view title to `mBgColor`."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.configBgColor",
+        "action": "Fills the background color with a stroke using `mBgColor`."
+    },
+    {
+        "type": "Button",
+        "element_id": "binding.configSave",
+        "action": "Sets the background tint of the save button to a proper primary color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.notesPickerValue",
+        "action": "Displays the title of the current note."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.textNoteViewTitle",
+        "action": "Displays the title of the current note."
+    },
+    {
+        "type": "RecyclerView",
+        "element_id": "binding.checklistNoteView",
+        "action": "Displays a checklist of items if the note type is `TYPE_CHECKLIST`. The adapter `ChecklistAdapter` is used to populate the list."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.textNoteView",
+        "action": "Displays the text content of the note if the note type is not `TYPE_CHECKLIST`."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.textNoteView",
+        "action": "Sets the text color of the TextView to `mTextColor`."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.textNoteViewTitle",
+        "action": "Sets the text color of the TextView to `mTextColor`."
+    },
+    {
+        "type": "ChecklistAdapter",
+        "element_id": "binding.checklistNoteView.adapter",
+        "action": "Updates the text color of the checklist items to `mTextColor`."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.configTextColor",
+        "action": "Sets the fill and stroke color of the view to `mTextColor`."
+    },
+    {
+        "type": "Button",
+        "element_id": "binding.configSave",
+        "action": "Sets the text color of the button to a contrast color derived from the primary color."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.cab_move_to_top",
+        "action": "Moves the selected items to the top of the list in the RecyclerView. Updates the sorting configuration, reorders the items, and notifies the adapter of the changes. Triggers a listener to save the checklist."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.cab_move_to_bottom",
+        "action": "Moves the selected items to the bottom of the list in the RecyclerView. Updates the sorting configuration to custom, removes the selected items from their current positions, adds them to the end of the list, and notifies the adapter of the item movements. Triggers a listener to save the checklist."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.cab_rename",
+        "action": "Renames a selected checklist item. Retrieves the first selected item from the list, opens a dialog to rename the item, updates the item's title, saves the checklist, notifies the adapter of the change, and finishes the action mode."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.cab_delete",
+        "action": "Deletes selected items from the checklist. Identifies the positions of the selected items in the list, removes them, sorts the positions in descending order, updates the UI, saves the checklist, and refreshes the items if the list is empty."
+    },
+    {
+        "type": "Menu",
+        "element_id": "R.menu.cab_checklist",
+        "action": "The menu provides actions that can be performed on selected items in a checklist. The specific actions depend on the menu items defined in the XML file."
+    },
+    {
+        "type": "MenuItem",
+        "element_id": "R.id.cab_rename",
+        "action": "The visibility of this menu item is set to true if only one item is selected. This allows the user to rename the selected item."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "RenameChecklistItemDialog",
+        "action": "Opens a dialog to allow the user to rename the selected checklist item. Upon confirmation, the item's title is updated, the checklist is saved, and the adapter is notified of the change."
+    },
+    {
+        "type": "TextView",
+        "element_id": "checklistTitle",
+        "action": "Displays the title of the checklist item. If the item is marked as done, the text is struck through and its opacity is reduced. Otherwise, the text is displayed normally."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "checklistImage",
+        "action": "Displays an icon (either a checkmark or a cross) based on whether the checklist item is done. The icon is only visible if `showIcons` is true and no items are selected."
+    },
+    {
+        "type": "View",
+        "element_id": "checklistHolder",
+        "action": "Represents the container for the checklist item. Its selection state is updated based on whether the item is selected."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "checklistDragHandle",
+        "action": "Displays a drag handle icon if items are selected. It also sets a touch listener to initiate drag-and-drop reordering when the handle is touched."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.notesView",
+        "action": "Appends the provided text to the `NotesView` if the fragment at the specified position is a `TextFragment`."
+    },
+    {
+        "type": "EditText",
+        "element_id": "Not explicitly provided in the method",
+        "action": "The `EditText` within the `TextFragment` is focused when the `focusEditText` method is called on the fragment."
+    },
+    {
+        "type": "View",
+        "element_id": "N/A",
+        "action": "The view's background is set based on the theme and configuration settings. If the theme is black and white, it uses a specific drawable. Otherwise, it applies a colored drawable with a specified alpha value."
+    },
+    {
+        "type": "TextView",
+        "element_id": "openNoteItemTitle",
+        "action": "Displays the title of the note and sets its text color to the proper primary color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "openNoteItemText",
+        "action": "Displays the formatted text of the note if it is not blank and the note is not locked. Sets the text color to the default text color."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "iconLock",
+        "action": "Displays a lock icon if the note is locked. The icon's color is set to the proper primary color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "When clicked, it triggers an intent to open a note with the specified `noteId`."
+    },
+    {
+        "type": "TextView",
+        "element_id": "widget_text_holder",
+        "action": "When clicked, it triggers an intent to open a note with the specified `noteId`."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "Sets the visibility to VISIBLE and attaches an `Intent` to handle click events, which includes the `OPEN_NOTE_ID` extra."
+    },
+    {
+        "type": "TextView",
+        "element_id": "widget_text_holder",
+        "action": "Sets the visibility to VISIBLE and attaches an `Intent` to handle click events, which includes the `OPEN_NOTE_ID` extra."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "Sets an `Intent` to be triggered when the view is clicked, which includes the `OPEN_NOTE_ID` extra."
+    },
+    {
+        "type": "TextView",
+        "element_id": "widget_text_holder",
+        "action": "Sets an `Intent` to be triggered when the view is clicked, which includes the `OPEN_NOTE_ID` extra."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_center_monospace",
+        "action": "This TextView is made visible when the gravity is centered and the font is monospaced."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_center",
+        "action": "This TextView is made visible when the gravity is centered."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_right_monospace",
+        "action": "This TextView is made visible when the gravity is at the end and the font is monospaced."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_right",
+        "action": "This TextView is made visible when the gravity is at the end."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_left_monospace",
+        "action": "This TextView is made visible when the font is monospaced."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_left",
+        "action": "This TextView is made visible by default when no other conditions are met."
+    },
+    {
+        "type": "View",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "This View is used to set an `Intent` that will be triggered when the view is clicked, passing the `OPEN_NOTE_ID` extra."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_center_monospace",
+        "action": "This TextView is used when the gravity is centered and the font is monospaced."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_center",
+        "action": "This TextView is used when the gravity is centered."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_right_monospace",
+        "action": "This TextView is used when the gravity is at the end and the font is monospaced."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_right",
+        "action": "This TextView is used when the gravity is at the end."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_left_monospace",
+        "action": "This TextView is used when the font is monospaced."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_left",
+        "action": "This TextView is used as the default when no specific conditions are met."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "Displays the checklist item text and sets up a click intent to open the note when clicked. The text color and size are adjusted based on the checklist item's state (done or not done)."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_holder",
+        "action": "Displays the text of a regular note and sets up a click intent to open the note when clicked. The text color and size are adjusted based on the widget's configuration."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "When clicked, it triggers an `Intent` that migrates to another activity, passing the `OPEN_NOTE_ID` extra."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_holder",
+        "action": "When clicked, it triggers an `Intent` that migrates to another activity, passing the `OPEN_NOTE_ID` extra."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "When clicked, it triggers an `Intent` that opens a note with the specified `OPEN_NOTE_ID`."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_holder",
+        "action": "When clicked, it triggers an `Intent` that opens a note with the specified `OPEN_NOTE_ID`."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "When clicked, it triggers an `Intent` that includes the `OPEN_NOTE_ID` extra, potentially starting a new activity or passing data to an existing one."
+    },
+    {
+        "type": "TextView",
+        "element_id": "widget_text_holder",
+        "action": "When clicked, it triggers an `Intent` that includes the `OPEN_NOTE_ID` extra, potentially starting a new activity or passing data to an existing one."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "Sets the text, text color, text size, and paint flags for the checklist item. It also sets the visibility of the TextView and attaches an intent to open the note when clicked."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_holder",
+        "action": "Sets the text, text color, text size, and visibility for the note text. It also attaches an intent to open the note when clicked."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.checklist_text_holder",
+        "action": "Sets an `Intent` to be triggered when this view is clicked, which includes the `OPEN_NOTE_ID` extra."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_text_holder",
+        "action": "Sets an `Intent` to be triggered when this view is clicked, which includes the `OPEN_NOTE_ID` extra."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "dialog",
+        "action": "The dialog is dismissed when the method is called, effectively closing the dialog."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "dialog",
+        "action": "The dialog is dismissed after processing the files and executing the callback."
+    },
+    {
+        "type": "EditText",
+        "element_id": "binding.backupNotesFilename",
+        "action": "The keyboard is hidden when the method is called."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.backupNotesFolder",
+        "action": "The human-readable path of the selected backup folder is displayed here after permissions are granted."
+    },
+    {
+        "type": "EditText",
+        "element_id": "titleEditText",
+        "action": "Triggers the addition of a new `EditText` when the 'Next', 'Done', or 'Enter' key is pressed."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "checklistHolder",
+        "action": "Container that holds the dynamically added `EditText` views."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "dialogHolder",
+        "action": "Scrolls to the bottom and shows the keyboard after a new `EditText` is added."
+    },
+    {
+        "type": "Dialog",
+        "element_id": "dialog",
+        "action": "The dialog is dismissed after the note is saved and the callback is invoked."
+    },
+    {
+        "type": "RecyclerView",
+        "element_id": "binding.dialogOpenNoteList",
+        "action": "Displays a list of notes using the OpenNoteAdapter. When a note is clicked, the callback is triggered with the note's ID, and the dialog is dismissed."
+    },
+    {
+        "type": "FloatingActionButton",
+        "element_id": "binding.newNoteFab",
+        "action": "Opens a NewNoteDialog when clicked. After creating a new note, the callback is triggered with the new note's content, and the dialog is dismissed."
+    },
+    {
+        "type": "Button",
+        "element_id": "com.simplemobiletools.commons.R.string.cancel",
+        "action": "Dismisses the dialog when clicked."
+    },
+    {
+        "type": "AlertDialog",
+        "element_id": "dialog",
+        "action": "The dialog is dismissed after the note title is successfully updated or if the file renaming process is completed."
+    },
+    {
+        "type": "RadioButton",
+        "element_id": "R.id.sorting_dialog_radio_date_created",
+        "action": "Sets sorting to SORT_BY_DATE_CREATED when selected."
+    },
+    {
+        "type": "RadioButton",
+        "element_id": "R.id.sorting_dialog_radio_custom",
+        "action": "Sets sorting to SORT_BY_CUSTOM when selected."
+    },
+    {
+        "type": "RadioButton",
+        "element_id": "R.id.sorting_dialog_radio_descending",
+        "action": "Adds SORT_DESCENDING to the sorting option when selected and the sorting is not SORT_BY_CUSTOM."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "R.id.settingsMoveUndoneChecklistItems",
+        "action": "Updates the configuration to move done checklist items when checked."
+    },
+    {
+        "type": "CheckBox",
+        "element_id": "binding.settingsMoveUndoneChecklistItems",
+        "action": "The checkbox's state is set to the value of `config.moveDoneChecklistItems`. When clicked, it toggles its state."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsMoveUndoneChecklistItemsHolder",
+        "action": "When clicked, it toggles the state of the associated checkbox (`binding.settingsMoveUndoneChecklistItems`)."
+    },
+    {
+        "type": "RadioButton",
+        "element_id": "binding.sortingDialogRadioAscending",
+        "action": "This radio button is checked if the current sorting order is ascending."
+    },
+    {
+        "type": "RadioButton",
+        "element_id": "binding.sortingDialogRadioDescending",
+        "action": "This radio button is checked if the current sorting order is descending."
+    },
+    {
+        "type": "RadioGroup",
+        "element_id": "binding.sortingDialogRadioSorting",
+        "action": "Listens for changes in the selected radio button and hides or shows UI elements based on whether the custom sorting option is selected."
+    },
+    {
+        "type": "RadioButton",
+        "element_id": "binding.sortingDialogRadioCustom",
+        "action": "When selected, it hides the order radio button, order divider, move undone checklist items divider, and move undone checklist items holder."
+    },
+    {
+        "type": "RadioButton",
+        "element_id": "binding.sortingDialogRadioTitle",
+        "action": "Default radio button for sorting by title."
+    },
+    {
+        "type": "RadioButton",
+        "element_id": "binding.sortingDialogRadioDateCreated",
+        "action": "Radio button for sorting by date created, checked if `currSorting` includes `SORT_BY_DATE_CREATED`."
+    },
+    {
+        "type": "RadioButton",
+        "element_id": "binding.sortingDialogRadioCustom",
+        "action": "Radio button for custom sorting, checked if `currSorting` includes `SORT_BY_CUSTOM`."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.sortingDialogRadioOrder",
+        "action": "Hidden if custom sorting is selected."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.sortingDialogOrderDivider",
+        "action": "Hidden if custom sorting is selected."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.moveUndoneChecklistItemsDivider",
+        "action": "Hidden if custom sorting is selected."
+    },
+    {
+        "type": "View",
+        "element_id": "binding.settingsMoveUndoneChecklistItemsHolder",
+        "action": "Hidden if custom sorting is selected."
+    },
+    {
+        "type": "ViewGroup",
+        "element_id": "binding.notesHolder",
+        "action": "Adds the locked note view to the notes holder."
+    },
+    {
+        "type": "TextView",
+        "element_id": "lockedNoteTitle",
+        "action": "Displays the title of the locked note."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "lockedUnlockedImage",
+        "action": "Displays the lock icon and changes its color and image based on whether the note is locked or unlocked."
+    },
+    {
+        "type": "View",
+        "element_id": "lockedNoteHolder",
+        "action": "Handles the click event to toggle the lock status of the note."
+    },
+    {
+        "type": "Button",
+        "element_id": "DialogInterface.BUTTON_POSITIVE",
+        "action": "The text of the positive button in the dialog is updated based on the condition of whether there are any unlocked notes. If there are unlocked notes, the button text is set to 'OK'; otherwise, it is set to 'Skip'."
+    },
+    {
+        "type": "View",
+        "element_id": "checklistContentHolder",
+        "action": "The visibility of this view is set based on whether the note is locked or if the locked content should be shown. It will be visible if the note is not locked or if `shouldShowLockedContent` is true."
+    },
+    {
+        "type": "FloatingActionButton",
+        "element_id": "checklistFab",
+        "action": "The visibility of this floating action button is set based on whether the note is locked or if the locked content should be shown. It will be visible if the note is not locked or if `shouldShowLockedContent` is true."
+    },
+    {
+        "type": "RecyclerView",
+        "element_id": "binding.checklistList",
+        "action": "Updates the item at the specified index in the RecyclerView's adapter if `refreshIndex` is not -1."
+    },
+    {
+        "type": "ListView",
+        "element_id": "R.id.checklist_list",
+        "action": "The `checklist_list` is a ListView whose adapter is cast to `ChecklistAdapter`. When the menu is not visible, the `finishActMode` method is called on the adapter to finish the action mode."
+    },
+    {
+        "type": "RecyclerView",
+        "element_id": "binding.checklistList",
+        "action": "Displays the list of checklist items. The adapter is set to this RecyclerView to manage the item views."
+    },
+    {
+        "type": "FloatingActionButton",
+        "element_id": "binding.checklistFab",
+        "action": "Sets the colors for the FAB and assigns a click listener. When clicked, it shows a dialog to add new checklist items and finishes the action mode of the adapter."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.fragmentPlaceholder",
+        "action": "Sets the text color of the placeholder."
+    },
+    {
+        "type": "TextView",
+        "element_id": "binding.fragmentPlaceholder2",
+        "action": "Sets the text color, underlines the text, and assigns a click listener. When clicked, it shows a dialog to add new checklist items."
+    },
+    {
+        "type": "View",
+        "element_id": "R.id.root",
+        "action": "Represents the root view of the layout."
+    },
+    {
+        "type": "View",
+        "element_id": "R.id.noteLockedLayout",
+        "action": "Represents the layout that contains the locked note UI elements."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "R.id.noteLockedImage",
+        "action": "Displays an image indicating that the note is locked."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.noteLockedLabel",
+        "action": "Displays a label indicating that the note is locked."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.noteLockedShow",
+        "action": "Displays a text that allows the user to show the locked note."
+    },
+    {
+        "type": "View",
+        "element_id": "fragmentPlaceholder",
+        "action": "Becomes visible if the `items` list is empty."
+    },
+    {
+        "type": "View",
+        "element_id": "fragmentPlaceholder2",
+        "action": "Becomes visible if the `items` list is empty."
+    },
+    {
+        "type": "View",
+        "element_id": "checklistList",
+        "action": "Becomes visible if the `items` list is not empty."
+    },
+    {
+        "type": "View",
+        "element_id": "root",
+        "action": "The root view of the fragment, which contains other UI elements."
+    },
+    {
+        "type": "View",
+        "element_id": "noteLockedLayout",
+        "action": "A layout that is displayed when the note is locked."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "noteLockedImage",
+        "action": "An image that is displayed when the note is locked."
+    },
+    {
+        "type": "TextView",
+        "element_id": "noteLockedLabel",
+        "action": "A text label that is displayed when the note is locked."
+    },
+    {
+        "type": "TextView",
+        "element_id": "noteLockedShow",
+        "action": "A text view that is displayed when the note is locked, possibly to show additional information or options."
+    },
+    {
+        "type": "View",
+        "element_id": "noteLockedLayout",
+        "action": "The layout is made visible if the note is locked and the locked content should not be shown."
+    },
+    {
+        "type": "ImageView",
+        "element_id": "noteLockedImage",
+        "action": "A color filter is applied to the image based on the proper text color from the context."
+    },
+    {
+        "type": "TextView",
+        "element_id": "noteLockedLabel",
+        "action": "The text color and size are set based on the proper text color and percentage font size from the context."
+    },
+    {
+        "type": "TextView",
+        "element_id": "noteLockedShow",
+        "action": "The text is underlined, and the text color and size are set based on the proper primary color and percentage font size from the context. When clicked, it triggers the `handleUnlocking` method."
+    },
+    {
+        "type": "MyEditText",
+        "element_id": "textNoteView",
+        "action": "The `noteEditText` is initialized and configured to be clickable with links if `config.clickableLinks` is true. It also sets the auto-link mask to handle web URLs and email addresses."
+    },
+    {
+        "type": "HorizontalScrollView",
+        "element_id": "notesHorizontalScrollview",
+        "action": "The `notesHorizontalScrollview` is used to adjust the minimum width of the `textNoteView` when the layout is globally laid out, ensuring proper horizontal scrolling."
+    },
+    {
+        "type": "MyEditText",
+        "element_id": "noteEditText",
+        "action": "The text content of `noteEditText` is retrieved and saved into the `outState` bundle when the fragment's state is being saved."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.text_note_view",
+        "action": "The `TextView` is updated with the text saved in the `savedInstanceState` bundle. This happens when the `savedInstanceState` is not null, the `note` is not null, and the `savedInstanceState` contains the key `TEXT`."
+    },
+    {
+        "type": "MyEditText",
+        "element_id": "noteEditText",
+        "action": "Retrieves the current text from the note view when the menu is visible."
+    },
+    {
+        "type": "TextView",
+        "element_id": "Not explicitly provided in the code",
+        "action": "Detects touch events and triggers ClickableSpan's onClick method when a ClickableSpan is clicked."
+    },
+    {
+        "type": "View",
+        "element_id": "R.id.notes_widget_background",
+        "action": "A color filter is applied to this view based on the widget's background color."
+    },
+    {
+        "type": "TextView",
+        "element_id": "R.id.widget_note_title",
+        "action": "The text color is set based on the widget's text color, and the text is updated to the note's title. The visibility is controlled by the `widgetShowTitle` flag."
+    },
+    {
+        "type": "View",
+        "element_id": "R.id.notes_widget_holder",
+        "action": "An intent is set up to open an activity when this view is clicked."
+    },
+    {
+        "type": "ListView",
+        "element_id": "R.id.notes_widget_listview",
+        "action": "A remote adapter is set for this list view, and a pending intent template is attached to handle item clicks."
+    },
+    {
+        "type": "RemoteViews",
+        "element_id": "id",
+        "action": "When the element is clicked, it triggers the pending intent, which launches either the default app launch activity or SplashActivity with the specified note ID."
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "app_name" : "Twitter",
+        "input_type": "apk",
+        "target_project" : "/app_project/twitter/src/main/",
+        "source_code" : "java/",
+        "target_package" : ""
+
+    },
+    {
+        "app_name" : "YouTube",
+        "input_type": "apk",
+        "target_project" : "/app_project/YouTube/src/main/",
+        "source_code" : "java/",
+        "target_package" : ""
+
+    }
+]

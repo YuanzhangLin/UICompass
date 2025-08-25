@@ -1,0 +1,1 @@
+adb shell content insert --uri content://sms/inbox --bind address:s:"+1234567890" --bind body:s:"Beijing,China" --bind date:s:"1680000000"

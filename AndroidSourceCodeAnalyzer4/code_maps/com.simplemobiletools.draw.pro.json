@@ -1,0 +1,694 @@
+{
+    "activities": [
+        {
+            "name": "com.simplemobiletools.draw.pro.activities.SplashActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The SplashActivity is typically used as the initial screen of the application, which may perform preliminary operations such as initializing resources or checking app settings before navigating to the main interface.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.draw.pro.activities.SettingsActivity",
+            "layouts": [
+                {
+                    "name": "xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_settings",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/settings_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/settings_toolbar",
+                                "title": "@string/settings",
+                                "titleTextAppearance": "@style/AppTheme.ActionBar.TitleTextStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the toolbar with title 'Settings'"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.core.widget.NestedScrollView",
+                                "id": "@+id/settings_nested_scrollview",
+                                "fillViewport": "true",
+                                "scrollbars": "none"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/settings_holder",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_color_customization_section_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/color_customization"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "id": "@+id/settings_color_customization_holder",
+                                "style": "@style/SettingsHolderTextViewOneLinerStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens color customization activity"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_color_customization_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/customize_colors",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/settings_color_customization_divider",
+                                "layout": "@layout/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/settings_general_settings_label",
+                                "style": "@style/SettingsSectionLabelStyle",
+                                "text": "@string/general_settings"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_use_english_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_use_english",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/use_english_language"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle checkbox",
+                                    "effect": "switches app language to English regardless of device settings"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_language_holder",
+                                "style": "@style/SettingsHolderTextViewStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "triggers an intent to change the app's language based on device capabilities"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language_label",
+                                "style": "@style/SettingsTextLabelStyle",
+                                "text": "@string/language"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyTextView",
+                                "id": "@+id/settings_language",
+                                "style": "@style/SettingsTextValueStyle",
+                                "layout_below": "@+id/settings_language_label",
+                                "text": "English"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_prevent_phone_from_sleeping_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_prevent_phone_from_sleeping",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/prevent_phone_from_sleeping"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle checkbox",
+                                    "effect": "prevents or allows the phone from sleeping during usage"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_show_brush_size_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle checkbox",
+                                    "effect": "enables or disables the visibility of the brush size tool in the drawing interface"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_show_brush_size",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Show brush size tool"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_allow_zooming_canvas_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle checkbox",
+                                    "effect": "allows or disallows zooming and moving the canvas using gestures"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_allow_zooming_canvas",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "Allow zooming and moving the canvas with gestures"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/settings_force_portrait_holder",
+                                "style": "@style/SettingsHolderCheckboxStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "toggle checkbox",
+                                    "effect": "forces the app into portrait mode regardless of device orientation"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyAppCompatCheckbox",
+                                "id": "@+id/settings_force_portrait",
+                                "style": "@style/SettingsCheckboxStyle",
+                                "text": "@string/force_portrait_mode"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "settings_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used for managing application settings, including options to customize colors, language preferences, screen orientation, brush size visibility, and zooming canvas gestures.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.draw.pro.activities.SimpleActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "A brief summary of the activity's functionality. For example: This activity serves as a simple interface for basic app navigation and configurations.",
+            "transfer": []
+        },
+        {
+            "name": "com.simplemobiletools.draw.pro.activities.MainActivity",
+            "layouts": [
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_main",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/main_coordinator"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "UI container",
+                                    "effect": "Holds and coordinates the toolbar, canvas, and other UI components."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/main_toolbar",
+                                "menu": "@menu/menu",
+                                "titleTextAppearance": "@style/AppTheme.ActionBar.TitleTextStyle"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Displays menu items",
+                                    "effect": "Provides access to additional options like saving, clearing, or confirming the drawing."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyScrollView",
+                                "id": "@+id/main_scrollview",
+                                "fillViewport": "true",
+                                "scrollbars": "none"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Scrollable container",
+                                    "effect": "Allows scrolling of the content when the canvas exceeds visible area."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/main_holder"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Container for drawing UI",
+                                    "effect": "Groups and organizes the drawing canvas and tool buttons."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.draw.pro.views.MyCanvas",
+                                "id": "@+id/my_canvas"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Drawing surface",
+                                    "effect": "Canvas where user creates and edits drawings with selected tools."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/redo",
+                                "layout_toStartOf": "@+id/bucket_fill",
+                                "contentDescription": "@string/redo",
+                                "visibility": "gone"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Redo the last undone action on the canvas."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/bucket_fill",
+                                "layout_toStartOf": "@+id/eraser",
+                                "contentDescription": "Bucket fill"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Fills a selected region on the canvas with the current color."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/eraser",
+                                "layout_toStartOf": "@+id/eye_dropper",
+                                "contentDescription": "Eraser"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Switches to eraser mode to erase parts of the drawing."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/eye_dropper",
+                                "layout_toStartOf": "@+id/color_picker",
+                                "contentDescription": "Eyedropper",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Activates the eyedropper tool to pick colors from the canvas."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/color_picker",
+                                "layout_alignParentEnd": "true",
+                                "contentDescription": "@string/change_color"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Opens a color picker dialog to select a new brush color."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/undo",
+                                "layout_below": "@id/color_picker",
+                                "layout_alignParentEnd": "true",
+                                "contentDescription": "@string/undo",
+                                "visibility": "gone"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Undoes the last drawing action on the canvas."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/stroke_width_preview",
+                                "layout_above": "@+id/stroke_width_bar",
+                                "layout_centerHorizontal": "true",
+                                "layout_marginBottom": "@dimen/medium_margin"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Visual feedback",
+                                    "effect": "Displays a preview circle representing the current brush size."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MySeekBar",
+                                "id": "@+id/stroke_width_bar",
+                                "layout_alignParentBottom": "true",
+                                "layout_centerHorizontal": "true",
+                                "layout_marginBottom": "12dp",
+                                "max": "100",
+                                "min": "5",
+                                "progress": "50"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "adjust",
+                                    "effect": "Changes the brush stroke width dynamically while dragging."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_main",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/main_coordinator"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/main_toolbar",
+                                "menu": "@menu/menu",
+                                "titleTextAppearance": "@style/AppTheme.ActionBar.TitleTextStyle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MyScrollView",
+                                "id": "@+id/main_scrollview",
+                                "fillViewport": "true",
+                                "scrollbars": "none"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "id": "@+id/main_holder"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.draw.pro.views.MyCanvas",
+                                "id": "@+id/my_canvas"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/redo",
+                                "layout_toStartOf": "@+id/bucket_fill",
+                                "contentDescription": "@string/redo",
+                                "visibility": "gone"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/bucket_fill",
+                                "layout_toStartOf": "@+id/eraser",
+                                "contentDescription": "Bucket fill"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/eraser",
+                                "layout_toStartOf": "@+id/eye_dropper",
+                                "contentDescription": "Eraser"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/eye_dropper",
+                                "layout_toStartOf": "@+id/color_picker",
+                                "contentDescription": "Eyedropper",
+                                "visibility": "visible"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/color_picker",
+                                "layout_alignParentEnd": "true",
+                                "contentDescription": "@string/change_color"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/undo",
+                                "layout_below": "@id/color_picker",
+                                "layout_alignParentEnd": "true",
+                                "contentDescription": "@string/undo",
+                                "visibility": "gone"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/stroke_width_preview",
+                                "layout_above": "@+id/stroke_width_bar",
+                                "layout_centerHorizontal": "true",
+                                "layout_marginBottom": "@dimen/medium_margin"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.simplemobiletools.commons.views.MySeekBar",
+                                "id": "@+id/stroke_width_bar",
+                                "layout_alignParentBottom": "true",
+                                "layout_centerHorizontal": "true",
+                                "layout_marginBottom": "12dp",
+                                "max": "100",
+                                "min": "5",
+                                "progress": "50"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.menu_main",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "main_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity serves as the main drawing interface, enabling users to create and edit drawings using various tools such as brush, eraser, eyedropper, and bucket fill. It supports undo/redo actions, color selection, brush size adjustments, and handles image capture or editing intents. The activity also manages UI states, screen orientation, and displays a 'What's New' dialog on app upgrades.",
+            "transfer": []
+        }
+    ],
+    "activities_name": [
+        "SplashActivity",
+        "SettingsActivity",
+        "SimpleActivity",
+        "MainActivity"
+    ]
+}

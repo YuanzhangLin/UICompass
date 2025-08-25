@@ -1,0 +1,64 @@
+[    
+    
+  
+
+
+    {
+        "app_name" : "OsmAnd",
+        "target_project" : "/app_project/OsmAnd/OsmAnd/src/",
+        "source_code" : "",
+        "target_package" : "net.osmand.plus",
+        "apk_path":"/apk_list_android_world/net.osmand-4.6.13.apk"
+    },  
+            {
+        "app_name" : "Simple-Draw",
+        "target_project" : "/app_project/Simple-Draw/app/src/main/",
+        "source_code" : "kotlin/",
+        "target_package" : "com.simplemobiletools.draw.pro",
+        "apk_path":"/apk_list_android_world/com.simplemobiletools.draw.pro_79.apk"
+    },
+    {
+        "app_name" : "markor",
+        "target_project" : "/app_project/markor/app/src/main/",
+        "source_code" : "java/",
+        "target_package" : "net.gsantner.markor",
+        "apk_path":"/apk_list_android_world/net.gsantner.markor_146.apk"
+    },
+              {
+        "app_name" : "AudioRecorder",
+        "target_project" : "/app_project/AudioRecorder/app/src/main/",
+        "source_code" : "java/",
+        "target_package" : "com.dimowner.audiorecorder",
+        "apk_path":"/apk_list_android_world/com.dimowner.audiorecorder_926.apk"
+    },    
+                 {
+        "app_name" : "broccoli",
+        "target_project" : "/app_project/broccoli/app/src/main/",
+        "source_code" : "java/",
+        "target_package" : "com.flauschcode.broccoli",
+        "apk_path":"/apk_list_android_world/com.flauschcode.broccoli_1020600.apk"
+    },
+ {
+        "app_name" : "RetroMusicPlayer",
+        "target_project" : "/app_project/RetroMusicPlayer-dev/app/src/main/",
+        "source_code" : "java/",
+        "target_package" : "code.name.monkey.retromusic",
+        "apk_path":"/apk_list_android_world/code.name.monkey.retromusic_10603.apk"
+    },
+    {
+        "app_name" : "ProExpense",
+        "target_project" : "/app_project/ProExpense/app/src/main/",
+        "source_code" : "java/",
+        "target_package" : "com.arduia.expense",
+        "apk_path":"/apk_list_android_world/com.arduia.expense_11.apk"
+    }
+
+
+
+
+
+
+
+
+
+]

@@ -1,0 +1,1889 @@
+{
+    "activities": [
+        {
+            "name": "code.name.monkey.retromusic.activities.LicenseActivity",
+            "layouts": [
+                {
+                    "name": "activity_license",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "fitsSystemWindows": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.AppBarLayout",
+                                "id": "@+id/appBarLayout",
+                                "fitsSystemWindows": "true",
+                                "liftOnScroll": "true"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Scrolling Behavior",
+                                    "effect": "Controls app bar appearance behavior during scroll events."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/toolbar",
+                                "style": "@style/Toolbar",
+                                "layout_collapseMode": "pin",
+                                "navigationIcon": "@drawable/ic_arrow_back",
+                                "title": "Licenses",
+                                "titleTextAppearance": "@style/ToolbarTextAppearanceNormal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Navigation Icon Click",
+                                    "effect": "Navigates back to the previous activity when the back arrow is clicked."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.core.widget.NestedScrollView",
+                                "id": "@+id/container",
+                                "layout_behavior": "com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "Scrollable Content Container",
+                                    "effect": "Holds scrollable content and works with AppBarLayout for coordinated scrolling behavior."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "code.name.monkey.retromusic.views.LollipopFixedWebView",
+                                "id": "@+id/license",
+                                "fitsSystemWindows": "true",
+                                "scrollbars": "none",
+                                "layout_behavior": "com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "License Display",
+                                    "effect": "Displays the license HTML content inside a custom WebView component with proper theming applied."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_license.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to display the application's license information in a WebView. It loads an HTML file from assets, dynamically applies theme-based styling for compatibility with WebView, and provides a back navigation option through the toolbar.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.LockScreenActivity",
+            "layouts": [
+                {
+                    "name": "activity_lock_screen_binding",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_lock_screen",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/iv_blurred_album_art",
+                                "scaleType": "centerCrop"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows a blurred background image based on the current song's album art."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "layout": "@layout/status_bar"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "code.name.monkey.retromusic.views.WidthFitSquareCardView",
+                                "id": "@+id/albumCoverContainer",
+                                "layout_margin": "16dp",
+                                "transitionName": "album_art_transition",
+                                "cardCornerRadius": "24dp",
+                                "cardElevation": "8dp",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "contain",
+                                    "effect": "holds the album cover image with rounded corners and elevation for visual emphasis."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/image",
+                                "scaleType": "centerCrop",
+                                "srcCompat": "@tools:sample/backgrounds/scenic[0]"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the current song's album art which is updated dynamically during playback."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical",
+                                "ignore": "UselessParent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.fragment.app.FragmentContainerView",
+                                "id": "@+id/playback_controls_fragment",
+                                "name": "code.name.monkey.retromusic.fragments.player.lockscreen.LockScreenControlsFragment",
+                                "layout": "@layout/fragment_lock_screen_playback_controls"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "embed",
+                                    "effect": "loads the LockScreenControlsFragment that provides playback control buttons like play/pause and next/previous."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "id": "@+id/slide",
+                                "fitsSystemWindows": "true",
+                                "text": "Swipe to unlock",
+                                "textColor": "?android:attr/textColorPrimary"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows instructional text indicating that the user can swipe down to dismiss the lock screen."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": [
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "code.name.monkey.retromusic.views.StatusBarView",
+                                        "id": "@+id/status_bar",
+                                        "elevation": "@dimen/toolbar_elevation",
+                                        "ignore": "UnusedAttribute"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        }
+                    ]
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "LockScreenControlsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The LockScreenActivity displays playback controls over the lock screen when music is playing. It initializes lock-screen behavior, loads album art dynamically, updates UI components with song metadata, and allows swipe-to-dismiss gesture to close the activity.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.fragments.backup.RestoreActivity",
+            "layouts": [
+                {
+                    "name": "activity_restore",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "id": "@+id/backupNameContainer",
+                                "layout_marginVertical": "8dp",
+                                "hint": "File name"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the name of the selected backup file"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/backupName",
+                                "enabled": "false"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "displays the backup file name in a non-editable format"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "id": "@+id/materialTextView",
+                                "text": "Choose what to restore"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "informs the user to choose what type of data to restore"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.checkbox.MaterialCheckBox",
+                                "id": "@+id/check_settings",
+                                "checked": "true",
+                                "minHeight": "48dp",
+                                "text": "\"Settings\""
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "toggles selection of app settings to be restored"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.checkbox.MaterialCheckBox",
+                                "id": "@+id/check_playlists",
+                                "minHeight": "48dp",
+                                "text": "Playlists"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "toggles selection of playlists to be restored"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.checkbox.MaterialCheckBox",
+                                "id": "@+id/check_user_images",
+                                "minHeight": "48dp",
+                                "text": "User Images"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "toggles selection of user-added images to be restored"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.checkbox.MaterialCheckBox",
+                                "id": "@+id/check_artist_images",
+                                "minHeight": "48dp",
+                                "text": "Custom Artist Images"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "toggles selection of custom artist images to be restored"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/cancel_button",
+                                "style": "@style/Widget.Material3.Button.OutlinedButton",
+                                "layout_margin": "8dp",
+                                "text": "Cancel"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "closes the current activity without performing any restoration"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/restore_button",
+                                "layout_margin": "8dp",
+                                "text": "Restore"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "starts the restoration process with selected data types and dismisses the activity"
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "BackupFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used for restoring data from a backup file. It allows users to select what content to restore, such as settings, playlists, and images, and initiates the restoration process upon user confirmation.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.base.AbsBaseActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity serves as a base class for other activities in the app, providing common functionality such as permission handling, keyboard dismissal on touch outside EditText, and key event interception. It also includes methods to manage overflow menus and display appropriate UI responses based on permission requests.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.base.AbsThemeActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "AbsThemeActivity serves as a base activity for handling theme-related configurations, immersive fullscreen mode, locale and split compatibility management, and system UI customizations in Android.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.SupportDevelopmentActivity",
+            "layouts": [
+                {
+                    "name": "activity_donation.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_donation",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "fitsSystemWindows": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.AppBarLayout",
+                                "id": "@+id/appBarLayout",
+                                "fitsSystemWindows": "true",
+                                "liftOnScroll": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/toolbar",
+                                "style": "@style/Toolbar",
+                                "layout_collapseMode": "pin",
+                                "navigationIcon": "@drawable/ic_arrow_back",
+                                "title": "Support development",
+                                "titleTextAppearance": "@style/ToolbarTextAppearanceNormal"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "navigation icon click (back button)",
+                                    "effect": "navigates back using onBackPressed dispatcher."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.core.widget.NestedScrollView",
+                                "overScrollMode": "@integer/overScrollMode",
+                                "layout_behavior": "com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.card.MaterialCardView",
+                                "id": "@+id/kofi",
+                                "clickable": "true",
+                                "elevation": "4dp",
+                                "focusable": "true",
+                                "cardCornerRadius": "8dp",
+                                "cardUseCompatPadding": "true"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "opens an external URL for donations via Ko-fi."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "layout_marginVertical": "16dp"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "text": "Ko-fi",
+                                "textAppearance": "?textAppearanceLabelMedium"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to support development, specifically by providing a donation option through external links such as Ko-fi.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.tageditor.AbsTagEditorActivity",
+            "layouts": [
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "xx.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity serves as a base class for tag editing functionality in a music application, providing tools to modify metadata of audio files such as song title, artist, album, and cover art. It supports saving changes, image manipulation (e.g., selecting from gallery or searching on web), handling data changes, and cleaning up temporary files upon exit.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.appshortcuts.AppShortcutLauncherActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to handle app shortcut actions for launching specific playlists or modes in the background music service, such as Shuffle All, Top Tracks, and Last Added. It immediately starts the MusicService with the appropriate playlist and shuffle mode and then finishes.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.tageditor.AlbumTagEditorActivity",
+            "layouts": [
+                {
+                    "name": "album_tag_editor_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "toolbar",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The AlbumTagEditorActivity is used for editing album metadata such as title, artist, genre, and year, as well as managing album artwork. It allows users to load or delete album art, save changes to tags, search for images on the web, and provides UI transitions and color customization.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.base.AbsMusicServiceActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity serves as a base class for music-related activities that interact with a music playback service. It manages the connection to the service, listens for music state changes (like play state, metadata, queue changes), and handles permission requests. It also supports event broadcasting to registered listeners for various music service events.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.DriveModeActivity",
+            "layouts": [
+                {
+                    "name": "activity_drive_mode.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_drive_mode",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "code.name.monkey.retromusic.views.StatusBarView",
+                                "id": "@+id/status_bar",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/image",
+                                "scaleType": "centerCrop",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/close",
+                                "layout_margin": "16dp",
+                                "backgroundTint": "@color/semi_transparent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@id/status_bar",
+                                "srcCompat": "@drawable/ic_close"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "layout_margin": "16dp",
+                                "backgroundTint": "@color/semi_transparent",
+                                "layout_constraintEnd_toStartOf": "@id/songFavourite",
+                                "layout_constraintStart_toEndOf": "@id/close",
+                                "layout_constraintTop_toBottomOf": "@id/status_bar",
+                                "srcCompat": "@drawable/ic_car"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/songFavourite",
+                                "layout_margin": "16dp",
+                                "backgroundTint": "@color/semi_transparent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@id/status_bar",
+                                "srcCompat": "@drawable/ic_favorite_border"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/playPauseButton",
+                                "layout_marginBottom": "42dp",
+                                "layout_constraintBottom_toTopOf": "@+id/repeatButton",
+                                "layout_constraintEnd_toStartOf": "@+id/nextButton",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/previousButton"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/nextButton",
+                                "layout_constraintBottom_toBottomOf": "@+id/playPauseButton",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/playPauseButton",
+                                "layout_constraintTop_toTopOf": "@+id/playPauseButton",
+                                "srcCompat": "@drawable/ic_skip_next"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/previousButton",
+                                "layout_constraintBottom_toBottomOf": "@+id/playPauseButton",
+                                "layout_constraintEnd_toStartOf": "@+id/playPauseButton",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "@+id/playPauseButton",
+                                "srcCompat": "@drawable/ic_skip_previous"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/repeatButton",
+                                "layout_marginBottom": "32dp",
+                                "layout_constraintBottom_toBottomOf": "@+id/image",
+                                "layout_constraintEnd_toStartOf": "@+id/shuffleButton",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "srcCompat": "@drawable/ic_repeat"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/shuffleButton",
+                                "layout_constraintBottom_toBottomOf": "@+id/repeatButton",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintHorizontal_bias": "0.5",
+                                "layout_constraintStart_toEndOf": "@+id/repeatButton",
+                                "layout_constraintTop_toTopOf": "@+id/repeatButton",
+                                "srcCompat": "@drawable/ic_shuffle"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/titleContainer",
+                                "orientation": "vertical",
+                                "layout_constraintBottom_toTopOf": "@id/progressSlider",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@+id/close"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "id": "@+id/songTitle",
+                                "maxLines": "3",
+                                "textAppearance": "@style/TextViewHeadline4",
+                                "textColor": "@color/md_white_1000",
+                                "textStyle": "bold",
+                                "text": "@tools:sample/lorem/random"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "id": "@+id/songText",
+                                "maxLines": "3",
+                                "textAppearance": "@style/TextViewHeadline5",
+                                "textColor": "@color/md_grey_200",
+                                "text": "@tools:sample/lorem/random"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.slider.Slider",
+                                "id": "@+id/progressSlider",
+                                "maxHeight": "3dp",
+                                "style": "@style/Widget.Retro.Slider",
+                                "layout_constraintBottom_toTopOf": "@id/songCurrentProgress",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "progress": "20"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "id": "@+id/songCurrentProgress",
+                                "layout_marginStart": "16dp",
+                                "singleLine": "true",
+                                "textColor": "@color/md_white_1000",
+                                "layout_constraintBottom_toTopOf": "@id/playPauseButton",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "text": "@tools:sample/date/hhmmss"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "id": "@+id/songTotalTime",
+                                "layout_marginEnd": "16dp",
+                                "singleLine": "true",
+                                "textColor": "@color/md_white_1000",
+                                "layout_constraintBottom_toTopOf": "@id/playPauseButton",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "text": "@tools:sample/date/hhmmss"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "DriveModeActivity provides a simplified music playback interface optimized for driving scenarios. It allows users to control media playback (play/pause, next/previous, shuffle, repeat), view current song details (title, artist, album art), toggle favorite songs, and adjust playback progress.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.MainActivity",
+            "layouts": [
+                {
+                    "name": "R.navigation.main_graph",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.main_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.bottom_nav_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "fragment_container",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_main",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "WhatsNewFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlayingQueueFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "AboutFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "AlbumDetailsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "AlbumsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "ArtistsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "AbsMainActivityFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "AbsPlayerControlsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "AbsPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "AbsRecyclerViewFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "FoldersFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "GenreDetailsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "HomeFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "LibraryFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "LyricsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "DetailListFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "MiniPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlayingQueueRVFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "CirclePlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "FullPlaybackControlsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "FullPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlayerAlbumCoverFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "HomePlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "MaterialControlsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlayerPlaybackControlsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlainPlaybackControlsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "TinyPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "TinyPlaybackControlsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlaylistDetailsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlaylistsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "SearchFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "SongsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity serves as the main interface of the app, responsible for initializing UI configurations, handling navigation, displaying changelogs on first launch, and managing user interactions through dynamic tabs and bottom navigation.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.base.AbsSlidingMusicPanelActivity",
+            "layouts": [
+                {
+                    "name": "sliding_music_panel_layout",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/mainContent"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "UI container",
+                                    "effect": "Hosts primary content including fragments and navigation components with CoordinatorLayout to manage interactions between appbar and scrolling views."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.fragment.app.FragmentContainerView",
+                                "id": "@+id/fragment_container",
+                                "name": "androidx.navigation.fragment.NavHostFragment",
+                                "defaultNavHost": "true",
+                                "layout_behavior": "com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior",
+                                "layout": "@layout/fragment_home"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "navigation host",
+                                    "effect": "Acts as a NavHostFragment to display main navigation destinations like Home, Library, or other screens using Navigation Component."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "id": "@+id/slidingPanel",
+                                "style": "@style/BottomSheetStyle",
+                                "behavior_hideable": "true",
+                                "behavior_peekHeight": "0dp",
+                                "enableEdgeToEdge": "true",
+                                "gestureInsetBottomIgnored": "true",
+                                "layout_behavior": "com.google.android.material.bottomsheet.BottomSheetBehavior",
+                                "visibility": "invisible"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "slide control",
+                                    "effect": "BottomSheetBehavior-enabled container that allows sliding up/down of the music player panel; supports hideable behavior and edge-to-edge display."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "FrameLayout",
+                                "id": "@+id/playerFragmentContainer"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "player fragment container",
+                                    "effect": "FrameLayout placeholder where full player fragment is displayed when the bottom sheet is expanded."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "fragment",
+                                "id": "@+id/miniPlayerFragment",
+                                "name": "code.name.monkey.retromusic.fragments.other.MiniPlayerFragment",
+                                "layout": "@layout/fragment_mini_player"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Triggers expansion of the music panel to show full player UI when the mini-player is clicked."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "code.name.monkey.retromusic.views.TintedBottomNavigationView",
+                                "id": "@+id/navigationView",
+                                "style": "@style/Widget.Material3.BottomNavigationView",
+                                "minHeight": "@dimen/bottom_nav_height",
+                                "itemHorizontalTranslationEnabled": "false",
+                                "menu": "@menu/bottom_navigation_main",
+                                "viewBindingType": "com.google.android.material.navigation.NavigationBarView"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "navigation interaction",
+                                    "effect": "Material3 BottomNavigationView allowing switching between different tabs or sections of the app like Music, Playlist, Queue."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.playerFragmentContainer",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.miniPlayerFragment",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "sliding_music_panel_layout.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "AbsPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "BlurPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "AdaptiveFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "CardFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "CardBlurFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "FitFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "FlatPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "FullPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlainPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "SimplePlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "MaterialFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "ColorFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "TinyPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PeekPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "CirclePlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "ClassicPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "MD3PlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "MiniPlayerFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "PlayingQueueFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity, AbsSlidingMusicPanelActivity, serves as a base for managing a sliding music player panel in a music application. It supports dynamic theme-based fragment selection (e.g., Blur, Adaptive, Normal), handles UI transitions such as expanding and collapsing the music panel, manages bottom navigation visibility, and updates UI elements like colors, mini-player behavior, and task description based on playback state and user preferences.",
+            "transfer": [
+                "PermissionActivity"
+            ]
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.PermissionActivity",
+            "layouts": [
+                {
+                    "name": "activity_permission",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "fitsSystemWindows": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "code.name.monkey.retromusic.views.BaselineGridTextView",
+                                "id": "@+id/appNameText",
+                                "text": "Retro Music",
+                                "textAppearance": "@style/TextViewHeadline5",
+                                "textColor": "?android:attr/textColorPrimary",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent",
+                                "lineHeightHint": "32sp"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the application title styled with accent color."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View",
+                                "id": "@+id/divider",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@id/appNameText"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "visual separator",
+                                    "effect": "provides a visual break between the title and permission items."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ScrollView",
+                                "fillViewport": "true",
+                                "layout_constraintBottom_toTopOf": "@+id/finish",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toBottomOf": "@+id/divider"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "@integer/permission_orientation"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "code.name.monkey.retromusic.views.PermissionItem",
+                                "id": "@+id/storage_permission",
+                                "permissionButtonTitle": "Grant access",
+                                "permissionIcon": "@drawable/ic_sd_storage",
+                                "permissionTitle": "Storage Access",
+                                "permissionTitleNumber": "1",
+                                "permissionTitleSubTitle": "The app needs permission to access your device storage for playing music"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "directs the user to grant or manage storage permissions via system settings."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "code.name.monkey.retromusic.views.PermissionItem",
+                                "id": "@+id/bluetooth_permission",
+                                "visibility": "visible",
+                                "permissionButtonTitle": "Grant access",
+                                "permissionIcon": "@drawable/ic_bluetooth_connect",
+                                "permissionTitle": "Nearby devices",
+                                "permissionTitleNumber": "2",
+                                "permissionTitleSubTitle": "The app needs nearby devices permission to check for bluetooth devices"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "prompts the user to grant Bluetooth connectivity permissions if not already granted."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "code.name.monkey.retromusic.views.PermissionItem",
+                                "id": "@+id/audio_permission",
+                                "visibility": "visible",
+                                "permissionButtonTitle": "Grant access",
+                                "permissionIcon": "@drawable/ic_phonelink_ring",
+                                "permissionTitle": "Ringtone (Optional)",
+                                "permissionTitleNumber": "3",
+                                "permissionTitleSubTitle": "The app needs permission to access your device settings in order to set music as Ringtone"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "guides the user to allow write settings permission for setting ringtones (only applicable on Marshmallow and above)."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "code.name.monkey.retromusic.views.PermissionItem",
+                                "id": "@+id/alarm_permission",
+                                "visibility": "visible",
+                                "permissionButtonTitle": "Grant access",
+                                "permissionIcon": "@drawable/ic_phonelink_ring",
+                                "permissionTitle": "Alarm (Optional)",
+                                "permissionTitleNumber": "4",
+                                "permissionTitleSubTitle": "The app needs permission to schedule exact alarms to set sleep timers"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "requests permission to schedule exact alarms for sleep timers (applicable only on Android S or higher)."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/finish",
+                                "style": "@style/Widget.Material3.Button",
+                                "layout_margin": "16dp",
+                                "paddingVertical": "12dp",
+                                "text": "Let\\'s go",
+                                "textAppearance": "@style/TextViewButton",
+                                "layout_constraintBottom_toBottomOf": "parent",
+                                "layout_constraintEnd_toEndOf": "parent",
+                                "layout_constraintStart_toStartOf": "parent"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "transitions the user to the main music player activity if all required permissions are granted."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_permission_binding",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "The PermissionActivity is responsible for checking and managing runtime permissions required by the app, such as storage access, Bluetooth connectivity, audio settings, and alarm scheduling. It dynamically adjusts UI elements based on Android version, guides users to grant necessary permissions, and transitions to the main app activity once all required permissions are satisfied.",
+            "transfer": [
+                "MainActivity"
+            ]
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.saf.SAFGuideActivity",
+            "layouts": [
+                {
+                    "name": "fragment_simple_slide_large_image",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.heinrichreimersoftware.materialintro.view.parallax.ParallaxLinearLayout",
+                                "clipToPadding": "false",
+                                "fitsSystemWindows": "false",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@id/mi_image",
+                                "layout_marginBottom": "@dimen/mi_baseline",
+                                "scaleType": "center",
+                                "layout_parallaxFactor": "0.75",
+                                "ignore": "ContentDescription",
+                                "srcCompat": "@tools:sample/backgrounds/scenic[4]"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows a large scenic image with a parallax effect to enhance user engagement."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "id": "@id/mi_title",
+                                "fontFamily": "sans-serif-medium",
+                                "textAppearance": "@style/TextViewHeadline5",
+                                "ignore": "UnusedAttribute",
+                                "text": "Lorem ipsum"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "presents the title text for the current slide or screen in the SAF guide."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "id": "@id/mi_description",
+                                "textAppearance": "@style/TextViewSubtitle1",
+                                "text": "Lorem ipsum dolor sit amet, consectetur, adipisci velit, \u2026"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows a brief description or explanation related to the current SAF guide step."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to guide users through Storage Access Framework (SAF) setup, likely providing information or steps for granting storage permissions using a visually descriptive layout.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.ErrorActivity",
+            "layouts": [],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used to handle and display error messages, providing options for the user to navigate to configuration settings or return to the main login interface.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.bugreport.BugReportActivity",
+            "layouts": [
+                {
+                    "name": "activity_bug_report",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "fitsSystemWindows": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.AppBarLayout",
+                                "fitsSystemWindows": "true",
+                                "liftOnScroll": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/toolbar",
+                                "style": "@style/Toolbar",
+                                "layout_collapseMode": "pin",
+                                "navigationIcon": "@drawable/ic_arrow_back",
+                                "title": "Report bug",
+                                "titleTextAppearance": "@style/ToolbarTextAppearanceNormal"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.core.widget.NestedScrollView",
+                                "overScrollMode": "@integer/overScrollMode",
+                                "layout_behavior": "com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "clipToPadding": "false",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "layout_marginStart": "16dp",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "lineSpacingExtra": "8dp",
+                                "text": "Send manually",
+                                "textAppearance": "@style/TextViewSubtitle1"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textview.MaterialTextView",
+                                "lineSpacingExtra": "8dp",
+                                "text": "You will be forwarded to the issue tracker website.",
+                                "textAppearance": "@style/TextViewCaption"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "id": "@+id/card_device_info",
+                                "layout": "@layout/bug_report_card_device_info"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "Space",
+                                "layout_margin": "16dp"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.floatingactionbutton.FloatingActionButton",
+                                "id": "@+id/sendFab",
+                                "style": "@style/Fab",
+                                "layout_margin": "16dp",
+                                "srcCompat": "@drawable/ic_send"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": [
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.card.MaterialCardView",
+                                        "style": "@style/MaterialCardViewStroke",
+                                        "cardCornerRadius": "8dp",
+                                        "cardUseCompatPadding": "true"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "layout_marginBottom": "8dp",
+                                        "orientation": "vertical"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "code.name.monkey.appthemehelper.common.views.ATEAccentTextView",
+                                        "paddingLeft": "16dp",
+                                        "text": "Device info",
+                                        "textAppearance": "@style/TextViewOverline"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "androidx.appcompat.widget.AppCompatTextView",
+                                        "id": "@+id/airTextDeviceInfo",
+                                        "lineSpacingExtra": "8dp",
+                                        "textAppearance": "@style/TextViewBody1",
+                                        "text": "@tools:sample/lorem/random"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        }
+                    ]
+                },
+                {
+                    "name": "activity_bug_report.xml",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "BugReportActivity provides an interface for users to report bugs. It displays device information, allows copying of this information to the clipboard, and redirects users to an external issue tracker website.",
+            "transfer": []
+        },
+        {
+            "name": "code.name.monkey.retromusic.activities.tageditor.SongTagEditorActivity",
+            "layouts": [
+                {
+                    "name": "R.menu.* (if used in setSupportActionBar)",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "* (implied from setUpViews and binding usage)",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "song_tag_editor_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "tag_editor_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [],
+            "dialogs": [],
+            "elements": [],
+            "summary": "SongTagEditorActivity is used for editing song metadata such as title, artist, album, genre, year, track number, disc number, lyrics, and composer. It also supports managing album art by loading, deleting, or searching for images online. The activity handles saving updated tag information to files and provides UI customization based on the loaded content.",
+            "transfer": []
+        }
+    ],
+    "activities_name": [
+        "LicenseActivity",
+        "LockScreenActivity",
+        "RestoreActivity",
+        "AbsBaseActivity",
+        "AbsThemeActivity",
+        "SupportDevelopmentActivity",
+        "AbsTagEditorActivity",
+        "AppShortcutLauncherActivity",
+        "AlbumTagEditorActivity",
+        "AbsMusicServiceActivity",
+        "DriveModeActivity",
+        "MainActivity",
+        "AbsSlidingMusicPanelActivity",
+        "PermissionActivity",
+        "SAFGuideActivity",
+        "ErrorActivity",
+        "BugReportActivity",
+        "SongTagEditorActivity"
+    ]
+}

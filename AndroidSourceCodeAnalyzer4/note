@@ -1,0 +1,862 @@
+
+
+
+1。 这周 11.26-12.2
+
+metho为单位，提取上下文信息（调用的函数、xml定义的信息等）
+
+json{
+1. id.
+2. 怎么执行。
+3. 结果。
+4. 在哪个Activity。
+}
+
+
+
+
+
+2. 执行阶段
+给定一个任务，....
+
+1. 设置夜间模式  ->   夜间模式  在哪个界面。 
+Settings activity。
+
+2. 从哪个可以活动可以跳转过去
+
+->  MainAcvitity ->Settings activity。
+
+3. 怎么跳转。
+json{
+1. id.
+2. 怎么执行。
+3. 结果。
+}
+
+
+
+RAG . id.
+
+动态的  state flow graph 。
+
+Guardian 
+
+
+应用场景：
+
+1. 软工的会议： 测试-> 拿到代码。 1. guardian。 2. 测试人员分析出来了一个测试任务/ 需求文档、设计文档。  ——》工具 得到测试用例。  
+
+2. ACL：   APP 开发厂商， 设计APP内置的应用助手。  美团，内置一个智能助手-> 帮你订外卖。
+
+
+
+实验：
+
+
+给定一个task app  source code.
+
+
+
+----
+
+LLM 要生成哪些内存。输入是什么？
+
+
+
+
+
+Input:
+1. method 的内容。
+2. 所以在class的文件上下文。
+3. 内部涉及的全局变量。
+4. 涉及调用的自定义的方法。
+
+
+
+
+
+Output:
+1. activity 之间的迁移关系。
+2. 元素响应事件以及处理逻辑。
+3. fragment与activity之间的关系。
+4. 函数功能的描述。
+
+
+最后：
+
+最好可以提取出潜在的路径。
+
+
+感觉接口就不需要过llm了  纯浪费时间。
+
+
+
+
+11.29  ------------
+还有一些没弄好，明天上午过来弄下。
+
+主要是这个还没能覆盖所有的方法，只是覆盖了图里的方法，但是不是所有的方法都有依赖关系的。
+
+
+
+11.30 -----------
+init_method_base_node删除method还没弄好，好像表达形式不一样。
+已经完成了外部的循环调用并处理process了。我们再来个并发。
+
+
+
+
+已完成：
+1. 提取方法内容。
+
+未完成。
+1. 增加的graph中存在的method的调用关系，已有的结果放入。
+2. 变量分析、定义、赋值->潜在关联了元素的id。(但是很多元素可能并不包含id)。
+3. 布局文件的分析与关联。-> 我们提供哪些信息呢？
+
+
+
+12.1------------------
+1. fragment和activity之间的依附关系,fragment和activity之间的迁移关系。
+2. xml文件和fragment以及xml文件和activity之间的关系。<这个有助于理解上下文。>
+3. 元素与xml关联。xml与fragment和activity挂载。 从而形成之间的迁移关系。
+
+
+4. 怎么生成图呢？
+
+
+这一版本生成的是这个样子的，但是还是不太满意，这个Settings的触发按钮似乎是侧滑栏的吧？
+
+方法：
+  private List<Category> buildCategoryMenu () {
+
+    List<Category> categories = DbHelper.getInstance().getCategories();
+
+    View settings = categories.isEmpty() ? settingsView : settingsViewCat;
+    if (settings == null) {
+      return categories;
+    }
+
+    mainActivity.runOnUiThread(() -> {
+      settings.setOnClickListener(v -> {
+        Intent settingsIntent = new Intent(mainActivity, SettingsActivity.class);
+        mainActivity.startActivity(settingsIntent);
+      });
+
+      buildCategoryMenuClickEvent();
+
+      buildCategoryMenuLongClickEvent();
+
+    });
+
+    return categories;
+  }
+
+```json
+{
+    "functionality": "The method builds a category menu by retrieving categories from a database. If the settings view is not null, it sets up click listeners for the settings view and other category menu interactions. The method returns the list of categories.",
+    "responses": [
+        {
+            "element": "settingsView or settingsViewCat",
+            "element_id": "R.id.settings_view or dynamically assigned",
+            "action": "Starts the SettingsActivity when clicked."
+        }
+    ],
+    "activity_migrations": [
+        {
+            "from_activity_or_fragment": "MainActivity",
+            "to_activity_or_fragment": "SettingsActivity",
+            "description": "The migration happens when the settings view is clicked, triggering an Intent to start the SettingsActivity."
+        }
+    ],
+    "fragment_activity_relationships": [],
+    "xml_relationships": [
+        {
+            "xml_file": "drawer_category_list_footer.xml",
+            "associated_with": "MainActivity"
+        }
+    ]
+}
+```
+
+
+
+我突然有一个想法。
+我们把这个navigation任务，彻底想象成一个导航任务。
+假设我们的任务是“爬八达岭长城”。
+那么我们就需要先知道“八达岭长城”在哪里。
+我们检测发现，“八达岭长城在北京”。
+随后，我们进一步思考，我们怎么样才能到达“北京”？
+我们查看“地图”，发现，从起点“深圳”到“北京“，会经过“江西”，“安徽”，“河南”，“河北”。
+虽然这一阶段，我们并不知道具体怎么走，但我们知道了一个大概的路线。
+随后，我们逐步检查当前所在的位置，并查看当地地图。
+比如，我们到了“安徽蚌埠”，我们打开“安徽省”地图，寻找“安徽省”地图中，去“河南省”有关的路线，并走相关的路线。
+最后到达“北京”。
+
+
+而已有的工作，相当于在“深圳”到处乱走，看看能不能碰巧走到“北京”。
+
+这里的“安徽省”，相当于是一个activity。
+地图相当于是对应的代码和xml布局文件。
+
+所以我们首先要确定任务所在的activity。
+接着，我们要确认，怎么样到达这个activity。
+第三，我们在执行的过程中，去检索相关的信息，帮助执行。
+
+12.2------------------------------------------
+我们重新整理一下昨天的思路：
+1. 其实我们希望可以整理出和Activity相关的信息吧。拿这些信息给LLM,询问LLM, 我们执行这个task会经过哪些activity，然后具体的操作步骤。
+1.1 AndroidManifest.xml包含所有的activity信息，这些我们是已经可以提取出来的，这就相当于我们有了一个Activities=[] 的列表。
+1.2 我们需要获得Fragment和Activity的依附关系，即  Activity['Fragments'] = [], 这样我们可以知道这些fragment里面包含的信息。
+1.3 我们需要获得Activity上的元素信息、布局信息。这些可能有助于LLM了解任务会在哪个活动上执行。
+1.4 ** 我们需要获得活动迁移图ATG（这个当前已经获得，但有一些噪声。）from_activity': 'AnyActivity', 'to_activity': 'TargetActivity'  比如类似于这种的。'
+
+
+
+
+*** 只给出activity的名称，它会分析如下：
+```json
+{
+    "task": "Turn on the 'Navigation menu on exit' setting switch",
+    "activities_sequence": [
+        "it.feio.android.omninotes.MainActivity",
+        "it.feio.android.omninotes.SettingsActivity"
+    ],
+    "instructions": [
+        "1. Open the application and navigate to the main activity: it.feio.android.omninotes.MainActivity.",
+        "2. From the main activity, access the settings menu by navigating to the it.feio.android.omninotes.SettingsActivity.",
+        "3. In the settings activity, locate the 'Navigation menu on exit' setting switch.",
+        "4. Toggle the switch to the 'On' position to enable the 'Navigation menu on exit' setting."
+    ]
+}
+从结果可以看出，它可以根据名字猜出大概要去哪里做，但是不太知道具体怎么做。（内容还是不够详实。）  我们现在想办法加入一些内部的元素信息，以及元素涉及的响应。
+
+
+
+
+
+
+
+
+
+-------------12.4
+
+res/xml/settings.xml -> settings_navigation.xml
+
+
+
+
+
+---------------12.5 
+
+
+
+第一阶段：  整理源代码，根据LLM 获取一些基本的关系。如activity和fragment之间额关系、和元素直接的关系等。
+第二阶段： 根据 先“会路过哪些activity”，然后会路过哪些“fragment”， 再到”元素“。得到一个初步的可执行路径。
+第三阶段：在执行的过程中，不断地根据“初步路径” + ”源代码信息“ 和“实际情况”验证与执行。
+
+
+
+
+
+public class IntroActivity extends AppIntro2 {
+  @Override
+  public void init (Bundle savedInstanceState) {
+    addSlide(new IntroSlide1(), getApplicationContext());
+    addSlide(new IntroSlide2(), getApplicationContext());
+    addSlide(new IntroSlide3(), getApplicationContext());
+    addSlide(new IntroSlide4(), getApplicationContext());
+    addSlide(new IntroSlide5(), getApplicationContext());
+    addSlide(new IntroSlide6(), getApplicationContext());
+  }
+
+
+
+{
+    "functionality": "The method initializes an introduction activity by adding multiple slides to it. Each slide is represented by a separate class (IntroSlide1 to IntroSlide6). The method does not handle any UI interactions or activity migrations directly.",
+    "responses": [],
+    "activity_migrations": [],
+    "fragment_activity_relationships": [],
+    "xml_relationships": []
+}
+
+
+我们来增加fragment。
+
+
+
+
+
+
+
+
+
+---------------------------12.6
+
+
+
+当前阶段：
+给出fragment + activity的信息（method定义以及挂在的元素）。
+
+能够输出：
+```json
+{
+    "task": "Turn on the 'Navigation menu on exit' setting switch.",
+    "activities_sequence": [
+        "it.feio.android.omninotes.MainActivity",
+        "it.feio.android.omninotes.SettingsActivity",
+        "it.feio.android.omninotes.SettingsFragment"
+    ],
+    "instructions": [
+        "1. Open the app and navigate to the main activity.",
+        "2. Access the settings menu from the main activity.",
+        "3. In the settings menu, find the 'Navigation' section.",
+        "4. Locate the 'Navigation menu on exit' setting switch within the 'Navigation' section.",
+        "5. Toggle the switch to turn on the 'Navigation menu on exit' setting."
+    ],
+    "explanation": {
+        "because": "The 'Navigation menu on exit' setting is located within the 'Navigation' section of the app's settings, which can be accessed through the main activity."
+    }
+}
+```
+
+优点： 能够根据元素找到对应的位置。
+甚至还发现了是在'导航'部分里面。
+缺点：没能找到MainActivity里面怎么进入SettingsActivity。
+给出的提示词里面，在NavigationDrawerFragment给出了settings元素。但是可能只知道这个fragment是在MainActivity底下？
+
+欸，不对。
+    "instructions": [
+        "1. Open the app and navigate to the main activity.",
+        "2. Locate the navigation drawer in the main activity.",
+        "3. Open the navigation drawer by swiping from the left edge of the screen or tapping the drawer icon.",
+        "4. In the navigation drawer, find and tap the 'Settings' option.",
+        "5. This will navigate you to the SettingsActivity where you can adjust the app settings."
+    ],
+
+    我们可以看到，它其实可以输出正确地到达Settings的路径。
+    那么我们可以大胆推测，可能是一次性分析太多了，它不太了解/或者不清楚输出的粒度。
+我们应该优化一下提示词/或者分为多轮提示词。
+
+
+我们先保存一下现在版本的example：
+    prompt += '''{
+        "task": "Book a flight",
+        "activities_sequence": [
+        "LoginActivity",
+        "MainActivity",
+        "BookingActivty"
+        ],
+        "instructions": [
+            "1. Login to the system.",
+            "2. Search for available flights based on your preferences.",
+            "3. Select the flight that suits your needs.",
+            "4. Enter the required passenger details for booking.",
+            "5. Make the payment for the selected flight.",
+            "6. Receive a confirmation of the flight booking."
+        ],
+        "explaination":{
+            because the BookingActivity has the flight booking button.
+        }
+    }\n'''
+    
+
+    我希望新版本中，它不仅输出哪些活动，还要告诉我活动之间的关系。
+
+调用 LLM 获取结果...
+
+--------------------------------------------------------------------------------------------------------------
+```json
+{
+    "task": "Turn on the 'Navigation menu on exit' setting switch.",
+    "activities_sequence": {
+        "it.feio.android.omninotes.MainActivity": {
+            "1. Open the navigation drawer by swiping from the left edge of the screen or tapping the navigation drawer icon."
+        },
+        "it.feio.android.omninotes.SettingsActivity": {
+            "2. Navigate to the 'Settings' option in the navigation drawer.",
+            "3. In the Settings screen, find and select the 'Navigation' category."
+        },
+        "it.feio.android.omninotes.SettingsFragment": {
+            "4. Locate the 'Navigation menu on exit' switch within the 'Navigation' settings.",
+            "5. Toggle the switch to the 'On' position to enable the 'Navigation menu on exit' setting."
+        }
+    },
+    "explanation": {
+        "because the 'Navigation menu on exit' setting is located within the 'Navigation' category of the Settings screen, which can be accessed through the navigation drawer in the MainActivity."
+    }
+}
+```
+更新提示词以后，虽然节奏不对，但是结果是对的。
+
+------------------------------12.7
+今天，任务在于了解Guardian、读懂源码 + 整理一下，方便后续实验。
+测试一下有哪些任务是不能完成的。
+然后看看我们的策略好不好加入。
+
+
+
+首先，我们新更新一下，然后新建分支（用于补全一下其中的事件，将来也方便弄我们的东西）
+
+Currently we have 3 widgets, namely:
+index-0: a View (accessibility information: scroll to see more options(very useful!), resource_id view_pager) to swipe
+index-1: a View (resource_id intro_image_small) to click
+index-2: a View (resource_id done) to click
+Remember our test target is to delete the first note on OmniNotes.
+
+哦哦  它不会告诉history。。。我都忘了，LLM经常不知道当前界面应该干嘛。
+
+
+1. swipe的不同方向，感觉最好加一下，然后去掉这个very useful!
+2. 核心我们要加的应该就是这个验证器，用验证器来判断activity已经instru...是不是对的。
+
+那么我们应该怎么做。
+
+-------------
+没事，我们来学一下ACL的论文，看看人家ACL的论文怎么写的。
+《MapGPT: Map-Guided Prompting with Adaptive Path Planning for Vision-and-Language Navigation》  标题也平平无奇，我们到时候照着写就好了
+intro -> 表面上是三个contribution，实际上就是1-2两个？反正凑合写就好了。
+· 我们提出了一种新的地图引导提示方法，该方法引入了一种在线语言形成地图，包括节点信息和拓扑关系，以鼓励GPT的全局探索。
+• 自适应规划机制用于激活 GPT 的多步路径规划能力，从而能够系统地探索多个潜在目标。
+• MapGPT 可以应用于 GPT-4 和 GPT-4V，并且更加统一，因为它可以毫不费力地适应不同的指令风格，在 R2R 和 REVERIE 数据集上实现了最先进的零样本性能。
+
+我看了这个模板，页面宽度也比较小，随便写写估计就够了，不过估计要放一些A Example Appendix。
+以这篇导航论文为例，附录的内容包含《提示词细节、实现细节、更多高质量样例》。
+哎，照着写就好了。
+再弄点丰富但简单地实验，看起来数据充足就好了。
+OK,OK 那看来问题也不大，还是抓紧把工具弄好吧，抓紧随便投投玩一玩。
+不过要看看AI相关的navigation的论文，特别是mobile,有空再倒腾倒腾搞数据集。
+
+-------------
+
+OK,回来，我们继续倒腾。。。。
+我们也不一定需要在他的基础上做吧。不过他的效果确实还可以。
+哦！ 对，这样最方便的是在于，可以方便提前论证很多东西。比如，它会不知道要点next按钮。
+然后它那个very useful 也是很搞笑，我们也要去掉。
+
+首先，我们去掉very useful,看看它会干嘛。
+
+
+太TM有效果了。
+1. 我们去掉了very useful, intro slide这边，它完全不知道要干嘛。 到最后一个页面以后就会一直想点返回。
+2. 我们再告诉它，我们当前是再IntroActivity，它现在立马知道要干嘛了，然后就一直点点。
+
+但是，好像也还有点问题，它这个删除测试按钮，会进一步导致，如果尝试是正确的，但是没有继续（比如点击了back），然后这个按钮就没了，就不可能再回来点击这个按钮。
+
+此外，我们后面也还要统计SR等等的数据，还是要了解很多东西，并方便记录的<不过没事，我们先进行实验>。
+
+
+一、我们必须要把map的概念导入其中。
+
+主要包含如下步骤
+第一次执行前，和历次执行后。
+-> 1. 知道我们在哪：根据当前界面的元素，分析最后可能的activity/fragment。
+-> 2. 分析我们走到哪里了：根据之前分析出来的“当前所在的界面”，之前得到的“instructions”以及“activity”之类的信息，判断我们当前走到哪里。
+  -> 2.1 instructions 是否有误，我们是否需要纠正？
+  -> 2.2 instructions 已经走过的路径。
+-> 3. 根据当前的 a. 界面的元素（有哪些路）， b.元素的信息的提示，比如代码或者method描述。（每条路去哪里） c.以及instruction的分析（我们走到哪里了，下一步要去哪里），  我们继续执行一步。
+  -> 3.1 这里估计还要再来一轮的对话。
+
+
+
+
+这里还涉及挺多问题的。
+1. 历史执行记录的结合？： 我们这里相当于是再instruction里面结合了，但是有没有办法提高点性能。
+2. 是否考虑结合guardian的创新点？但是它基础做的也不好，还是我们找哪个工具来基于它做。
+
+
+
+------------ 12.9
+
+明天别忘了报销。
+
+
+
+这是：SemanticHierarchy.getEvents
+Event(action=click, widget=a View (accessibility information: drawer closed))
+Event(action=click, widget=a View (resource_id menu_search))
+Event(action=click, widget=a View (resource_id menu_sort))
+Event(action=click, widget=a View ())
+Event(action=click, widget=a View (resource_id empty_list))
+Event(action=click, widget=a View (accessibility information: , resource_id fab_camera))
+Event(action=click, widget=a View (accessibility information: , resource_id fab_checklist))
+Event(action=click, widget=a View (accessibility information: , resource_id fab_note))
+Event(action=click, widget=a View (accessibility information: , resource_id fab_expand_menu_button))
+
+这里过滤的信息有点多，我估计要看看提供了哪些信息，有的信息我需要保留的。
+
+
+界面信息示例：
+<hierarchy {'rotation': '0', 'needtext': 'true'}>
+  <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.FrameLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,0][1080,2277]', 'needtext': 'true'}>
+    <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.LinearLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,0][1080,2277]', 'needtext': 'true'}>
+      <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.FrameLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,74][1080,2277]', 'needtext': 'true'}>
+        <node {'index': '0', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/action_bar_root', 'class': 'android.widget.FrameLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,74][1080,2277]', 'needtext': 'true'}>
+          <node {'index': '0', 'text': '', 'resource-id': 'android:id/content', 'class': 'android.widget.FrameLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,74][1080,2277]', 'needtext': 'true'}>
+            <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.FrameLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,74][1080,2277]', 'needtext': 'true'}>
+              <node {'index': '0', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/drawer_layout', 'class': 'androidx.drawerlayout.widget.DrawerLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,74][1080,2277]', 'needtext': 'true'}>
+                <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.RelativeLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,74][1080,2277]', 'needtext': 'true'}>
+                  <node {'index': '0', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/crouton_handle', 'class': 'android.widget.FrameLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,74][1080,221]', 'needtext': 'true'}>
+                  </node>
+                  <node {'index': '1', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/toolbar', 'class': 'android.view.ViewGroup', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,74][1080,221]', 'needtext': 'true'}>
+                    <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.ImageButton', 'package': 'it.feio.android.omninotes', 'content-desc': 'drawer closed', 'checkable': 'false', 'checked': 'false', 'clickable': 'true', 'enabled': 'true', 'focusable': 'true', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,74][147,221]', 'needtext': 'true'}>
+                    </node>
+                    <node {'index': '1', 'text': 'Notes', 'resource-id': '', 'class': 'android.widget.TextView', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[189,112][334,183]', 'needtext': 'true'}>
+                    </node>
+                    <node {'index': '2', 'text': '', 'resource-id': '', 'class': 'androidx.appcompat.widget.LinearLayoutCompat', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[721,74][1080,221]', 'needtext': 'true'}>
+                      <node {'index': '0', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/menu_search', 'class': 'android.widget.Button', 'package': 'it.feio.android.omninotes', 'content-desc': 'Search', 'checkable': 'false', 'checked': 'false', 'clickable': 'true', 'enabled': 'true', 'focusable': 'true', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[721,84][848,210]', 'needtext': 'true'}>
+                      </node>
+                      <node {'index': '1', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/menu_sort', 'class': 'android.widget.Button', 'package': 'it.feio.android.omninotes', 'content-desc': 'Sort', 'checkable': 'false', 'checked': 'false', 'clickable': 'true', 'enabled': 'true', 'focusable': 'true', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'true', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[848,84][975,210]', 'needtext': 'true'}>
+                      </node>
+                      <node {'index': '2', 'text': '', 'resource-id': '', 'class': 'android.widget.ImageView', 'package': 'it.feio.android.omninotes', 'content-desc': 'More options', 'checkable': 'false', 'checked': 'false', 'clickable': 'true', 'enabled': 'true', 'focusable': 'true', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'true', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[975,84][1080,210]', 'needtext': 'true'}>
+                      </node>
+                    </node>
+                  </node>
+                  <node {'index': '2', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/fragment_container', 'class': 'android.widget.FrameLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,221][1080,2277]', 'needtext': 'true'}>
+                    <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.FrameLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,221][1080,2277]', 'needtext': 'true'}>
+                      <node {'index': '0', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/expanded_image', 'class': 'android.widget.ImageView', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,221][1080,2277]', 'needtext': 'true'}>
+                      </node>
+                      <node {'index': '1', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/list_root', 'class': 'android.widget.LinearLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,221][1080,2277]', 'needtext': 'true'}>
+                        <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.FrameLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,221][1080,2277]', 'needtext': 'true'}>
+                          <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.LinearLayout', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,221][1080,2277]', 'needtext': 'true'}>
+                            <node {'index': '0', 'text': 'Nothing here!', 'resource-id': 'it.feio.android.omninotes:id/empty_list', 'class': 'android.widget.TextView', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'true', 'enabled': 'true', 'focusable': 'true', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[380,1116][700,1382]', 'needtext': 'true'}>
+                            </node>
+                          </node>
+                        </node>
+                      </node>
+                      <node {'index': '2', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/snackbar_placeholder', 'class': 'android.view.ViewGroup', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,1752][1080,2277]', 'needtext': 'true'}>
+                      </node>
+                      <node {'index': '3', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/fab', 'class': 'android.view.ViewGroup', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[625,1440][1059,2256]', 'needtext': 'true'}>
+                        <node {'index': '0', 'text': 'Photo', 'resource-id': '', 'class': 'android.widget.TextView', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[681,1591][844,1697]', 'needtext': 'true'}>
+                        </node>
+                        <node {'NAF': 'true', 'index': '1', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/fab_camera', 'class': 'android.widget.ImageButton', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'true', 'enabled': 'true', 'focusable': 'true', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[886,1576][1038,1728]', 'needtext': 'true'}>
+                        </node>
+                        <node {'index': '2', 'text': 'Checklist', 'resource-id': '', 'class': 'android.widget.TextView', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[627,1753][844,1859]', 'needtext': 'true'}>
+                        </node>
+                        <node {'NAF': 'true', 'index': '3', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/fab_checklist', 'class': 'android.widget.ImageButton', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'true', 'enabled': 'true', 'focusable': 'true', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[886,1738][1038,1890]', 'needtext': 'true'}>
+                        </node>
+                        <node {'index': '4', 'text': 'Text note', 'resource-id': '', 'class': 'android.widget.TextView', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[625,1915][844,2021]', 'needtext': 'true'}>
+                        </node>
+                        <node {'NAF': 'true', 'index': '5', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/fab_note', 'class': 'android.widget.ImageButton', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'true', 'enabled': 'true', 'focusable': 'true', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[886,1900][1038,2052]', 'needtext': 'true'}>
+                        </node>
+                        <node {'NAF': 'true', 'index': '6', 'text': '', 'resource-id': 'it.feio.android.omninotes:id/fab_expand_menu_button', 'class': 'android.widget.ImageButton', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'true', 'enabled': 'true', 'focusable': 'true', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'true', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[865,2062][1059,2256]', 'needtext': 'true'}>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node {'index': '3', 'text': '', 'resource-id': '', 'class': 'android.view.View', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,221][1080,232]', 'needtext': 'true'}>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+    <node {'index': '2', 'text': '', 'resource-id': 'android:id/navigationBarBackground', 'class': 'android.view.View', 'package': 'it.feio.android.omninotes', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,2277][1080,2340]', 'needtext': 'true'}>
+    </node>
+  </node>
+  <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,0][1080,74]', 'needtext': 'true'}>
+    <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/status_bar_launch_animation_container', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,0][1080,74]', 'needtext': 'true'}>
+    </node>
+    <node {'index': '1', 'text': '', 'resource-id': 'com.android.systemui:id/status_bar_container', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,0][1080,74]', 'needtext': 'true'}>
+      <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/status_bar', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,0][1080,74]', 'needtext': 'true'}>
+        <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/status_bar_contents', 'class': 'android.widget.LinearLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[0,0][1027,74]', 'needtext': 'true'}>
+          <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/status_bar_start_side_container', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[21,1][513,74]', 'needtext': 'true'}>
+            <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/status_bar_start_side_content', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[21,1][418,74]', 'needtext': 'true'}>
+              <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/status_bar_start_side_except_heads_up', 'class': 'android.widget.LinearLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[21,1][418,74]', 'needtext': 'true'}>
+                <node {'index': '0', 'text': '11:24\u202f', 'resource-id': 'com.android.systemui:id/clock', 'class': 'android.widget.TextView', 'package': 'com.android.systemui', 'content-desc': '11:24\u202fAM', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[21,1][128,74]', 'needtext': 'true'}>
+                </node>
+                <node {'index': '1', 'text': '', 'resource-id': 'com.android.systemui:id/notification_icon_area', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[128,1][418,74]', 'needtext': 'true'}>
+                  <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/notificationIcons', 'class': 'android.view.ViewGroup', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[128,1][418,74]', 'needtext': 'true'}>
+                    <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.ImageView', 'package': 'com.android.systemui', 'content-desc': 'Android System notification: New ads privacy features now available', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[128,1][186,74]', 'needtext': 'true'}>
+                    </node>
+                    <node {'index': '1', 'text': '', 'resource-id': '', 'class': 'android.widget.ImageView', 'package': 'com.android.systemui', 'content-desc': 'Security & privacy notification: Set a screen lock', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[186,1][244,74]', 'needtext': 'true'}>
+                    </node>
+                    <node {'index': '2', 'text': '', 'resource-id': '', 'class': 'android.widget.ImageView', 'package': 'com.android.systemui', 'content-desc': 'ATX notification: UIAutomator', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[244,1][302,74]', 'needtext': 'true'}>
+                    </node>
+                    <node {'index': '3', 'text': '', 'resource-id': '', 'class': 'android.widget.ImageView', 'package': 'com.android.systemui', 'content-desc': 'Digital Wellbeing notification: Need time to focus?', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[302,1][360,74]', 'needtext': 'true'}>
+                    </node>
+                    <node {'index': '4', 'text': '', 'resource-id': '', 'class': 'android.widget.ImageView', 'package': 'com.android.systemui', 'content-desc': 'Settings notification: Virtual SD card', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[360,1][418,74]', 'needtext': 'true'}>
+                    </node>
+                    <node {'index': '5', 'text': '', 'resource-id': '', 'class': 'android.widget.ImageView', 'package': 'com.android.systemui', 'content-desc': 'Android System notification: ', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[378,1][418,74]', 'needtext': 'true'}>
+                    </node>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+          <node {'index': '1', 'text': '', 'resource-id': 'com.android.systemui:id/status_bar_end_side_container', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[513,1][1006,74]', 'needtext': 'true'}>
+            <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/status_bar_end_side_content', 'class': 'android.widget.LinearLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[866,1][1006,74]', 'needtext': 'true'}>
+              <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/system_icons', 'class': 'android.widget.LinearLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[866,1][1006,74]', 'needtext': 'true'}>
+                <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/statusIcons', 'class': 'android.widget.LinearLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[866,1][986,74]', 'needtext': 'true'}>
+                  <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/mobile_combo', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': 'Phone two bars.', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[866,8][970,66]', 'needtext': 'true'}>
+                    <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/mobile_group', 'class': 'android.widget.LinearLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[866,8][970,66]', 'needtext': 'true'}>
+                      <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/mobile_type', 'class': 'android.widget.ImageView', 'package': 'com.android.systemui', 'content-desc': '3G', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[866,16][931,58]', 'needtext': 'true'}>
+                      </node>
+                      <node {'index': '1', 'text': '', 'resource-id': '', 'class': 'android.widget.FrameLayout', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[931,17][970,56]', 'needtext': 'true'}>
+                        <node {'index': '0', 'text': '', 'resource-id': 'com.android.systemui:id/mobile_signal', 'class': 'android.widget.ImageView', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[931,17][970,56]', 'needtext': 'true'}>
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                </node>
+                <node {'index': '1', 'text': '', 'resource-id': 'com.android.systemui:id/battery', 'class': 'android.widget.LinearLayout', 'package': 'com.android.systemui', 'content-desc': 'Battery 100 percent.', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[986,1][1006,74]', 'needtext': 'true'}>
+                  <node {'index': '0', 'text': '', 'resource-id': '', 'class': 'android.widget.ImageView', 'package': 'com.android.systemui', 'content-desc': '', 'checkable': 'false', 'checked': 'false', 'clickable': 'false', 'enabled': 'true', 'focusable': 'false', 'focused': 'false', 'scrollable': 'false', 'long-clickable': 'false', 'password': 'false', 'selected': 'false', 'visible-to-user': 'true', 'bounds': '[986,20][1006,54]', 'needtext': 'true'}>
+                  </node>
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+</hierarchy>
+
+
+
+这里明明有这么多的resource-id，它为什么解析出来的resource-id都是icon？
+
+哦哦  这里是根据了clickable 进行了过滤，但是，如果我们希望确定当前界面处于哪个activity的话，我们关注点就在resource-id了。
+
+
+
+
+
+-------  
+#     We want to finish the task <"Turn on the 'Navigation menu on exit' setting switch.">
+#     Here is the instructions path we analyze before:
+#         "activities_sequence": {
+#         "it.feio.android.omninotes.MainActivity": {
+#             "1. Open the navigation drawer by swiping from the left edge of the screen or tapping the navigation drawer icon."
+#         },
+#         "it.feio.android.omninotes.SettingsActivity": {
+#             "2. In the Settings screen, find and select the 'Navigation' category."
+#         },
+#         "it.feio.android.omninotes.SettingsFragment": {
+#             "3. Locate the 'Navigation menu on exit' switch within the 'Navigation' settings.",
+#             "4. Toggle the switch to the 'On' position to enable the 'Navigation menu on exit' setting."
+#         }
+#     },
+
+
+Here is the historical actions:
+1. click Widget(content-desc: drawer closed, class: android.widget.ImageButton, position: (0, 74, 147, 221))
+
+#     It seems that we are in 'MainActivity' now.
+    tell me the number of the action in instructions path we have been executed.
+    if the instructions is wrong, tell me how to revise it, and tell me why!
+    if the instructions is right, you should tell me which widget we should click in next step!
+
+
+
+调用 LLM 获取结果...
+
+--------------------------------------------------------------------------------------------------------------
+The instructions path is correct so far. You have executed the first step, which is to open the navigation drawer by swiping from the left edge of the screen or tapping the navigation drawer icon.
+
+The next step in the instructions path is to navigate to the "SettingsActivity". To do this, you should:
+
+2. In the Settings screen, find and select the 'Navigation' category.
+
+Based on the screen information provided, you should click the "Settings" item in the navigation drawer. Here is the widget you should click:
+
+**Widget to click:**
+- **Widget(resource-id: it.feio.android.omninotes:id/settings, text: Settings, class: android.widget.TextView, position: (116, 541, 798, 667))**
+
+This will take you to the "SettingsActivity" where you can proceed to the next step in the instructions path.
+
+
+
+这个情况下，我删除了2点击settings按钮，仍然正确，但没有分析出指令存在错误。
+说明产生了违背。
+
+
+
+------------!!!  如果我告诉它信息违背，（之前分析是在MainAcitity中，但是根据指令是在Settings了）。
+它可以分析出当前就是在MainActivity，并且自动修复指令。
+
+
+
+The current interface judgment indicates that we are still in the `MainActivity` and have not yet navigated to the `SettingsActivity`. This suggests that there might be an issue with the instructions provided or the sequence of actions taken to reach the `SettingsActivity`.
+
+Let's re-evaluate the instructions and ensure that we are following the correct sequence to reach the `SettingsActivity`:
+
+### Re-evaluated Instructions:
+
+1. **Open the navigation drawer:**
+   - **Action:** Swipe from the left edge of the screen or tap the navigation drawer icon.
+   - **Widget:** `Widget(resource-id: it.feio.android.omninotes:id/drawer_layout, class: androidx.drawerlayout.widget.DrawerLayout, position: (0, 74, 1080, 2277))`
+
+2. **Navigate to the Settings screen:**
+   - **Action:** Tap on the "Settings" option in the navigation drawer.
+   - **Widget:** `Widget(resource-id: it.feio.android.omninotes:id/settings_view, text: Settings, class: android.widget.LinearLayout, position: (0, 541, 840, 667))`
+
+3. **In the Settings screen, find and select the 'Navigation' category:**
+   - **Action:** Scroll down to find the "Navigation" category and tap on it.
+   - **Widget:** This will be found within the `SettingsActivity` once we navigate there.
+
+4. **Locate the 'Navigation menu on exit' switch within the 'Navigation' settings:**
+   - **Action:** Find the switch labeled "Navigation menu on exit" and toggle it to the 'On' position.
+   - **Widget:** This will be found within the `SettingsFragment` once we navigate to the "Navigation" category.
+
+### Current Interface Analysis:
+
+- **MainActivity:**
+  - The current interface shows the `MainActivity` with the navigation drawer open.
+  - The "Settings" option is visible in the navigation drawer.
+
+### Corrected Sequence:
+
+1. **Open the navigation drawer:**
+   - **Action:** Swipe from the left edge of the screen or tap the navigation drawer icon.
+   - **Widget:** `Widget(resource-id: it.feio.android.omninotes:id/drawer_layout, class: androidx.drawerlayout.widget.DrawerLayout, position: (0, 74, 1080, 2277))`
+
+2. **Navigate to the Settings screen:**
+   - **Action:** Tap on the "Settings" option in the navigation drawer.
+   - **Widget:** `Widget(resource-id: it.feio.android.omninotes:id/settings_view, text: Settings, class: android.widget.LinearLayout, position: (0, 541, 840, 667))`
+
+3. **In the Settings screen, find and select the 'Navigation' category:**
+   - **Action:** Scroll down to find the "Navigation" category and tap on it.
+   - **Widget:** This will be found within the `SettingsActivity` once we navigate there.
+
+4. **Locate the 'Navigation menu on exit' switch within the 'Navigation' settings:**
+   - **Action:** Find the switch labeled "Navigation menu on exit" and toggle it to the 'On' position.
+   - **Widget:** This will be found within the `SettingsFragment` once we navigate to the "Navigation" category.
+
+### Conclusion:
+
+The current interface judgment is correct, and we are indeed in the `MainActivity`. The instructions provided are also correct, but we need to follow the sequence carefully to navigate from `MainActivity` to `SettingsActivity` and then to the `SettingsFragment` to find the "Navigation menu on exit" switch.
+
+Let's proceed with the first step:
+
+1. **Open the navigation drawer:**
+   - **Action:** Swipe from the left edge of the screen or tap the navigation drawer icon.
+
+
+
+
+
+
+   ------------------------12.10
+
+先在安卓源码分析这边构建一个活动吧，用于提供获取android数据的方法。后面给各种工具调用。
+
+
+
+------------------------12.11
+
+
+哎，生成的这些还是看不太出来。
+
+1.  这是生成的路径，效果还是挺好的。
+
+{
+  "task": "Add a note",
+  "activities_sequence": [
+    {
+      "activity": "it.feio.android.omninotes.MainActivity",
+      "steps": [
+        "1. Open the app and navigate to the main screen.",
+        "2. Tap on the floating action button (FAB) to create a new note."
+      ]
+    },
+    {
+      "activity": "it.feio.android.omninotes.DetailFragment",
+      "steps": [
+        "3. Enter the title and content of the note in the respective fields.",
+        "4. Optionally, add attachments, tags, or other metadata to the note.",
+        "5. Save the note by tapping the save button or using the save and exit functionality."
+      ]
+    }
+  ],
+  "explanation": "because the MainActivity contains the FAB to initiate the creation of a new note, and the DetailFragment is where the note content is entered and saved."
+}
+
+2. 跑起来有点慢，对话的次数以及要生成的东西有点多。
+3. 很多信息还没有保存。 我希望我们可以进一步保存一下
+
+
+
+给出的历史信息太含糊了。
+Here is the history_actions:
+
+index-1:Event(action=click, widget=a View (accessibility information: Omni Notes, resource_id icon, text: Omni Notes))
+index-2:Event(action=click, widget=a View (accessibility information: , resource_id fab_expand_menu_button))
+index-3:Event(action=click, widget=a View (accessibility information: , resource_id fab_note))
+index-4:Event(action=text, widget=a View (resource_id detail_title, text: Title))
+index-5:Event(action=back, widget=None)
+index-6:None
+index-7:Event(action=back, widget=None)
+index-8:None
+
+我想想应该改成什么样：
+
+1. 告知Event执行的位置，比如是在
+MainActivity:
+index-1:Event(action=click, widget=a View (accessibility information: Omni Notes, resource_id icon, text: Omni Notes))
+index-2:Event(action=click, widget=a View (accessibility information: , resource_id fab_expand_menu_button))
+index-3:Event(action=click, widget=a View (accessibility information: , resource_id fab_note))
+DetailFragment:
+index-4:Event(action=text, widget=a View (resource_id detail_title, text: Title))
+index-5:Event(action=back, widget=None)
+index-6:None
+index-7:Event(action=back, widget=None)
+index-8:None
+
+
+
+重点在于元素的信息太少了，好多的都给不全，都不知道哪个是menu，真垃圾的guardian，我来多弄点信息吧。
+
+Currently we have 9 widgets, namely:
+index-0: a View (accessibility information: drawer open) to click
+index-1: a View (resource_id menu_search) to click
+index-2: a View (resource_id menu_sort) to click
+index-3: a View (resource_id root) to click
+index-4: a View (resource_id root) to click
+index-5: a View (resource_id root) to click
+index-6: a View (resource_id root) to click
+index-7: a View (text: Trash) to click
+index-8: a View (resource_id settings_view) to clickWe now want to execute this instruction 3. In the ListFragment, select the 'Empty trash' option from the menu., which is part of Remember our test target is to empty the trash on OmniNotes.
+
+
+你看，这里都叫做root了，root是什么啊 我丢。
+
+---------------------------12.12
+
+
+添加note还是不太正确。似乎是因为没有理解到draw_back可以保存，因此无法识别出已经完成的目标的任务。
+
+
+他这里有个instesting text是干嘛的？ 增加了好多轮的对话，如果没有必要感觉可以去掉。
+
+
+哦！ 他好像本来就用来进行初筛的。但是我们直接全部元素的text都给了。
+他这个初筛有什么道理吗？凭什么可以这样？
+
+
+这个 判断current_step一塌糊涂啊。
+
+
+
+我先去掉键盘元素《因为键盘都是直接input的，这个作为元素出现毫无意义》
+
+ndex-9: a View (resource_id "key_pos_0_1", content-desc: "w", text: "2", text: 2) to click
+根据resource_id 包含key_pos直接去了。  浪费我的钱钱。
+
+
+
+今天弄三件事情吧。
+1. 修改代码，使得其可以保存关键信息，方便进行实验等操作。
+2. 修改代码，强化验证的部分。《我看了看，主要给出的理由是没有点击Save按钮，但是实际上，它点击了返回按钮，而这个返回按钮其实就会自动保存。这个其实有点无解了》。
+3. 跑几个task进行与baseline的对比。
+4. 去掉第一次自动执行的事件。奶奶的。
+
+
+
+
+
+
+
+

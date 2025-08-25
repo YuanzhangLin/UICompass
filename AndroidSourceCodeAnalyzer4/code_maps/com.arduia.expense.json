@@ -1,0 +1,270 @@
+{
+    "activities": [
+        {
+            "name": "com.arduia.expense.ui.MainActivity",
+            "layouts": [
+                {
+                    "name": "R.menu.menu_main",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.id.fc_main",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.main_drawer_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.statistic_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "layout_header_binding",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "layout_header",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout",
+                                "theme": "@style/Theme.ProExpense",
+                                "context": ".ui.MainActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageButton",
+                                "id": "@+id/btn_close",
+                                "style": "?attr/iconButtonStyle",
+                                "layout_alignParentTop": "true",
+                                "layout_alignParentEnd": "true",
+                                "layout_marginEnd": "@dimen/grid_3"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.AppCompatImageView",
+                                "id": "@+id/imv_app_logo",
+                                "layout_below": "@id/btn_close",
+                                "layout_alignParentStart": "true",
+                                "layout_marginStart": "@dimen/grid_4",
+                                "layout_marginBottom": "@dimen/grid_3",
+                                "scaleType": "center",
+                                "tint": "?colorPrimary"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "id": "@+id/ln_app_name",
+                                "layout_alignTop": "@id/imv_app_logo",
+                                "layout_alignBottom": "@id/imv_app_logo",
+                                "layout_marginStart": "@dimen/grid_3",
+                                "layout_toEndOf": "@id/imv_app_logo",
+                                "orientation": "vertical"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/tv_app_name",
+                                "style": "?textAppearanceHeadline6",
+                                "text": "Pro Expense"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "textColor": "?colorOnWarning",
+                                "textAllCaps": "true",
+                                "text": "beta"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activ_main_binding",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activ_main",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.drawerlayout.widget.DrawerLayout",
+                                "id": "@+id/dl_main",
+                                "openDrawer": "start",
+                                "context": ".ui.MainActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/cl_main"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "fragment",
+                                "id": "@+id/fc_main",
+                                "name": "androidx.navigation.fragment.NavHostFragment",
+                                "defaultNavHost": "true",
+                                "layout": "@layout/frag_home",
+                                "navGraph": "@navigation/main_nav"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.floatingactionbutton.FloatingActionButton",
+                                "id": "@+id/fb_main_add",
+                                "layout_marginEnd": "@dimen/grid_3",
+                                "layout_marginBottom": "32dp",
+                                "scaleType": "center",
+                                "tint": "?colorOnPrimary",
+                                "backgroundTint": "?colorPrimary",
+                                "srcCompat": "@drawable/ic_add"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.navigation.NavigationView",
+                                "id": "@+id/nv_main",
+                                "style": "?attr/proExpenseNavigationViewStyle",
+                                "headerLayout": "@layout/layout_header",
+                                "menu": "@menu/menu_home"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.main_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "AboutFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "ExpenseEntryFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "ExpenseFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "DeleteConfirmFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "HomeFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "SettingsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                },
+                {
+                    "name": "StatisticsFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [
+                {
+                    "name": "ImportDialogFragment",
+                    "layouts": [],
+                    "elements": []
+                },
+                {
+                    "name": "ExpenseDetailDialog",
+                    "layouts": [],
+                    "elements": []
+                },
+                {
+                    "name": "ExpenseFilterDialogFragment",
+                    "layouts": [],
+                    "elements": []
+                },
+                {
+                    "name": "ChooseLanguageDialog",
+                    "layouts": [],
+                    "elements": []
+                },
+                {
+                    "name": "ChooseCurrencyDialog",
+                    "layouts": [],
+                    "elements": []
+                },
+                {
+                    "name": "ChooseThemeDialog",
+                    "layouts": [],
+                    "elements": []
+                }
+            ],
+            "elements": [],
+            "summary": "MainActivity serves as the main entry point of the application. It manages navigation using Jetpack Navigation, supports a navigation drawer for menu-based destination switching, handles theme and language configuration, and controls UI components like Floating Action Button (FAB) and Snackbar messages. It also integrates with BackupViewModel to show backup completion messages.",
+            "transfer": []
+        }
+    ],
+    "activities_name": [
+        "MainActivity"
+    ]
+}

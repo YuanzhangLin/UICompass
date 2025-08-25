@@ -1,0 +1,1173 @@
+{
+    "activities": [
+        {
+            "name": "com.flauschcode.broccoli.recipe.cooking.CookingAssistantActivity",
+            "layouts": [
+                {
+                    "name": "activity_cooking_assistant",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "id": "@+id/fullscreen_layout",
+                                "keepScreenOn": "true"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "layout container",
+                                    "effect": "Provides the root layout container for the full-screen cooking assistant UI with keepScreenOn enabled."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.viewpager2.widget.ViewPager2",
+                                "id": "@+id/cooking_assistant_pager"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "swipe or programmatic change",
+                                    "effect": "Switches between different pages or fragments representing steps or sections of the current recipe."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/button_cancel",
+                                "style": "@style/Widget.MaterialComponents.Button.TextButton.Icon",
+                                "icon": "@drawable/ic_close_24dp",
+                                "iconGravity": "textTop",
+                                "contentDescription": "@android:string/cancel"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Cancels and finishes the current activity, returning to the previous screen."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/button_scaling",
+                                "style": "@style/Widget.MaterialComponents.Button.TextButton.Icon",
+                                "icon": "@drawable/ic_tune_24",
+                                "iconGravity": "textTop",
+                                "contentDescription": "Adjust ingredients"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "Displays a ScalingDialogFragment allowing the user to adjust ingredient quantities based on serving size."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "cooking_assistant_activity",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "cooking_assistant_pager",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "CookingAssistantFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [
+                {
+                    "name": "ScalingDialog",
+                    "layouts": [],
+                    "elements": []
+                }
+            ],
+            "elements": [],
+            "summary": "This activity, CookingAssistantActivity, serves as a full-screen cooking assistant interface. It displays a recipe using a ViewPager2 to navigate between pages or fragments, allows the user to cancel the activity, adjust ingredient scaling via a dialog, and optionally navigate to a support page. The activity supports immersive mode for a distraction-free experience.",
+            "transfer": []
+        },
+        {
+            "name": "com.flauschcode.broccoli.MainActivity",
+            "layouts": [
+                {
+                    "name": "activity_main",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.drawerlayout.widget.DrawerLayout",
+                                "id": "@+id/drawer_layout",
+                                "fitsSystemWindows": "true",
+                                "openDrawer": "start"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "openDrawer",
+                                    "effect": "displays the navigation drawer from the start side of the screen"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "layout": "@layout/app_bar_main"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.navigation.NavigationView",
+                                "id": "@+id/nav_view",
+                                "fitsSystemWindows": "true",
+                                "itemMaxLines": "2",
+                                "headerLayout": "@layout/nav_header_main",
+                                "menu": "@menu/activity_main_drawer"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "navigation item selection",
+                                    "effect": "allows navigation to different sections or screens based on selected menu items from the drawer"
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": [
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                        "context": "com.flauschcode.broccoli.MainActivity"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "com.google.android.material.appbar.AppBarLayout",
+                                        "theme": "@style/ThemeOverlay.Broccoli.AppBarOverlay"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "androidx.appcompat.widget.Toolbar",
+                                        "id": "@+id/toolbar",
+                                        "popupTheme": "@style/ThemeOverlay.Broccoli.PopupOverlay"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "include",
+                                        "layout": "@layout/content_main"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        }
+                    ]
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "RecipeFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity serves as the main interface of the application, implementing a navigation drawer for easy access to different sections or settings within the app.",
+            "transfer": []
+        },
+        {
+            "name": "com.flauschcode.broccoli.recipe.details.RecipeDetailsActivity",
+            "layouts": [
+                {
+                    "name": "R.menu.details",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_recipe_details",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "layout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "data"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "variable",
+                                "name": "recipe",
+                                "type": "com.flauschcode.broccoli.recipe.Recipe"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "fitsSystemWindows": "true",
+                                "context": "com.flauschcode.broccoli.recipe.details.RecipeDetailsActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.AppBarLayout",
+                                "id": "@+id/app_bar",
+                                "fitsSystemWindows": "true",
+                                "expanded": "@{recipe.imageName.empty? false : true}",
+                                "disableCollapsingScroll": "@{recipe.imageName.empty? false : true}",
+                                "theme": "@style/ThemeOverlay.Broccoli.AppBarOverlay"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "scroll or expand",
+                                    "effect": "controls the collapsing toolbar layout and parallax effect of the backdrop image."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.CollapsingToolbarLayout",
+                                "id": "@+id/toolbar_layout",
+                                "fitsSystemWindows": "true",
+                                "contentScrim": "?attr/colorPrimarySurface",
+                                "statusBarScrim": "?attr/colorStatusBarScrim",
+                                "layout_scrollFlags": "scroll|exitUntilCollapsed",
+                                "toolbarId": "@+id/toolbar"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/backdrop",
+                                "fitsSystemWindows": "true",
+                                "layout_collapseMode": "parallax",
+                                "imageName": "@{recipe.imageName}",
+                                "contentDescription": "Recipe photo"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "display",
+                                    "effect": "shows the recipe's image in a parallax scrolling effect within the AppBarLayout."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "View",
+                                "layout_collapseMode": "pin",
+                                "fitsSystemWindows": "true"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.MaterialToolbar",
+                                "id": "@+id/toolbar",
+                                "clickable": "true",
+                                "focusable": "true",
+                                "importantForAccessibility": "no",
+                                "layout_collapseMode": "pin",
+                                "popupTheme": "@style/ThemeOverlay.Broccoli.PopupOverlay"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click or navigation",
+                                    "effect": "displays the recipe title and handles navigation back or menu-related interactions."
+                                }
+                            ]
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "include",
+                                "layout": "@layout/content_recipe_details",
+                                "recipe": "@{recipe}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.floatingactionbutton.FloatingActionButton",
+                                "id": "@+id/fab_cooking_assistant",
+                                "layout_margin": "@dimen/fab_margin",
+                                "contentDescription": "Cook",
+                                "srcCompat": "@drawable/ic_button_restaurant_24dp"
+                            },
+                            "dynamic_properties": [
+                                {
+                                    "action": "click",
+                                    "effect": "starts the CookingAssistantActivity to guide the user through cooking steps for the recipe."
+                                }
+                            ]
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": [
+                        {
+                            "name": "",
+                            "elements": [
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "layout"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "data"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "import",
+                                        "type": "android.view.View"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "import",
+                                        "type": "android.text.TextUtils"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "variable",
+                                        "name": "recipe",
+                                        "type": "com.flauschcode.broccoli.recipe.Recipe"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "androidx.core.widget.NestedScrollView",
+                                        "id": "@+id/scroll_view",
+                                        "layout_behavior": "@string/appbar_scrolling_view_behavior",
+                                        "nestedScrollingEnabled": "@{recipe.imageName.empty? false : true}",
+                                        "context": "com.flauschcode.broccoli.recipe.details.RecipeDetailsActivity",
+                                        "showIn": "@layout/activity_recipe_details"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "orientation": "vertical"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "id": "@+id/details_title",
+                                        "textAppearance": "@style/TextAppearance.AppCompat.Large",
+                                        "text": "@{recipe.title.trim()}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.servings) && TextUtils.isEmpty(recipe.preparationTime) ? View.GONE : View.VISIBLE}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "ImageView",
+                                        "id": "@+id/details_icon_servings",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.servings) ? View.GONE : View.VISIBLE}",
+                                        "layout_constraintStart_toStartOf": "parent",
+                                        "layout_constraintTop_toTopOf": "@id/details_servings",
+                                        "layout_constraintBottom_toBottomOf": "@id/details_servings",
+                                        "contentDescription": "Servings",
+                                        "labelFor": "@id/details_servings",
+                                        "tint": "?attr/colorControlNormal"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "id": "@+id/details_servings",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.servings) ? View.GONE : View.VISIBLE}",
+                                        "layout_constraintTop_toTopOf": "parent",
+                                        "layout_constraintStart_toEndOf": "@id/details_icon_servings",
+                                        "text": "@{recipe.servings}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "ImageView",
+                                        "id": "@+id/details_icon_preparation_time",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.preparationTime) ? View.GONE : View.VISIBLE}",
+                                        "layout_constraintStart_toEndOf": "@id/details_servings",
+                                        "layout_constraintTop_toTopOf": "@id/details_preparation_time",
+                                        "layout_constraintBottom_toBottomOf": "@id/details_preparation_time",
+                                        "layout_marginEnd": "@dimen/text_margin",
+                                        "contentDescription": "Time",
+                                        "labelFor": "@id/details_preparation_time",
+                                        "tint": "?attr/colorControlNormal"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "id": "@+id/details_preparation_time",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.preparationTime) ? View.GONE : View.VISIBLE}",
+                                        "layout_constraintTop_toTopOf": "parent",
+                                        "layout_constraintStart_toEndOf": "@id/details_icon_preparation_time",
+                                        "layout_marginStart": "5dp",
+                                        "text": "@{recipe.preparationTime}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                        "visibility": "@{recipe.categories.isEmpty() ? View.GONE : View.VISIBLE}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "ImageView",
+                                        "id": "@+id/details_icon_categories",
+                                        "layout_constraintStart_toStartOf": "parent",
+                                        "layout_constraintTop_toTopOf": "@id/details_categories",
+                                        "layout_constraintBottom_toBottomOf": "@id/details_categories",
+                                        "contentDescription": "Categories",
+                                        "labelFor": "@id/details_categories",
+                                        "tint": "?attr/colorControlNormal"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "id": "@+id/details_categories",
+                                        "layout_constraintTop_toTopOf": "parent",
+                                        "layout_constraintStart_toEndOf": "@id/details_icon_categories",
+                                        "layout_marginStart": "5dp",
+                                        "categories": "@{recipe.categories}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "orientation": "vertical",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.description) && TextUtils.isEmpty(recipe.source) ? View.GONE : View.VISIBLE}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "id": "@+id/details_description",
+                                        "layout_marginBottom": "5dp",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.description) ? View.GONE : View.VISIBLE}",
+                                        "description": "@{recipe.description}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.source) ? View.GONE : View.VISIBLE}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "ImageView",
+                                        "id": "@+id/details_icon_source",
+                                        "layout_constraintStart_toStartOf": "parent",
+                                        "layout_constraintTop_toTopOf": "@id/details_source",
+                                        "layout_constraintBottom_toBottomOf": "@id/details_source",
+                                        "contentDescription": "Source",
+                                        "labelFor": "@id/details_source",
+                                        "tint": "?attr/colorControlNormal"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "id": "@+id/details_source",
+                                        "layout_constraintTop_toTopOf": "parent",
+                                        "layout_constraintStart_toEndOf": "@id/details_icon_source",
+                                        "layout_constraintEnd_toEndOf": "parent",
+                                        "textColorLink": "?attr/colorPrimary",
+                                        "layout_marginStart": "10dp",
+                                        "autoLink": "web",
+                                        "text": "@{recipe.source}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "orientation": "vertical",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.ingredients) ? View.GONE : View.VISIBLE}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "layout_marginBottom": "5dp",
+                                        "textAppearance": "@style/TextAppearance.AppCompat.Medium",
+                                        "textColor": "?attr/colorPrimary",
+                                        "text": "Ingredients"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "id": "@+id/details_ingredients",
+                                        "orientation": "vertical",
+                                        "ingredients": "@{recipe.ingredients}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "orientation": "vertical",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.directions) ? View.GONE : View.VISIBLE}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "layout_marginBottom": "5dp",
+                                        "textAppearance": "@style/TextAppearance.AppCompat.Medium",
+                                        "textColor": "?attr/colorPrimary",
+                                        "text": "Directions"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "id": "@+id/details_directions",
+                                        "orientation": "vertical",
+                                        "directions": "@{recipe.directions}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "orientation": "vertical",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.nutritionalValues) ? View.GONE : View.VISIBLE}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "layout_marginBottom": "5dp",
+                                        "textAppearance": "@style/TextAppearance.AppCompat.Medium",
+                                        "textColor": "?attr/colorPrimary",
+                                        "text": "Nutrition"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "id": "@+id/details_nutritional_values",
+                                        "text": "@{recipe.nutritionalValues}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "LinearLayout",
+                                        "orientation": "vertical",
+                                        "visibility": "@{TextUtils.isEmpty(recipe.notes) ? View.GONE : View.VISIBLE}"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "layout_marginBottom": "5dp",
+                                        "textAppearance": "@style/TextAppearance.AppCompat.Medium",
+                                        "textColor": "?attr/colorPrimary",
+                                        "text": "Notes"
+                                    },
+                                    "dynamic_properties": []
+                                },
+                                {
+                                    "name": "0",
+                                    "static_properties": {
+                                        "tag": "TextView",
+                                        "id": "@+id/details_notes",
+                                        "text": "@{recipe.notes}"
+                                    },
+                                    "dynamic_properties": []
+                                }
+                            ],
+                            "type": "dependency",
+                            "dependencies": []
+                        }
+                    ]
+                },
+                {
+                    "name": "R.menu.xx",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "direction_item",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "layout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "data"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "variable",
+                                "name": "direction",
+                                "type": "com.flauschcode.broccoli.recipe.directions.Direction"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "RelativeLayout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/direction_position",
+                                "layout_marginEnd": "10dp",
+                                "textColor": "?attr/colorPrimary",
+                                "text": "@{String.valueOf(direction.position)}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "TextView",
+                                "id": "@+id/direction_text",
+                                "layout_toEndOf": "@+id/direction_position",
+                                "text": "@{direction.text}"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "R.menu.recipe_details_menu",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "RecipeFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity, RecipeDetailsActivity, is used to display detailed information about a recipe, including categories, description, directions, and allows actions such as cooking, sharing, editing, deleting, duplicating, and favoriting recipes. It supports PDF generation, collapsing app bar behavior, and manages user interactions with UI components.",
+            "transfer": [
+                "CookingAssistantActivity",
+                "CreateAndEditRecipeActivity"
+            ]
+        },
+        {
+            "name": "com.flauschcode.broccoli.recipe.crud.CreateAndEditRecipeActivity",
+            "layouts": [
+                {
+                    "name": "activity_create_and_edit_recipe",
+                    "elements": [],
+                    "type": "layout",
+                    "dependencies": []
+                },
+                {
+                    "name": "activity_new_recipe",
+                    "elements": [
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "layout"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "data"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "variable",
+                                "name": "viewModel",
+                                "type": "com.flauschcode.broccoli.recipe.crud.CreateAndEditRecipeViewModel"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "variable",
+                                "name": "activity",
+                                "type": "com.flauschcode.broccoli.recipe.crud.CreateAndEditRecipeActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.coordinatorlayout.widget.CoordinatorLayout",
+                                "fitsSystemWindows": "true",
+                                "context": "com.flauschcode.broccoli.recipe.crud.CreateAndEditRecipeActivity"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.appbar.AppBarLayout",
+                                "theme": "@style/ThemeOverlay.Broccoli.AppBarOverlay"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.appcompat.widget.Toolbar",
+                                "id": "@+id/toolbar",
+                                "popupTheme": "@style/ThemeOverlay.Broccoli.PopupOverlay",
+                                "layout_scrollFlags": "noScroll",
+                                "title": "New Recipe",
+                                "navigationIcon": "@drawable/ic_close_24dp"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.button.MaterialButton",
+                                "id": "@+id/button_save_recipe",
+                                "layout_marginEnd": "4dp",
+                                "style": "@style/Widget.MaterialComponents.Button.TextButton",
+                                "textColor": "?attr/colorOnPrimarySurface",
+                                "text": "Save",
+                                "onClick": "@{() -> activity.onSaveClick(viewModel.recipe)}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.core.widget.NestedScrollView",
+                                "layout_behavior": "@string/appbar_scrolling_view_behavior"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "orientation": "vertical",
+                                "layout_marginBottom": "20dp"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "androidx.constraintlayout.widget.ConstraintLayout",
+                                "layout_margin": "@dimen/text_margin"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "id": "@+id/new_image",
+                                "layout_constraintStart_toStartOf": "parent",
+                                "layout_constraintTop_toTopOf": "parent",
+                                "scaleType": "centerCrop",
+                                "onClick": "@{() -> activity.onImageClick()}",
+                                "placeholder": "@{@drawable/placeholder}",
+                                "imageName": "@{viewModel.recipe.imageName}",
+                                "contentDescription": "Recipe photo"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "LinearLayout",
+                                "layout_constraintBottom_toBottomOf": "@id/new_image",
+                                "layout_constraintEnd_toEndOf": "@id/new_image"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "ImageView",
+                                "contentDescription": "Change photo",
+                                "customIconTint": "@{viewModel.recipe.imageName}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_title_24dp",
+                                "hint": "Title"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_title",
+                                "inputType": "textCapSentences",
+                                "singleLine": "true",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "text": "@={viewModel.recipe.title}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_categories_24dp",
+                                "endIconMode": "custom",
+                                "endIconDrawable": "@drawable/ic_arrow_drop_down_24dp",
+                                "hint": "Categories"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_categories",
+                                "inputType": "none",
+                                "focusable": "false",
+                                "singleLine": "true",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "onClick": "onCategoryClick",
+                                "categories": "@{viewModel.recipe.categories}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_info_24dp",
+                                "hint": "Description"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_description",
+                                "inputType": "textCapSentences|textMultiLine",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "text": "@={viewModel.recipe.description}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_link_24dp",
+                                "hint": "Source"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_source",
+                                "inputType": "textCapSentences",
+                                "singleLine": "true",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "text": "@={viewModel.recipe.source}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_person_24dp",
+                                "hint": "Servings"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_servings",
+                                "inputType": "textCapSentences",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "singleLine": "true",
+                                "text": "@={viewModel.recipe.servings}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_time_24dp",
+                                "hint": "Time"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_preparation_time",
+                                "inputType": "textCapSentences",
+                                "singleLine": "true",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "text": "@={viewModel.recipe.preparationTime}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_list_bulleted_24dp",
+                                "hint": "Ingredients"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_ingredients",
+                                "inputType": "textCapSentences|textMultiLine",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "text": "@={viewModel.recipe.ingredients}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_list_numbered_24dp",
+                                "hint": "Directions"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_directions",
+                                "inputType": "textCapSentences|textMultiLine",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "text": "@={viewModel.recipe.directions}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_fire_24dp",
+                                "hint": "Nutrition"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_nutritional_values",
+                                "inputType": "textCapSentences|textMultiLine",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "text": "@={viewModel.recipe.nutritionalValues}"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputLayout",
+                                "startIconDrawable": "@drawable/ic_notes_24dp",
+                                "hint": "Notes"
+                            },
+                            "dynamic_properties": []
+                        },
+                        {
+                            "name": "0",
+                            "static_properties": {
+                                "tag": "com.google.android.material.textfield.TextInputEditText",
+                                "id": "@+id/new_notes",
+                                "inputType": "textCapSentences|textMultiLine",
+                                "onTextChanged": "@{(s, start, before, count) -> activity.onTextChanged(s, start, before, count)}",
+                                "text": "@={viewModel.recipe.notes}"
+                            },
+                            "dynamic_properties": []
+                        }
+                    ],
+                    "type": "layout",
+                    "dependencies": []
+                }
+            ],
+            "fragments": [
+                {
+                    "name": "RecipeFragment",
+                    "layouts": [],
+                    "dialogs": [],
+                    "elements": []
+                }
+            ],
+            "dialogs": [],
+            "elements": [],
+            "summary": "This activity is used for creating and editing recipes. It allows users to input or modify recipe details such as title, categories, description, source, servings, time, ingredients, directions, nutrition, and notes. Users can also add or remove an associated image. The activity supports importing recipes from URLs or shared files, handles duplication of existing recipes, and ensures unsaved changes are confirmed before discarding.",
+            "transfer": []
+        }
+    ],
+    "activities_name": [
+        "CookingAssistantActivity",
+        "MainActivity",
+        "RecipeDetailsActivity",
+        "CreateAndEditRecipeActivity"
+    ]
+}

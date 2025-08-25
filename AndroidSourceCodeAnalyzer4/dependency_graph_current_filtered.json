@@ -1,0 +1,25 @@
+{
+    "class_graph": {
+        "com.android.billingclient.api.ProxyBillingActivity": [],
+        "com.android.billingclient.api.ProxyBillingActivityV2": [],
+        "com.google.android.play.core.common.PlayCoreDialogWrapperActivity": []
+    },
+    "method_graph": {
+        "com.android.billingclient.api.ProxyBillingActivity.b": [
+            "com.android.billingclient.api.ProxyBillingActivity.a"
+        ],
+        "com.android.billingclient.api.ProxyBillingActivity.onCreate": [
+            "com.android.billingclient.api.ProxyBillingActivity.b"
+        ],
+        "com.android.billingclient.api.ProxyBillingActivity.onDestroy": [
+            "com.android.billingclient.api.ProxyBillingActivity.a"
+        ],
+        "com.android.billingclient.api.ProxyBillingActivity.a": [],
+        "com.android.billingclient.api.SkuDetails.": [],
+        "com.google.android.play.core.common.PlayCoreDialogWrapperActivity.onCreate": [
+            "com.google.android.play.core.common.PlayCoreDialogWrapperActivity.a"
+        ],
+        "com.google.android.play.core.common.PlayCoreDialogWrapperActivity.a": [],
+        "com.google.android.play.core.common.PlayCoreDialogWrapperActivity.onActivityResult": []
+    }
+}

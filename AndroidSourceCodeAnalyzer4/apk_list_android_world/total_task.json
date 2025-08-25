@@ -1,0 +1,126 @@
+[
+   {
+    "app_name": "AudioRecorder",
+    "apk_name": "com.dimowner.audiorecorder",
+    "task_names": [
+      "Record an audio clip using Audio Recorder app and save it.",
+      "Record an audio clip and save it with name \"test\" using Audio Recorder app."
+    ]
+  },
+  {
+    "app_name": "osmand",
+    "apk_name": "net.osmand",
+    "task_names": [
+      "Add a favorite location marker for \"San jose\" in the OsmAnd maps app.",
+      "Add a location marker for \"Chico\" in the OsmAnd maps app.",
+      "Save a track with waypoints Ruggell, Liechtenstein, Bendern, Liechtenstein in the OsmAnd maps app in the same order as listed."
+    ]
+  },
+  {
+    "app_name": "retro music",
+    "apk_name": "code.name.monkey.retromusic",
+    "task_names": [
+      "Create a playlist in Retro Music titled \"list1\" using the provided songs.",
+      "Add the following songs, in order, {Go Beyond Sonna} to my playing queue in Retro music.",
+      "Create a playlist in Retro Music titled \"list2\" with a duration between 45 and 50 minutes using the provided songs.",
+      "Create a playlist in Retro Music titled \"list3\" with the following songs using the provided songs. Then export the playlist to the Downloads directory on the device."
+    ]
+  },
+  {
+    "app_name": "pro expense",
+    "apk_name": "com.arduia.expense",
+    "task_names": [
+      "Add the following expenses into the arduia pro expense: 150",
+      "Add the following expenses into the arduia pro expense: [150,250]",
+      "Delete all but one of any expenses in arduia pro expense that have same name, ensuring at least one instance of each unique expense remains.",
+      "Delete the following expenses from arduia pro expense: 150.",
+      "Delete the following expenses from arduia pro expense: [150,250]."
+    ],
+    "data":[
+      ""
+    ]
+  },
+  {
+    "app_name": "markor",
+    "apk_name": "net.gsantner.markor",
+    "task_names": [
+      "Update the Markor note {test0} by adding the following text, along with a new blank line before the existing content: \"good\".",
+      "Update the content of test0 to \"hello\" in Markor.",
+      "Create a new folder in Markor named {test1}.",
+      "Create a new note in Markor named {test2} with the following text: {text}",
+      "Create a new note in Markor named {test3} with the following text: {text}. Share the entire content of the note with the phone number {123456} via SMS using Simple SMS Messenger",
+      "Delete all my notes in Markor.",
+      "Delete the newest note in Markor.",
+      "Delete the note in Markor named {test5}.",
+      "Edit {test0} in Markor. Add to the top of the note {test0}",
+      "Merge the contents of Markor notes {test0}, {test6} and {test7} (in the same order) into a new Markor note named {test8} and save it. Add a new line between the content of each note.",
+      "In Markor, move the note {test9} from current folder to any other folder."
+    ],
+    "data": [
+      "test0",
+      "test5",
+      "test6",
+      "test7",
+      "test8",
+      "test9"
+    ]
+  },
+    {
+      "app_name": "broccoli app",
+      "apk_name": "com.flauschcode.broccoli",
+      "task_names": [
+        "Add the following recipes into the Broccoli app: {recipe with name \"test\"}",
+        "Add the following recipes into the Broccoli app:  {recipe with name \"test1\", \"test2\"}.",
+        "Delete all but one of any recipes in the Broccoli app that are exact duplicates, ensuring at least one instance of each unique recipe remains",
+        "Delete the following recipes from Broccoli app: {test3}.",
+        "Delete the recipes from Broccoli app that use {1} in the directions.",
+        "Delete the following recipes from Broccoli app: {test4,test5}."
+      ],
+      "data":[
+        "test3",
+        "test4,5",
+        "test6 with direct 1"
+      ]
+    },
+   {
+    "app_name": "simple sms messenger",
+    "apk_name": "com.simplemobiletools.smsmessenger",
+    "task_names": [
+      "Reply to {Alice} with message: {Hello} in Simple SMS Messenger",
+      "Reply to the most recent text message using Simple SMS Messenger with message: {Hello}",
+      "Resend the message I just sent to {Alice} in Simple SMS Messenger.",
+      "Send a text message using Simple SMS Messenger to {Alice} with message: {Hello}"
+    ],
+    "data": [
+      "Alice with 222222 and one message"
+    ]
+  },
+  {
+    "app_name": "simple draw pro",
+    "apk_name": "com.simplemobiletools.draw.pro",
+    "task_names": [
+      "Create a new drawing in Simple Draw Pro. Name it {draw_test}. Save it in the Pictures folder."
+    ]
+  },
+   {
+    "app_name": "simple calendar pro",
+    "apk_name": "com.simplemobiletools.calendar.pro",
+    "task_names": [
+      "task_1 In Simple Calendar Pro, create a calendar event on today with the title 'test_title' and the description 'test_description'. The event should last for {5} mins.",
+      "task_2 In Simple Calendar Pro, create a calendar event on {2025}-{5}-{31} at {22}h with the title '{event_title}' and the description '{event_description}'. The event should last for {5} mins.",
+      "task_3 In Simple Calendar Pro, create a calendar event on tomorrow at {22}h with the title '{event_title}' and the description '{event_description}'. The event should last for {5} mins.",
+      "task_4 In Simple Calendar Pro, create a calendar event on {2025}-{5}-{18} at {22}h with the title '{test_event_title2}' and the description '{test_event_description}'. The event should last for {5} mins.",
+      "task_5 In Simple Calendar Pro, create a recurring calendar event titled 'test_event_title' starting on {2025}-{5}-{17} at {22}h. The event recurs {Daily}, forever, and lasts for {10} minutes each occurrence. The event description should be '{event_description}'.",
+      "task_6 In Simple Calendar Pro, delete all the calendar events on 2025-5-17",
+      "task_7 In Simple Calendar Pro, delete all events scheduled for this week.",
+      "In Simple Calendar Pro, delete the calendar event on today with the title 'testtitle1'"
+    ],
+    "data":[
+      "add a event today",
+      "add a event tomorrow"
+    ]
+  }
+
+
+
+]
