@@ -20,9 +20,8 @@ Even when only APK is available, UICOMPASS maintains superior performance, demon
 
 The repository mainly consists of three parts:  
 
-1. **uimanualgenerator** → The code section for generating the UI map.
-2. **Guardian** → The part for task execution.  
-3. **experiment** → Experimental results.
+1. **Generator** → The code section for generating the UI map.
+2. **Executor** → The part for task execution.  
 
 
 ## 📥Install 
