@@ -219,7 +219,7 @@ You can download the relevant APKs from  [[Fdroid](https://f-droid.org/en/)], or
 @inproceedings{lin2025uicompass,
     title={UICOMPASS: UI Map Guided Mobile Task Automation via Adaptive Action Generation},
     author={Lin, Yuanzhang and Zhang, Zhe and Rui, He and Dong, Qingao and Zhou, Mingyi and Zhang, Jing and Gao, Xiang and Sun, Hailong},
-    booktitle={Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+    booktitle={Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},
     year={2025}
 }
 ```
