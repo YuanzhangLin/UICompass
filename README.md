@@ -2,6 +2,8 @@
 # UI Compass 🧭
 
 ![Project Banner](./images/logo.jpg) 
+The paper " `UICOMPASS: UI Map Guided Mobile Task Automation via Adaptive Action Generation`
+" has been accepted by EMNLP 2025.
 
 This is the code repository for the paper  “UICOMPASS: UI Map Guided Mobile Task Automation via Adaptive Action Generation”
 
@@ -208,6 +210,16 @@ You can download the relevant APKs from  [[Fdroid](https://f-droid.org/en/)], or
 ### Existing result.
 
 
+
+
 ## 📝Citation
 
 
+```latex
+@inproceedings{lin2025uicompass,
+    title={UICOMPASS: UI Map Guided Mobile Task Automation via Adaptive Action Generation},
+    author={Lin, Yuanzhang and Zhang, Zhe and Rui, He and Dong, Qingao and Zhou, Mingyi and Zhang, Jing and Gao, Xiang and Sun, Hailong},
+    booktitle={Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+    year={2025}
+}
+```
