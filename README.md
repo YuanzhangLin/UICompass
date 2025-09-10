@@ -192,11 +192,11 @@ Next, the APP should launch normally and you will see the execution results. The
 <!-- 横向滑动展示 output 目录下的图片 -->
 <div style="overflow-x: auto; white-space: nowrap; padding: 10px 0;">
   <!-- 每张图片用 img 标签引入，调整 width 控制图片大小，保持统一尺寸更美观 -->
-  <img src=".\Guardian2\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\0.png" alt="YouTube 执行结果截图1" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
-  <img src=".\Guardian2\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\1.png" alt="YouTube 执行结果截图2" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
-  <img src=".\Guardian2\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\2.png" alt="YouTube 执行结果截图3" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
-<img src=".\Guardian2\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\3.png" alt="YouTube 执行结果截图3" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
-<img src=".\Guardian2\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\4.png" alt="YouTube 执行结果截图3" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
+  <img src=".\Executor\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\0.png" alt="YouTube 执行结果截图1" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
+  <img src=".\Executor\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\1.png" alt="YouTube 执行结果截图2" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
+  <img src=".\Executor\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\2.png" alt="YouTube 执行结果截图3" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
+<img src=".\Executor\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\3.png" alt="YouTube 执行结果截图3" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
+<img src=".\Executor\output\code-aware\com_google_android_youtube\Change_the_location_to_United_Kingdom\4.png" alt="YouTube 执行结果截图3" style="width: 300px; height: auto; margin-right: 10px; border: 1px solid #eee;">
 </div>
 
 
